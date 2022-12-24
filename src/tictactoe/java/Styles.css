@@ -17,3 +17,18 @@ and open the template in the editor.
 .button{
     -fx-background-radius: 30,30,30,30
 }
+
+
+.default-color0.chart-pie { -fx-pie-color: #FEF400; }
+.default-color1.chart-pie { -fx-pie-color: #F9002D; }
+
+.chart-pie-label-line {
+    -fx-stroke: #FEF400;
+    -fx-fill: #F9002D;
+}
+
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-fill: #FEF400;
+    -fx-font-size: 1em;
+} 
+

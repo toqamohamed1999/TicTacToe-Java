@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -18,24 +18,24 @@ import javafx.stage.Stage;
 public class ProfileScreen extends AnchorPane {
 
     protected final ImageView profileImageView;
-    protected final Text userNameTxt;
-    protected final Text emailTxt;
-    protected final Text scoreTxt;
-    protected final Text userNameText;
+    protected final Label userNameLabel;
     protected final Text emailText;
     protected final Text scoreText;
     protected final Button recordsButton;
+    protected final Label scoreLabel;
+    protected final Label emailLabel;
+    protected final Text userNameText;
 
     public ProfileScreen() {
 
         profileImageView = new ImageView();
-        userNameTxt = new Text();
-        emailTxt = new Text();
-        scoreTxt = new Text();
-        userNameText = new Text();
+        userNameLabel = new Label();
         emailText = new Text();
         scoreText = new Text();
         recordsButton = new Button();
+        scoreLabel = new Label();
+        emailLabel = new Label();
+        userNameText = new Text();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -54,41 +54,11 @@ public class ProfileScreen extends AnchorPane {
         profileImageView.setPreserveRatio(true);
         profileImageView.setImage(new Image(getClass().getResource("profile.png").toExternalForm()));
 
-        userNameTxt.setFill(javafx.scene.paint.Color.valueOf("#f9002d"));
-        userNameTxt.setLayoutX(111.0);
-        userNameTxt.setLayoutY(165.0);
-        userNameTxt.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        userNameTxt.setStrokeWidth(0.0);
-        userNameTxt.setText("User Name : ");
-        userNameTxt.setWrappingWidth(148.41796875);
-        userNameTxt.setFont(new Font("Berlin Sans FB Demi Bold", 26.0));
-
-        emailTxt.setFill(javafx.scene.paint.Color.valueOf("#f9002d"));
-        emailTxt.setLayoutX(111.0);
-        emailTxt.setLayoutY(209.0);
-        emailTxt.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        emailTxt.setStrokeWidth(0.0);
-        emailTxt.setText("Email : ");
-        emailTxt.setWrappingWidth(148.41796875);
-        emailTxt.setFont(new Font("Berlin Sans FB Demi Bold", 26.0));
-
-        scoreTxt.setFill(javafx.scene.paint.Color.valueOf("#f9002d"));
-        scoreTxt.setLayoutX(111.0);
-        scoreTxt.setLayoutY(259.0);
-        scoreTxt.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        scoreTxt.setStrokeWidth(0.0);
-        scoreTxt.setText("Score :");
-        scoreTxt.setWrappingWidth(148.41796875);
-        scoreTxt.setFont(new Font("Berlin Sans FB Demi Bold", 26.0));
-
-        userNameText.setFill(javafx.scene.paint.Color.WHITE);
-        userNameText.setLayoutX(300.0);
-        userNameText.setLayoutY(164.0);
-        userNameText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        userNameText.setStrokeWidth(0.0);
-        userNameText.setText("Eman ");
-        userNameText.setWrappingWidth(148.41796875);
-        userNameText.setFont(new Font("Berlin Sans FB Demi Bold", 26.0));
+        userNameLabel.setLayoutX(111.0);
+        userNameLabel.setLayoutY(140.0);
+        userNameLabel.setText("UserName:");
+        userNameLabel.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
+        userNameLabel.setFont(new Font("Berlin Sans FB Demi Bold", 25.0));
 
         emailText.setFill(javafx.scene.paint.Color.WHITE);
         emailText.setLayoutX(300.0);
@@ -117,15 +87,26 @@ public class ProfileScreen extends AnchorPane {
         recordsButton.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
         recordsButton.setFont(new Font("Berlin Sans FB Demi Bold", 20.0));
 
-        getChildren().add(profileImageView);
-        getChildren().add(userNameTxt);
-        getChildren().add(emailTxt);
-        getChildren().add(scoreTxt);
-        getChildren().add(userNameText);
-        getChildren().add(emailText);
-        getChildren().add(scoreText);
-        getChildren().add(recordsButton);
-        
+        scoreLabel.setLayoutX(111.0);
+        scoreLabel.setLayoutY(235.0);
+        scoreLabel.setText("Score:");
+        scoreLabel.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
+        scoreLabel.setFont(new Font("Berlin Sans FB Demi Bold", 25.0));
+
+        emailLabel.setLayoutX(111.0);
+        emailLabel.setLayoutY(185.0);
+        emailLabel.setText("Email:");
+        emailLabel.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
+        emailLabel.setFont(new Font("Berlin Sans FB Demi Bold", 25.0));
+
+        userNameText.setFill(javafx.scene.paint.Color.WHITE);
+        userNameText.setLayoutX(300.0);
+        userNameText.setLayoutY(164.0);
+        userNameText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
+        userNameText.setStrokeWidth(0.0);
+        userNameText.setText("Eman");
+        userNameText.setWrappingWidth(242.41796875);
+        userNameText.setFont(new Font("Berlin Sans FB Demi Bold", 26.0));
         
         
         recordsButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -133,19 +114,23 @@ public class ProfileScreen extends AnchorPane {
             public void handle(ActionEvent event) {
           
             Parent root;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("ServerScreen.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) recordsButton.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+            root = new ServerScreen();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) recordsButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
             
             }
         });
-        
+
+        getChildren().add(profileImageView);
+        getChildren().add(userNameLabel);
+        getChildren().add(emailText);
+        getChildren().add(scoreText);
+        getChildren().add(recordsButton);
+        getChildren().add(scoreLabel);
+        getChildren().add(emailLabel);
+        getChildren().add(userNameText);
 
     }
 }
