@@ -17,12 +17,12 @@
    <children>
       <ImageView fx:id="profileImageView" fitHeight="85.0" fitWidth="83.0" layoutX="260.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@profile.png" />
+            <Image url="@Res/woman.png" />
          </image>
       </ImageView>
       <Label fx:id="userNameLabel" layoutX="111.0" layoutY="140.0" text="UserName:" textFill="#f9002d">
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+            <Font name="Impact" size="25.0" />
          </font>
       </Label>
       <Text fx:id="emailText" fill="WHITE" layoutX="300.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="eman@gmail.com " wrappingWidth="242.41796875">
@@ -47,7 +47,7 @@
       </Label>
       <Label fx:id="emailLabel" layoutX="111.0" layoutY="185.0" text="Email:" textFill="#f9002d">
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+            <Font name="Impact" size="25.0" />
          </font>
       </Label>
       <Text fx:id="userNameText" fill="WHITE" layoutX="300.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eman" wrappingWidth="242.41796875">
@@ -55,5 +55,11 @@
             <Font name="Berlin Sans FB Demi Bold" size="26.0" />
          </font>
       </Text>
+      <Button layoutX="38.0" layoutY="35.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="30.0" />
+      <ImageView fitHeight="102.0" fitWidth="30.0" layoutX="38.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Res/back.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

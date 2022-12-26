@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 .root{
-   -fx-background-image: url('BackGround.png'); 
+   -fx-background-image: url('Res/HomeBackGround.JPG'); 
    -fx-background-size: cover;
     
 }
@@ -32,3 +32,9 @@ and open the template in the editor.
     -fx-font-size: 1em;
 } 
 
+
+.list-view .list-cell{
+-fx-font-family: 'Impact';
+-fx-font-size: 20px; 
+-fx-text-fill:#f9002d;
+}
