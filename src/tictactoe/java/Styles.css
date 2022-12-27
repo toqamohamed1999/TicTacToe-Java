@@ -25,3 +25,23 @@ and open the template in the editor.
 
 
 
+.default-color0.chart-pie { -fx-pie-color: #FEF400; }
+.default-color1.chart-pie { -fx-pie-color: #F9002D; }
+
+.chart-pie-label-line {
+    -fx-stroke: #FEF400;
+    -fx-fill: #F9002D;
+}
+
+.chart-pie-label {
+    -fx-fill: #FEF400;
+    -fx-font-size: 1em;
+} 
+
+
+.list-view .list-cell{
+-fx-font-family: 'Impact';
+-fx-font-size: 20px; 
+-fx-text-fill:#f9002d;
+}
+

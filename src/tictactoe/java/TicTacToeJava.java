@@ -25,6 +25,7 @@ public class TicTacToeJava extends Application {
         
         Scene scene = new Scene(root);
         stage.centerOnScreen();
+
         stage.setScene(scene);
         stage.show();
        
@@ -34,7 +35,8 @@ public class TicTacToeJava extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        launch(args);  
+       
     }
 
 }
