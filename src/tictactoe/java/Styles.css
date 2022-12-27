@@ -9,11 +9,26 @@ and open the template in the editor.
 */
 
 .root{
-   -fx-background-image: url('BackGround.png'); 
-   -fx-background-size: cover;
+   -fx-background-image: url('BackGround.JPG'); 
+   -fx-background-size: stretch;
     
 }
 
 .button{
-    -fx-background-radius: 30,30,30,30
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:white
+}
+
+#TextField{
+    -fx-background-radius: 30,30,30,30;
+}
+
+#SplashScreenAnchorPane{
+   -fx-background-image: url('1.JPG'); 
+   -fx-background-size: stretch;
+}
+
+#HomeAnchorPane{
+   -fx-background-image: url('HomeBackGround.JPG'); 
+   -fx-background-size: stretch;
 }
