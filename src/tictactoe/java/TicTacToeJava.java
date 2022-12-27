@@ -5,25 +5,29 @@
  */
 package tictactoe.java;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-
 public class TicTacToeJava extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = new ProfileScreen();
-
+        Parent root = new DisplayRecordScreen();
         
         Scene scene = new Scene(root);
-        
+        stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
+       
     }
 
     /**
@@ -32,5 +36,5 @@ public class TicTacToeJava extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

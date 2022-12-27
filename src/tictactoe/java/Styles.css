@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 .root{
-   -fx-background-image: url('BackGround.png'); 
+   -fx-background-image: url('/res/BackGround.JPG'); 
    -fx-background-size: cover;
     
 }
@@ -17,3 +17,11 @@ and open the template in the editor.
 .button{
     -fx-background-radius: 30,30,30,30
 }
+
+.mygridStyle Line {
+  -fx-stroke: yellow;
+}
+
+
+
+
