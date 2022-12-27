@@ -8,8 +8,7 @@ package tictactoe.java;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.transform.Scale;
@@ -20,8 +19,9 @@ public class TicTacToeJava extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
+ 
         Parent root = new DisplayRecordScreen();
+
         
         Scene scene = new Scene(root);
         stage.centerOnScreen();
