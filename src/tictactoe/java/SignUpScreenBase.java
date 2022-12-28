@@ -17,67 +17,66 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+public class SignUpScreenBase extends AnchorPane {
 
-public class signUpScreen extends AnchorPane {
-
-    protected final ImageView imageView;
-    protected final Label label;
-    protected final Label label0;
+    protected final ImageView logoImageView;
+    protected final Label userNameLabel;
+    protected final Label passwordLabel;
     protected final TextField userNameTextField;
-    protected final Button SignUpButton;
+    protected final Button signUpButton;
     protected final DropShadow dropShadow;
-    protected final Label label1;
+    protected final Label alreadyHaveAccLabel;
     protected final Label signInHyperLink;
-    protected final Label label2;
-    protected final Label label3;
+    protected final Label confirmPasswordLabel;
+    protected final Label emailLabel;
     protected final TextField passwordTextField;
     protected final TextField EmailTextField;
     protected final RadioButton maleRadioButton;
     protected final RadioButton femaleRadioButton;
-    protected final TextField EmailTextField1;
-    protected final Label label4;
+    protected final TextField emailTextField;
+    protected final Label genderLabel;
 
-    public signUpScreen() {
+    public SignUpScreenBase() {
 
-        imageView = new ImageView();
-        label = new Label();
-        label0 = new Label();
+        logoImageView = new ImageView();
+        userNameLabel = new Label();
+        passwordLabel = new Label();
         userNameTextField = new TextField();
-        SignUpButton = new Button();
+        signUpButton = new Button();
         dropShadow = new DropShadow();
-        label1 = new Label();
+        alreadyHaveAccLabel = new Label();
         signInHyperLink = new Label();
-        label2 = new Label();
-        label3 = new Label();
+        confirmPasswordLabel = new Label();
+        emailLabel = new Label();
         passwordTextField = new TextField();
         EmailTextField = new TextField();
         maleRadioButton = new RadioButton();
         femaleRadioButton = new RadioButton();
-        EmailTextField1 = new TextField();
-        label4 = new Label();
+        emailTextField = new TextField();
+        genderLabel = new Label();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
         setPrefWidth(600.0);
 
-        imageView.setFitHeight(83.0);
-        imageView.setFitWidth(373.0);
-        imageView.setLayoutX(159.0);
-        imageView.setLayoutY(30.0);
-        imageView.setPickOnBounds(true);
-        imageView.setImage(new Image(getClass().getResource("HorizontalLogo.png").toExternalForm()));
+        logoImageView.setFitHeight(83.0);
+        logoImageView.setFitWidth(373.0);
+        logoImageView.setLayoutX(159.0);
+        logoImageView.setLayoutY(30.0);
+        logoImageView.setPickOnBounds(true);
+        logoImageView.setImage(new Image(getClass().getResource("/res/HorizontalLogo.png").toExternalForm()));
 
-        label.setLayoutX(111.0);
-        label.setLayoutY(138.0);
-        label.setText("User Name");
-        label.setTextFill(javafx.scene.paint.Color.RED);
-        label.setFont(new Font("Impact", 24.0));
+        userNameLabel.setLayoutX(111.0);
+        userNameLabel.setLayoutY(138.0);
+        userNameLabel.setText("User Name");
+        userNameLabel.setTextFill(javafx.scene.paint.Color.RED);
+        userNameLabel.setFont(new Font("Impact", 24.0));
 
-        label0.setLayoutX(111.0);
-        label0.setLayoutY(176.0);
-        label0.setText("Password");
-        label0.setTextFill(javafx.scene.paint.Color.RED);
-        label0.setFont(new Font("Impact", 24.0));
+        passwordLabel.setLayoutX(111.0);
+        passwordLabel.setLayoutY(176.0);
+        passwordLabel.setText("Password");
+        passwordLabel.setTextFill(javafx.scene.paint.Color.RED);
+        passwordLabel.setFont(new Font("Impact", 24.0));
 
         AnchorPane.setBottomAnchor(userNameTextField, 260.0);
         AnchorPane.setRightAnchor(userNameTextField, 100.0);
@@ -90,23 +89,23 @@ public class signUpScreen extends AnchorPane {
         userNameTextField.setFont(new Font("Impact", 16.0));
         userNameTextField.setCursor(Cursor.TEXT);
 
-        SignUpButton.setLayoutX(250.0);
-        SignUpButton.setLayoutY(341.0);
-        SignUpButton.setMnemonicParsing(false);
-        SignUpButton.setPrefHeight(51.0);
-        SignUpButton.setPrefWidth(118.0);
-        SignUpButton.getStylesheets().add("/tictactoe/java/Styles.css");
-        SignUpButton.setText("Sign up");
-        SignUpButton.setTextFill(javafx.scene.paint.Color.RED);
-        SignUpButton.setFont(new Font("Impact", 26.0));
-        SignUpButton.setOnAction(new EventHandler<ActionEvent>() {
+        signUpButton.setLayoutX(250.0);
+        signUpButton.setLayoutY(341.0);
+        signUpButton.setMnemonicParsing(false);
+        signUpButton.setPrefHeight(51.0);
+        signUpButton.setPrefWidth(118.0);
+        signUpButton.getStylesheets().add("/tictactoe/java/Styles.css");
+        signUpButton.setText("Sign up");
+        signUpButton.setTextFill(javafx.scene.paint.Color.RED);
+        signUpButton.setFont(new Font("Impact", 26.0));
+        signUpButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
           
              Parent root=null;
-                root = new HomeScreen(){};
+                root = new SignInScreenBase();
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) SignUpButton.getScene().getWindow();
+                Stage stage = (Stage) signUpButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             }
@@ -115,13 +114,13 @@ public class signUpScreen extends AnchorPane {
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
         dropShadow.setOffsetY(4.0);
-        SignUpButton.setEffect(dropShadow);
+        signUpButton.setEffect(dropShadow);
 
-        label1.setLayoutX(188.0);
-        label1.setLayoutY(401.0);
-        label1.setText("Already Have an account? .. ");
-        label1.setTextFill(javafx.scene.paint.Color.WHITE);
-        label1.setFont(new Font("Impact", 16.0));
+        alreadyHaveAccLabel.setLayoutX(188.0);
+        alreadyHaveAccLabel.setLayoutY(401.0);
+        alreadyHaveAccLabel.setText("Already Have an account? .. ");
+        alreadyHaveAccLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        alreadyHaveAccLabel.setFont(new Font("Impact", 16.0));
 
         signInHyperLink.setLayoutX(368.0);
         signInHyperLink.setLayoutY(401.0);
@@ -130,12 +129,12 @@ public class signUpScreen extends AnchorPane {
         signInHyperLink.setUnderline(true);
         signInHyperLink.setFont(new Font("Impact", 18.0));
         signInHyperLink.setCursor(Cursor.HAND);
-         signInHyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        signInHyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
           
              Parent root=null;
-                root = new SignInScreen();
+                root = new SignInScreenBase();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signInHyperLink.getScene().getWindow();
                 stage.setScene(scene);
@@ -143,19 +142,19 @@ public class signUpScreen extends AnchorPane {
             }
         });
 
-        label2.setLayoutX(111.0);
-        label2.setLayoutY(217.0);
-        label2.setPrefHeight(29.0);
-        label2.setPrefWidth(189.0);
-        label2.setText("Confirm Passowrd");
-        label2.setTextFill(javafx.scene.paint.Color.RED);
-        label2.setFont(new Font("Impact", 24.0));
+        confirmPasswordLabel.setLayoutX(111.0);
+        confirmPasswordLabel.setLayoutY(217.0);
+        confirmPasswordLabel.setPrefHeight(29.0);
+        confirmPasswordLabel.setPrefWidth(189.0);
+        confirmPasswordLabel.setText("Confirm Passowrd");
+        confirmPasswordLabel.setTextFill(javafx.scene.paint.Color.RED);
+        confirmPasswordLabel.setFont(new Font("Impact", 24.0));
 
-        label3.setLayoutX(111.0);
-        label3.setLayoutY(258.0);
-        label3.setText("Email");
-        label3.setTextFill(javafx.scene.paint.Color.RED);
-        label3.setFont(new Font("Impact", 24.0));
+        emailLabel.setLayoutX(111.0);
+        emailLabel.setLayoutY(258.0);
+        emailLabel.setText("Email");
+        emailLabel.setTextFill(javafx.scene.paint.Color.RED);
+        emailLabel.setFont(new Font("Impact", 24.0));
 
         AnchorPane.setBottomAnchor(passwordTextField, 221.0);
         AnchorPane.setRightAnchor(passwordTextField, 100.0);
@@ -192,40 +191,40 @@ public class signUpScreen extends AnchorPane {
         femaleRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         femaleRadioButton.setFont(new Font("Impact", 16.0));
 
-        AnchorPane.setBottomAnchor(EmailTextField1, 143.0);
-        AnchorPane.setRightAnchor(EmailTextField1, 100.0);
-        EmailTextField1.setId("TextField");
-        EmailTextField1.setLayoutX(176.0);
-        EmailTextField1.setLayoutY(254.0);
-        EmailTextField1.setPrefHeight(33.0);
-        EmailTextField1.setPrefWidth(324.0);
-        EmailTextField1.getStylesheets().add("/tictactoe/java/Styles.css");
-        EmailTextField1.setFont(new Font("Impact", 16.0));
-        EmailTextField1.setCursor(Cursor.TEXT);
+        AnchorPane.setBottomAnchor(emailTextField, 143.0);
+        AnchorPane.setRightAnchor(emailTextField, 100.0);
+        emailTextField.setId("TextField");
+        emailTextField.setLayoutX(176.0);
+        emailTextField.setLayoutY(254.0);
+        emailTextField.setPrefHeight(33.0);
+        emailTextField.setPrefWidth(324.0);
+        emailTextField.getStylesheets().add("/tictactoe/java/Styles.css");
+        emailTextField.setFont(new Font("Impact", 16.0));
+        emailTextField.setCursor(Cursor.TEXT);
 
-        label4.setLayoutX(111.0);
-        label4.setLayoutY(299.0);
-        label4.setText("Gender");
-        label4.setTextFill(javafx.scene.paint.Color.RED);
-        label4.setFont(new Font("Impact", 24.0));
+        genderLabel.setLayoutX(111.0);
+        genderLabel.setLayoutY(299.0);
+        genderLabel.setText("Gender");
+        genderLabel.setTextFill(javafx.scene.paint.Color.RED);
+        genderLabel.setFont(new Font("Impact", 24.0));
         getStylesheets().add("/tictactoe/java/Styles.css");
         getStylesheets().add("/tictactoe/java/Styles.css");
 
-        getChildren().add(imageView);
-        getChildren().add(label);
-        getChildren().add(label0);
+        getChildren().add(logoImageView);
+        getChildren().add(userNameLabel);
+        getChildren().add(passwordLabel);
         getChildren().add(userNameTextField);
-        getChildren().add(SignUpButton);
-        getChildren().add(label1);
+        getChildren().add(signUpButton);
+        getChildren().add(alreadyHaveAccLabel);
         getChildren().add(signInHyperLink);
-        getChildren().add(label2);
-        getChildren().add(label3);
+        getChildren().add(confirmPasswordLabel);
+        getChildren().add(emailLabel);
         getChildren().add(passwordTextField);
         getChildren().add(EmailTextField);
         getChildren().add(maleRadioButton);
         getChildren().add(femaleRadioButton);
-        getChildren().add(EmailTextField1);
-        getChildren().add(label4);
+        getChildren().add(emailTextField);
+        getChildren().add(genderLabel);
 
     }
 }
