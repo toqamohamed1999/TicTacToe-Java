@@ -54,7 +54,7 @@ public class HomeScreen extends AnchorPane {
             public void handle(MouseEvent event) {
           
              Parent root=null;
-                root = new HomeScreen();
+                root = new ProfileScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) profilePic.getScene().getWindow();
                 stage.setScene(scene);
@@ -131,6 +131,18 @@ public class HomeScreen extends AnchorPane {
         singlePlayerButton.setText("Single Player");
         singlePlayerButton.setTextFill(javafx.scene.paint.Color.RED);
         singlePlayerButton.setFont(new Font("Impact", 23.0));
+        singlePlayerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root=null;
+                root = new SingleUserXOScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) singlePlayerButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+            
+        });
 
         multiPlayerButton.setLayoutX(335.0);
         multiPlayerButton.setLayoutY(246.0);

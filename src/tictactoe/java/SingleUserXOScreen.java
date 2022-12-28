@@ -1,9 +1,14 @@
 package tictactoe.java;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -128,6 +133,13 @@ public class SingleUserXOScreen extends AnchorPane {
         recordGameButton.setText("Record Game");
         recordGameButton.setTextFill(javafx.scene.paint.Color.valueOf("#e81111"));
         recordGameButton.setFont(new Font("Impact", 14.0));
+        recordGameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                recordIndicatorImageView.setVisible(true);
+                recordIndicatorButton.setVisible(true);
+            }
+        });
 
         backImageView.setFitHeight(53.0);
         backImageView.setFitWidth(50.0);
@@ -137,6 +149,17 @@ public class SingleUserXOScreen extends AnchorPane {
         backImageView.setPickOnBounds(true);
         backImageView.setPreserveRatio(true);
         backImageView.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
+        backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root=null;
+                root = new HomeScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) backImageView.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         logoImageView.setFitHeight(75.0);
         logoImageView.setFitWidth(304.0);

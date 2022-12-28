@@ -135,7 +135,7 @@ public class ProfileScreen extends AnchorPane {
         back.setOnMouseClicked((MouseEvent e) -> {
            
             Parent root;
-            root = new OnlineListScreen();
+            root = new HomeScreen();
             Scene scene = new Scene(root);
             Stage stage = (Stage) back.getScene().getWindow();
             stage.setScene(scene);
@@ -149,8 +149,16 @@ public class ProfileScreen extends AnchorPane {
         logout.setPickOnBounds(true);
         logout.setPreserveRatio(true);
         logout.setImage(new Image(getClass().getResource("/res/logout.png").toExternalForm()));
-        logout.setOnMouseClicked((MouseEvent e) -> {
-           Platform.exit();
+        logout.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                 Parent root=null;
+                root = new SignInScreenBase();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) logout.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
         });
 
         getChildren().add(profileImageView);

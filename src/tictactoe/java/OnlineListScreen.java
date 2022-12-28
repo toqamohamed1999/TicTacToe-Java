@@ -1,5 +1,6 @@
 package tictactoe.java;
 
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -43,6 +44,17 @@ public class OnlineListScreen extends AnchorPane {
         for(int i =1;i<=20;i++ ) {
             onlineListView.getItems().add("User "+i);
         }
+        onlineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root;
+                root = new OnlineUserXOScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) onlineListView.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         back.setFitHeight(53.0);
         back.setFitWidth(50.0);
@@ -53,7 +65,7 @@ public class OnlineListScreen extends AnchorPane {
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {     
             Parent root;
-            root = new ProfileScreen();
+            root = new multiPlayerScreen();
             Scene scene = new Scene(root);
             Stage stage = (Stage) back.getScene().getWindow();
             stage.setScene(scene);

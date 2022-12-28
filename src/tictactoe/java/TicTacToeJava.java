@@ -5,30 +5,23 @@
  */
 package tictactoe.java;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javafx.application.Application;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.transform.Scale;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class TicTacToeJava extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
- 
-        Parent root = new DisplayRecordScreen();
 
-        
+        Parent root = new splashScreen();
+
         Scene scene = new Scene(root);
         stage.centerOnScreen();
 
         stage.setScene(scene);
         stage.show();
-       
     }
 
     /**

@@ -1,5 +1,6 @@
 package tictactoe.java;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
@@ -77,7 +78,7 @@ public class multiPlayerScreen extends AnchorPane {
             public void handle(MouseEvent event) {
           
              Parent root=null;
-                root = new HomeScreen();
+                root = new ProfileScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -130,6 +131,17 @@ public class multiPlayerScreen extends AnchorPane {
         passAndPlayButton.setText("Pass & Play");
         passAndPlayButton.setTextFill(javafx.scene.paint.Color.RED);
         passAndPlayButton.setFont(new Font("Impact", 23.0));
+        passAndPlayButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root=null;
+                root = new MultipleUserXOScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) passAndPlayButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         onlineButton.setLayoutX(335.0);
         onlineButton.setLayoutY(249.0);
@@ -138,6 +150,17 @@ public class multiPlayerScreen extends AnchorPane {
         onlineButton.setText("Online");
         onlineButton.setTextFill(javafx.scene.paint.Color.RED);
         onlineButton.setFont(new Font("Impact", 23.0));
+        onlineButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root=null;
+                root = new OnlineListScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) onlineButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         getChildren().add(backButton);
         getChildren().add(profilePic);
