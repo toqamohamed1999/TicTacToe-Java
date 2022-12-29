@@ -52,7 +52,7 @@ public class multiPlayerScreen extends AnchorPane {
         backButton.setPickOnBounds(true);
         backButton.setPreserveRatio(true);
         backButton.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
-         backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
           
@@ -154,7 +154,7 @@ public class multiPlayerScreen extends AnchorPane {
             @Override
             public void handle(ActionEvent event) {
                 Parent root=null;
-                root = new OnlineListScreen();
+                root = new SignInScreenBase();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) onlineButton.getScene().getWindow();
                 stage.setScene(scene);

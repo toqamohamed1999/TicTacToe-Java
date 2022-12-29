@@ -76,7 +76,7 @@ public class HomeScreen extends AnchorPane {
         multiPlayerCirle.setRadius(51.0);
         multiPlayerCirle.setStroke(javafx.scene.paint.Color.BLACK);
         multiPlayerCirle.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
-         multiPlayerCirle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        multiPlayerCirle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
           

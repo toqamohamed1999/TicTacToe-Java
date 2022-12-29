@@ -65,7 +65,7 @@ public class OnlineListScreen extends AnchorPane {
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {     
             Parent root;
-            root = new multiPlayerScreen();
+            root = new HomeScreen();
             Scene scene = new Scene(root);
             Stage stage = (Stage) back.getScene().getWindow();
             stage.setScene(scene);

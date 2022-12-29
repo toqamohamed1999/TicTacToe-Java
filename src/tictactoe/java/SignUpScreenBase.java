@@ -103,7 +103,7 @@ public class SignUpScreenBase extends AnchorPane {
             public void handle(ActionEvent event) {
           
              Parent root=null;
-                root = new HomeScreen();
+                root = new OnlineListScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signUpButton.getScene().getWindow();
                 stage.setScene(scene);

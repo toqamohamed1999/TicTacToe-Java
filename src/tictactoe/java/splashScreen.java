@@ -20,7 +20,7 @@ public class splashScreen extends AnchorPane {
             public void handle(MouseEvent event) {
           
              Parent root=null;
-                root = new SignInScreenBase();
+                root = new HomeScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) getScene().getWindow();
                 stage.setScene(scene);

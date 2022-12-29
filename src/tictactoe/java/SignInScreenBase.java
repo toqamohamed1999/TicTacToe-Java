@@ -28,6 +28,7 @@ public class SignInScreenBase extends AnchorPane {
     protected final DropShadow dropShadow;
     protected final Label dontHaveAccLabel;
     protected final Label signUpHyperLink;
+    protected final ImageView back;
 
     public SignInScreenBase() {
 
@@ -40,6 +41,7 @@ public class SignInScreenBase extends AnchorPane {
         dropShadow = new DropShadow();
         dontHaveAccLabel = new Label();
         signUpHyperLink = new Label();
+        back = new ImageView();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -92,7 +94,7 @@ public class SignInScreenBase extends AnchorPane {
             public void handle(ActionEvent event) {
           
              Parent root = null;
-                root = new HomeScreen();
+                root = new OnlineListScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signInButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -130,6 +132,23 @@ public class SignInScreenBase extends AnchorPane {
                 stage.show();
             }
         });
+        
+        back.setFitHeight(53.0);
+        back.setFitWidth(50.0);
+        back.setLayoutX(30.0);
+        back.setLayoutY(21.0);
+        back.setPickOnBounds(true);
+        back.setPreserveRatio(true);
+        back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
+        back.setOnMouseClicked((MouseEvent e) -> {
+           
+            Parent root;
+            root = new HomeScreen();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) back.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        });
 
         getChildren().add(logoImageView);
         getChildren().add(userNameLabel);
@@ -139,6 +158,7 @@ public class SignInScreenBase extends AnchorPane {
         getChildren().add(signInButton);
         getChildren().add(dontHaveAccLabel);
         getChildren().add(signUpHyperLink);
+        getChildren().add(back);
 
     }
 }
