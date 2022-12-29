@@ -10,19 +10,18 @@ and open the template in the editor.
 
 .root{
    -fx-background-image: url('/res/BackGround.JPG'); 
-   -fx-background-size: cover;
-    
+   -fx-background-size: stretch;
 }
 
 .button{
-    -fx-background-radius: 30,30,30,30
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:white;      
 }
+
 
 .mygridStyle Line {
   -fx-stroke: yellow;
 }
-
-
 
 
 .default-color0.chart-pie { -fx-pie-color: #FEF400; }
@@ -40,8 +39,29 @@ and open the template in the editor.
 
 
 .list-view .list-cell{
--fx-font-family: 'Impact';
--fx-font-size: 20px; 
--fx-text-fill:#f9002d;
+    -fx-font-family: 'Impact';
+    -fx-font-size: 20px; 
+    -fx-text-fill:#f9002d;
+}
+   
+
+#TextField{
+    -fx-background-radius: 30,30,30,30;
+}
+
+#SplashScreenAnchorPane{
+   -fx-background-image: url('/res/1.JPG'); 
+   -fx-background-size: stretch;
+}
+
+#HomeAnchorPane{
+   -fx-background-image: url('/res/HomeBackGround.JPG'); 
+   -fx-background-size: stretch;
+}
+
+#profileResultCard{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.3;
 }
 

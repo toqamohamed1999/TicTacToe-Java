@@ -1,5 +1,6 @@
 package tictactoe.java;
 
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -43,6 +44,20 @@ public class RecordsListScreen extends AnchorPane {
         for(int i =1;i<=20;i++ ) {
             recordListView.getItems().add("Record "+i);
         }
+        
+        recordListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("clicked on " + recordListView.getSelectionModel().getSelectedItem());
+                
+                Parent root=null;
+                root = new DisplayRecordScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) recordListView.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         back.setFitHeight(53.0);
         back.setFitWidth(50.0);
@@ -53,7 +68,7 @@ public class RecordsListScreen extends AnchorPane {
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {     
             Parent root;
-            root = new OnlineListScreen();
+            root = new ProfileScreen();
             Scene scene = new Scene(root);
             Stage stage = (Stage) back.getScene().getWindow();
             stage.setScene(scene);

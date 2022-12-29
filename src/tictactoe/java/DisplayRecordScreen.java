@@ -1,15 +1,20 @@
 package tictactoe.java;
 
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class DisplayRecordScreen extends AnchorPane {
 
@@ -62,6 +67,17 @@ public class DisplayRecordScreen extends AnchorPane {
         backImageView.setPickOnBounds(true);
         backImageView.setPreserveRatio(true);	
         backImageView.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
+        backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root=null;
+                root = new RecordsListScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) backImageView.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         logoImageView.setId("logoImageView");
         logoImageView.setFitHeight(83.0);
