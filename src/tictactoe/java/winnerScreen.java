@@ -81,6 +81,12 @@ public class winnerScreen extends AnchorPane {
         playAgainButton.setText("Play Again");
         playAgainButton.setTextFill(javafx.scene.paint.Color.RED);
         playAgainButton.setFont(new Font("Impact", 24.0));
+        playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+            }
+        });
 
         exitGameButton.setLayoutX(385.0);
         exitGameButton.setLayoutY(353.0);
@@ -163,7 +169,7 @@ public class winnerScreen extends AnchorPane {
             @Override
             public void handle(MouseEvent event) {
           
-             Parent root=null;
+                Parent root=null;
                 root = new HomeScreen() ;
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) homeButton.getScene().getWindow();

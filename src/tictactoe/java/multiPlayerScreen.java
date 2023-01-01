@@ -135,7 +135,7 @@ public class multiPlayerScreen extends AnchorPane {
             @Override
             public void handle(ActionEvent event) {
                 Parent root=null;
-                root = new MultipleUserXOScreen();
+                root = new MultipleUserXOScreenBase();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) passAndPlayButton.getScene().getWindow();
                 stage.setScene(scene);
