@@ -3,6 +3,7 @@ package tictactoe.java;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -123,7 +124,7 @@ public class SingleUserXOScreen extends AnchorPane {
         recordIndicatorImageView.setPreserveRatio(true);
         recordIndicatorImageView.setImage(new Image(getClass().getResource("/res/record.png").toExternalForm()));
         recordIndicatorImageView.setVisible(false);
-        
+
         recordGameButton.setId("recordGameButton");
         recordGameButton.setLayoutX(250.0);
         recordGameButton.setLayoutY(341.0);
@@ -152,7 +153,7 @@ public class SingleUserXOScreen extends AnchorPane {
         backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root=null;
+                Parent root = null;
                 root = new HomeScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backImageView.getScene().getWindow();
@@ -203,7 +204,6 @@ public class SingleUserXOScreen extends AnchorPane {
         xImageView.setPreserveRatio(true);
         xImageView.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
 
-        
         gridPane.setGridLinesVisible(true);
         gridPane.setId("xoGridPane");
         gridPane.setLayoutX(158.0);
@@ -218,7 +218,7 @@ public class SingleUserXOScreen extends AnchorPane {
         columnConstraints0.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
         columnConstraints0.setMinWidth(10.0);
         columnConstraints0.setPrefWidth(100.0);
-        
+
         columnConstraints1.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
         columnConstraints1.setMinWidth(10.0);
         columnConstraints1.setPrefWidth(100.0);
@@ -273,4 +273,8 @@ public class SingleUserXOScreen extends AnchorPane {
         getChildren().add(xImageView);
 
     }
+
 }
+        
+        
+    
