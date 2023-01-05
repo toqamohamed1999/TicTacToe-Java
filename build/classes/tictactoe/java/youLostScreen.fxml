@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="lostScreenAnchorPane" prefHeight="430.0" prefWidth="600.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="lostScreenBackGround" fitHeight="407.0" fitWidth="630.0" layoutX="-6.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../res/BackGround.JPG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="resultPic" fitHeight="254.0" fitWidth="273.0" layoutX="175.0" layoutY="86.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../res/lost.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="resultLabel" layoutX="249.0" layoutY="21.0" text="You Lost" textFill="RED">
+         <font>
+            <Font name="Impact" size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="playAgainButton" layoutX="108.0" layoutY="353.0" mnemonicParsing="false" stylesheets="@Styles.css" text="Play Again" textFill="RED">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="exitGameButton" layoutX="385.0" layoutY="353.0" mnemonicParsing="false" stylesheets="@Styles.css" text="Exit Game" textFill="RED">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Button>
+      <Pane id="profileResultCard" fx:id="player1CardPane" layoutX="36.0" layoutY="141.0" prefHeight="163.0" prefWidth="109.0" stylesheets="@Styles.css" />
+      <Pane id="profileResultCard" fx:id="player2CardPane" layoutX="476.0" layoutY="141.0" prefHeight="163.0" prefWidth="109.0" stylesheets="@Styles.css" />
+      <ImageView id="profilePic" fx:id="player1Pic" fitHeight="69.0" fitWidth="86.0" layoutX="55.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/man.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="player1Name" layoutX="57.0" layoutY="160.0" text="Player 1" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="player1State" layoutX="66.0" layoutY="256.0" text="Loser" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <ImageView id="profilePic" fx:id="player2Pic" fitHeight="69.0" fitWidth="86.0" layoutX="497.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/woman.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="player2Name" layoutX="497.0" layoutY="159.0" text="Player 2" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="player2State" layoutX="499.0" layoutY="256.0" text="Winner" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="homeButton" fitHeight="45.0" fitWidth="47.0" layoutX="287.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/home.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

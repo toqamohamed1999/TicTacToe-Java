@@ -137,13 +137,6 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         recordGameButton.setText("Record Game");
         recordGameButton.setTextFill(javafx.scene.paint.Color.valueOf("#e81111"));
         recordGameButton.setFont(new Font("Impact", 14.0));
-        recordGameButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                recordIndicatorImageView.setVisible(true);
-                recordIndicatorButton.setVisible(true);
-            }
-        });
 
         backImageView.setFitHeight(40.0);
         backImageView.setFitWidth(83.0);
@@ -153,17 +146,6 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         backImageView.setPickOnBounds(true);
         backImageView.setPreserveRatio(true);
         backImageView.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
-        backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Parent root=null;
-                root = new multiPlayerScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) backImageView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
 
         logoImageView.setFitHeight(75.0);
         logoImageView.setFitWidth(304.0);
@@ -211,142 +193,54 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_1.setMnemonicParsing(false);
         button_1.setPrefHeight(31.0);
         button_1.setPrefWidth(60.0);
-        button_1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_1.getText().equals("")){
-                    setXorO(button_1);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_2.setLayoutX(270.0);
         button_2.setLayoutY(160.0);
         button_2.setMnemonicParsing(false);
         button_2.setPrefHeight(31.0);
         button_2.setPrefWidth(60.0);
-        button_2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_2.getText().equals("")){
-                    setXorO(button_2);
-                    TheWinner();
-                }   
-            }
-        });
 
         button_3.setLayoutX(355.0);
         button_3.setLayoutY(160.0);
         button_3.setMnemonicParsing(false);
         button_3.setPrefHeight(31.0);
         button_3.setPrefWidth(60.0);
-        button_3.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_3.getText().equals("")){
-                    setXorO(button_3);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_4.setLayoutX(185.0);
         button_4.setLayoutY(200.0);
         button_4.setMnemonicParsing(false);
         button_4.setPrefHeight(31.0);
         button_4.setPrefWidth(60.0);
-        button_4.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_4.getText().equals("")){
-                    setXorO(button_4);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_5.setLayoutX(270.0);
         button_5.setLayoutY(200.0);
         button_5.setMnemonicParsing(false);
         button_5.setPrefHeight(31.0);
         button_5.setPrefWidth(60.0);
-        button_5.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_5.getText().equals("")){
-                    setXorO(button_5);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_6.setLayoutX(355.0);
         button_6.setLayoutY(200.0);
         button_6.setMnemonicParsing(false);
         button_6.setPrefHeight(31.0);
         button_6.setPrefWidth(60.0);
-        button_6.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_6.getText().equals("")){
-                    setXorO(button_6);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_7.setLayoutX(185.0);
         button_7.setLayoutY(240.0);
         button_7.setMnemonicParsing(false);
         button_7.setPrefHeight(31.0);
         button_7.setPrefWidth(60.0);
-        button_7.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_7.getText().equals("")){
-                    setXorO(button_7);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_8.setLayoutX(270.0);
         button_8.setLayoutY(240.0);
         button_8.setMnemonicParsing(false);
         button_8.setPrefHeight(31.0);
         button_8.setPrefWidth(60.0);
-        button_8.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_8.getText().equals("")){
-                    setXorO(button_8);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_9.setLayoutX(355.0);
         button_9.setLayoutY(240.0);
         button_9.setMnemonicParsing(false);
         button_9.setPrefHeight(31.0);
         button_9.setPrefWidth(60.0);
-        button_9.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_9.getText().equals("")){
-                    setXorO(button_9);
-                    TheWinner();
-                }  
-            }
-        });
 
         getChildren().add(user2ImageView);
         getChildren().add(user1ImageView);
@@ -371,95 +265,6 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         getChildren().add(button_8);
         getChildren().add(button_9);
 
-    }
-    private void setXorO(Button btn){
-        if(turn%2==0){
-            turn++;
-            btn.setText("X");
-        }
-        else{
-            turn++;
-            btn.setText("O");
-        }
-    }
-    private int XisWinner(){
-        if (button_1.getText().equals("X")&&button_2.getText().equals("X")&&button_3.getText().equals("X")){
-            return 1;
-        }
-        if (button_4.getText().equals("X")&&button_5.getText().equals("X")&&button_6.getText().equals("X")){
-            return 1;
-        }
-        if (button_7.getText().equals("X")&&button_8.getText().equals("X")&&button_9.getText().equals("X")){
-            return 1;
-        }
-        if (button_1.getText().equals("X")&&button_4.getText().equals("X")&&button_7.getText().equals("X")){
-            return 1;
-        }
-        if (button_2.getText().equals("X")&&button_5.getText().equals("X")&&button_8.getText().equals("X")){
-            return 1;
-        }
-        if (button_3.getText().equals("X")&&button_6.getText().equals("X")&&button_9.getText().equals("X")){
-            return 1;
-        }
-        if (button_1.getText().equals("X")&&button_5.getText().equals("X")&&button_9.getText().equals("X")){
-            return 1;
-        }
-        if (button_3.getText().equals("X")&&button_5.getText().equals("X")&&button_7.getText().equals("X")){
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-     private int OisWinner(){
-        if (button_1.getText().equals("O")&&button_2.getText().equals("O")&&button_3.getText().equals("O")){
-            return 1;
-        }
-        if (button_4.getText().equals("O")&&button_5.getText().equals("O")&&button_6.getText().equals("O")){
-            return 1;
-        }
-        if (button_7.getText().equals("O")&&button_8.getText().equals("O")&&button_9.getText().equals("O")){
-            return 1;
-        }
-        if (button_1.getText().equals("O")&&button_4.getText().equals("O")&&button_7.getText().equals("O")){
-            return 1;
-        }
-        if (button_2.getText().equals("O")&&button_5.getText().equals("O")&&button_8.getText().equals("O")){
-            return 1;
-        }
-        if (button_3.getText().equals("O")&&button_6.getText().equals("O")&&button_9.getText().equals("O")){
-            return 1;
-        }
-        if (button_1.getText().equals("O")&&button_5.getText().equals("O")&&button_9.getText().equals("O")){
-            return 1;
-        }
-        if (button_3.getText().equals("O")&&button_5.getText().equals("O")&&button_7.getText().equals("O")){
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-    private void navigateToWinner(String winnername,String loser){
-        Parent root=null;
-        //pass winner name and loser name 
-        root = new winnerScreen();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) backImageView.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-    private void TheWinner(){
-        int xResult=XisWinner();
-        int oResult=OisWinner();
-        if(xResult==1){
-            navigateToWinner("player1","player2");
-        }
-        else if(oResult==1){
-            navigateToWinner("player2","player1");
-        }
-        
     }
     
 }

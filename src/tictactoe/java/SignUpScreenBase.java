@@ -37,6 +37,7 @@ public class SignUpScreenBase extends AnchorPane {
     protected final Label genderLabel;
 
     public SignUpScreenBase() {
+        
 
         logoImageView = new ImageView();
         userNameLabel = new Label();
@@ -54,6 +55,9 @@ public class SignUpScreenBase extends AnchorPane {
         femaleRadioButton = new RadioButton();
         emailTextField = new TextField();
         genderLabel = new Label();
+        
+        User user=new User();
+        user.userName=userNameTextField.getText();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
