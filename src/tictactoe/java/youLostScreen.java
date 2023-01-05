@@ -3,6 +3,7 @@ package tictactoe.java;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -54,7 +55,7 @@ public class youLostScreen extends AnchorPane {
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
 
-        lostScreenBackGround.setFitHeight(407.0);
+        lostScreenBackGround.setFitHeight(438.0);
         lostScreenBackGround.setFitWidth(630.0);
         lostScreenBackGround.setLayoutX(-6.0);
         lostScreenBackGround.setLayoutY(-1.0);
@@ -68,6 +69,7 @@ public class youLostScreen extends AnchorPane {
         resultPic.setPickOnBounds(true);
         resultPic.setImage(new Image(getClass().getResource("/res/lost.png").toExternalForm()));
 
+        resultLabel.setId("textLabel");
         resultLabel.setLayoutX(249.0);
         resultLabel.setLayoutY(21.0);
         resultLabel.setText("You Lost");
@@ -81,6 +83,7 @@ public class youLostScreen extends AnchorPane {
         playAgainButton.setText("Play Again");
         playAgainButton.setTextFill(javafx.scene.paint.Color.RED);
         playAgainButton.setFont(new Font("Impact", 24.0));
+        playAgainButton.setCursor(Cursor.HAND);
 
         exitGameButton.setLayoutX(385.0);
         exitGameButton.setLayoutY(353.0);
@@ -89,12 +92,14 @@ public class youLostScreen extends AnchorPane {
         exitGameButton.setText("Exit Game");
         exitGameButton.setTextFill(javafx.scene.paint.Color.RED);
         exitGameButton.setFont(new Font("Impact", 24.0));
+        exitGameButton.setCursor(Cursor.HAND);
         exitGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Platform.exit();
             }
         });
+
 
         player1CardPane.setId("profileResultCard");
         player1CardPane.setLayoutX(36.0);
@@ -119,6 +124,7 @@ public class youLostScreen extends AnchorPane {
         player1Pic.setPreserveRatio(true);
         player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
 
+        player1Name.setId("textLabel");
         player1Name.setLayoutX(57.0);
         player1Name.setLayoutY(160.0);
         player1Name.setText("Player 1");
@@ -140,6 +146,7 @@ public class youLostScreen extends AnchorPane {
         player2Pic.setPreserveRatio(true);
         player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
 
+        player2Name.setId("textLabel");
         player2Name.setLayoutX(497.0);
         player2Name.setLayoutY(159.0);
         player2Name.setText("Player 2");
@@ -159,6 +166,7 @@ public class youLostScreen extends AnchorPane {
         homeButton.setPickOnBounds(true);
         homeButton.setPreserveRatio(true);
         homeButton.setImage(new Image(getClass().getResource("/res/home.png").toExternalForm()));
+        homeButton.setCursor(Cursor.HAND);
         homeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -171,6 +179,7 @@ public class youLostScreen extends AnchorPane {
                 stage.show();
             }
         });
+
 
         getChildren().add(lostScreenBackGround);
         getChildren().add(resultPic);

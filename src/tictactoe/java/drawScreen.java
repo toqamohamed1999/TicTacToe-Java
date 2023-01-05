@@ -3,6 +3,7 @@ package tictactoe.java;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class drawScreen extends AnchorPane {
@@ -32,7 +34,7 @@ public class drawScreen extends AnchorPane {
     protected final Label player2State;
     protected final ImageView homeButton;
 
-    public drawScreen() {
+    public drawScreen(String player1 , int player1Avatar , String player2 , int player2Avatar) {
 
         drawScreenBackGround = new ImageView();
         resultPic = new ImageView();
@@ -54,7 +56,7 @@ public class drawScreen extends AnchorPane {
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
 
-        drawScreenBackGround.setFitHeight(407.0);
+        drawScreenBackGround.setFitHeight(440.0);
         drawScreenBackGround.setFitWidth(630.0);
         drawScreenBackGround.setLayoutX(-6.0);
         drawScreenBackGround.setLayoutY(-1.0);
@@ -68,6 +70,7 @@ public class drawScreen extends AnchorPane {
         resultPic.setPickOnBounds(true);
         resultPic.setImage(new Image(getClass().getResource("/res/draw.png").toExternalForm()));
 
+        resultLabel.setId("textLabel");
         resultLabel.setLayoutX(211.0);
         resultLabel.setLayoutY(26.0);
         resultLabel.setText("Both too good");
@@ -81,6 +84,18 @@ public class drawScreen extends AnchorPane {
         playAgainButton.setText("Play Again");
         playAgainButton.setTextFill(javafx.scene.paint.Color.RED);
         playAgainButton.setFont(new Font("Impact", 24.0));
+        playAgainButton.setCursor(Cursor.HAND);
+        playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root=null;
+                root = new MultipleUserXOScreenBase(player1, player1Avatar, player2, player2Avatar);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) playAgainButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         exitGameButton.setLayoutX(385.0);
         exitGameButton.setLayoutY(353.0);
@@ -89,6 +104,7 @@ public class drawScreen extends AnchorPane {
         exitGameButton.setText("Exit Game");
         exitGameButton.setTextFill(javafx.scene.paint.Color.RED);
         exitGameButton.setFont(new Font("Impact", 24.0));
+        exitGameButton.setCursor(Cursor.HAND);
         exitGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -117,11 +133,13 @@ public class drawScreen extends AnchorPane {
         player1Pic.setLayoutY(187.0);
         player1Pic.setPickOnBounds(true);
         player1Pic.setPreserveRatio(true);
-        player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
-
+        if(player1Avatar==1)player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        else player1Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        
+        player1Name.setId("textLabel");
         player1Name.setLayoutX(57.0);
         player1Name.setLayoutY(160.0);
-        player1Name.setText("Player 1");
+        player1Name.setText(player1);
         player1Name.setTextFill(javafx.scene.paint.Color.WHITE);
         player1Name.setFont(new Font("Impact", 21.0));
 
@@ -138,11 +156,13 @@ public class drawScreen extends AnchorPane {
         player2Pic.setLayoutY(187.0);
         player2Pic.setPickOnBounds(true);
         player2Pic.setPreserveRatio(true);
-        player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
-
+        if(player2Avatar==1)player2Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        else player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        
+        player2Name.setId("textLabel");
         player2Name.setLayoutX(497.0);
         player2Name.setLayoutY(159.0);
-        player2Name.setText("Player 2");
+        player2Name.setText(player2);
         player2Name.setTextFill(javafx.scene.paint.Color.WHITE);
         player2Name.setFont(new Font("Impact", 21.0));
 
@@ -159,6 +179,7 @@ public class drawScreen extends AnchorPane {
         homeButton.setPickOnBounds(true);
         homeButton.setPreserveRatio(true);
         homeButton.setImage(new Image(getClass().getResource("/res/home.png").toExternalForm()));
+        homeButton.setCursor(Cursor.HAND);
         homeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

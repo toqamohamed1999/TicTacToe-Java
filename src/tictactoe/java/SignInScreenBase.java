@@ -16,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-
 public class SignInScreenBase extends AnchorPane {
 
     protected final ImageView logoImageView;
@@ -28,7 +27,7 @@ public class SignInScreenBase extends AnchorPane {
     protected final DropShadow dropShadow;
     protected final Label dontHaveAccLabel;
     protected final Label signUpHyperLink;
-    protected final ImageView back;
+    protected final ImageView backButton;
 
     public SignInScreenBase() {
 
@@ -41,7 +40,7 @@ public class SignInScreenBase extends AnchorPane {
         dropShadow = new DropShadow();
         dontHaveAccLabel = new Label();
         signUpHyperLink = new Label();
-        back = new ImageView();
+        backButton = new ImageView();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -84,7 +83,7 @@ public class SignInScreenBase extends AnchorPane {
         signInButton.setLayoutX(250.0);
         signInButton.setLayoutY(341.0);
         signInButton.setMnemonicParsing(false);
-        signInButton.setPrefWidth(118.0);
+        signInButton.setPrefWidth(110.0);
         signInButton.getStylesheets().add("/tictactoe/java/Styles.css");
         signInButton.setText("Sign In");
         signInButton.setTextFill(javafx.scene.paint.Color.RED);
@@ -106,6 +105,7 @@ public class SignInScreenBase extends AnchorPane {
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
         dropShadow.setOffsetY(4.0);
         signInButton.setEffect(dropShadow);
+        signInButton.setCursor(Cursor.HAND);
 
         dontHaveAccLabel.setLayoutX(194.0);
         dontHaveAccLabel.setLayoutY(401.0);
@@ -132,20 +132,20 @@ public class SignInScreenBase extends AnchorPane {
                 stage.show();
             }
         });
-        
-        back.setFitHeight(53.0);
-        back.setFitWidth(50.0);
-        back.setLayoutX(30.0);
-        back.setLayoutY(21.0);
-        back.setPickOnBounds(true);
-        back.setPreserveRatio(true);
-        back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
-        back.setOnMouseClicked((MouseEvent e) -> {
-           
+
+        backButton.setFitHeight(53.0);
+        backButton.setFitWidth(50.0);
+        backButton.setLayoutX(30.0);
+        backButton.setLayoutY(21.0);
+        backButton.setPickOnBounds(true);
+        backButton.setPreserveRatio(true);
+        backButton.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
+        backButton.setCursor(Cursor.HAND);
+        backButton.setOnMouseClicked((MouseEvent e) -> {
             Parent root;
-            root = new HomeScreen();
+            root = new multiPlayerScreen();
             Scene scene = new Scene(root);
-            Stage stage = (Stage) back.getScene().getWindow();
+            Stage stage = (Stage) backButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         });
@@ -158,7 +158,7 @@ public class SignInScreenBase extends AnchorPane {
         getChildren().add(signInButton);
         getChildren().add(dontHaveAccLabel);
         getChildren().add(signUpHyperLink);
-        getChildren().add(back);
+        getChildren().add(backButton);
 
     }
 }

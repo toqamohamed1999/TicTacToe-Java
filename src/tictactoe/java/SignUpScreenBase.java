@@ -35,6 +35,7 @@ public class SignUpScreenBase extends AnchorPane {
     protected final RadioButton femaleRadioButton;
     protected final TextField emailTextField;
     protected final Label genderLabel;
+    protected final ImageView backButton;
 
     public SignUpScreenBase() {
 
@@ -54,6 +55,7 @@ public class SignUpScreenBase extends AnchorPane {
         femaleRadioButton = new RadioButton();
         emailTextField = new TextField();
         genderLabel = new Label();
+        backButton = new ImageView();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -115,6 +117,7 @@ public class SignUpScreenBase extends AnchorPane {
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
         dropShadow.setOffsetY(4.0);
         signUpButton.setEffect(dropShadow);
+        signUpButton.setCursor(Cursor.HAND);
 
         alreadyHaveAccLabel.setLayoutX(188.0);
         alreadyHaveAccLabel.setLayoutY(401.0);
@@ -207,7 +210,23 @@ public class SignUpScreenBase extends AnchorPane {
         genderLabel.setText("Gender");
         genderLabel.setTextFill(javafx.scene.paint.Color.RED);
         genderLabel.setFont(new Font("Impact", 24.0));
-        getStylesheets().add("/tictactoe/java/Styles.css");
+
+        backButton.setFitHeight(53.0);
+        backButton.setFitWidth(50.0);
+        backButton.setLayoutX(30.0);
+        backButton.setLayoutY(21.0);
+        backButton.setPickOnBounds(true);
+        backButton.setPreserveRatio(true);
+        backButton.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
+        backButton.setCursor(Cursor.HAND);
+        backButton.setOnMouseClicked((MouseEvent e) -> { 
+            Parent root;
+            root = new multiPlayerScreen();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        });
         getStylesheets().add("/tictactoe/java/Styles.css");
 
         getChildren().add(logoImageView);
@@ -225,6 +244,7 @@ public class SignUpScreenBase extends AnchorPane {
         getChildren().add(femaleRadioButton);
         getChildren().add(emailTextField);
         getChildren().add(genderLabel);
+        getChildren().add(backButton);
 
     }
 }

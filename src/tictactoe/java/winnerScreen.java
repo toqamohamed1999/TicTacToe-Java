@@ -3,9 +3,12 @@ package tictactoe.java;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class winnerScreen extends AnchorPane {
@@ -32,7 +36,7 @@ public class winnerScreen extends AnchorPane {
     protected final Label player2State;
     protected final ImageView homeButton;
 
-    public winnerScreen() {
+    public winnerScreen(String winner , int winnerAvatar , String loser , int loserAvatar) {
 
         winnerScreenBackGround = new ImageView();
         resultPic = new ImageView();
@@ -54,7 +58,7 @@ public class winnerScreen extends AnchorPane {
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
 
-        winnerScreenBackGround.setFitHeight(407.0);
+        winnerScreenBackGround.setFitHeight(438.0);
         winnerScreenBackGround.setFitWidth(630.0);
         winnerScreenBackGround.setLayoutX(-6.0);
         winnerScreenBackGround.setLayoutY(-1.0);
@@ -68,9 +72,10 @@ public class winnerScreen extends AnchorPane {
         resultPic.setPickOnBounds(true);
         resultPic.setImage(new Image(getClass().getResource("/res/win.png").toExternalForm()));
 
+        resultLabel.setId("textLabel");
         resultLabel.setLayoutX(257.0);
         resultLabel.setLayoutY(21.0);
-        resultLabel.setText("Winner");
+        resultLabel.setText(winner + " Wins");
         resultLabel.setTextFill(javafx.scene.paint.Color.RED);
         resultLabel.setFont(new Font("Impact", 36.0));
 
@@ -81,6 +86,18 @@ public class winnerScreen extends AnchorPane {
         playAgainButton.setText("Play Again");
         playAgainButton.setTextFill(javafx.scene.paint.Color.RED);
         playAgainButton.setFont(new Font("Impact", 24.0));
+        playAgainButton.setCursor(Cursor.HAND);
+         playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root=null;
+                root = new MultipleUserXOScreenBase(winner, winnerAvatar, loser, loserAvatar);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) playAgainButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
 
         exitGameButton.setLayoutX(385.0);
         exitGameButton.setLayoutY(353.0);
@@ -89,6 +106,7 @@ public class winnerScreen extends AnchorPane {
         exitGameButton.setText("Exit Game");
         exitGameButton.setTextFill(javafx.scene.paint.Color.RED);
         exitGameButton.setFont(new Font("Impact", 24.0));
+        exitGameButton.setCursor(Cursor.HAND);
         exitGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -117,11 +135,13 @@ public class winnerScreen extends AnchorPane {
         player1Pic.setLayoutY(187.0);
         player1Pic.setPickOnBounds(true);
         player1Pic.setPreserveRatio(true);
-        player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        if(loserAvatar==1)player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        else player1Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
 
+        player1Name.setId("textLabel");
         player1Name.setLayoutX(57.0);
         player1Name.setLayoutY(160.0);
-        player1Name.setText("Player 1");
+        player1Name.setText(loser);
         player1Name.setTextFill(javafx.scene.paint.Color.WHITE);
         player1Name.setFont(new Font("Impact", 21.0));
 
@@ -138,13 +158,20 @@ public class winnerScreen extends AnchorPane {
         player2Pic.setLayoutY(187.0);
         player2Pic.setPickOnBounds(true);
         player2Pic.setPreserveRatio(true);
-        player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
-
+        if(winnerAvatar==1)player2Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        else player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+       
+     //   player2Name.setAlignment(javafx.geometry.Pos.CENTER);
+        player2Name.setId("textLabel");
         player2Name.setLayoutX(497.0);
         player2Name.setLayoutY(159.0);
-        player2Name.setText("Player 2");
+        player2Name.setText(winner);
+      //  player2Name.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         player2Name.setTextFill(javafx.scene.paint.Color.WHITE);
+      //  player2Name.setTextOverrun(javafx.scene.control.OverrunStyle.CENTER_ELLIPSIS);
         player2Name.setFont(new Font("Impact", 21.0));
+        player2Name.setTextAlignment(TextAlignment.JUSTIFY);
+        player2Name.setWrapText(true);
 
         player2State.setLayoutX(499.0);
         player2State.setLayoutY(256.0);
@@ -159,11 +186,12 @@ public class winnerScreen extends AnchorPane {
         homeButton.setPickOnBounds(true);
         homeButton.setPreserveRatio(true);
         homeButton.setImage(new Image(getClass().getResource("/res/home.png").toExternalForm()));
+        homeButton.setCursor(Cursor.HAND);
         homeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
           
-             Parent root=null;
+                Parent root=null;
                 root = new HomeScreen() ;
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) homeButton.getScene().getWindow();

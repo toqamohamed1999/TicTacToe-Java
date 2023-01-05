@@ -65,3 +65,36 @@ and open the template in the editor.
     -fx-opacity:.3;
 }
 
+#difficultyLayer{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.85;
+}
+
+#genderSelectionLayer{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.85;
+}
+
+#enterNamesLayer{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.85;
+}
+
+.label{
+    -fx-alignment: BASELINE_CENTER;
+}
+
+#textLabel {
+    text-align:center;
+    line-height:150%;
+    font-size:.85em;
+}
+
+#errorMassagePane{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:1;
+}

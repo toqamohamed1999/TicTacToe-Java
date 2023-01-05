@@ -44,6 +44,9 @@
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="#ffffff88" offsetY="4.0" />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Label fx:id="dontHaveAccLabel" layoutX="194.0" layoutY="401.0" text="Don't Have an account? .. " textFill="WHITE">
          <font>
@@ -58,5 +61,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
+      <ImageView fx:id="backButton" fitHeight="53.0" fitWidth="50.0" layoutX="30.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/back.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

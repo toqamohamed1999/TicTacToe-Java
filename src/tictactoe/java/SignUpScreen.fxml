@@ -43,6 +43,9 @@
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="#ffffff88" offsetY="4.0" />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Label fx:id="alreadyHaveAccLabel" layoutX="188.0" layoutY="401.0" text="Already Have an account? .. " textFill="WHITE">
          <font>
@@ -106,6 +109,14 @@
             <Font name="Impact" size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="backButton" fitHeight="53.0" fitWidth="50.0" layoutX="30.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/back.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
    <stylesheets>
       <URL value="@Styles.css" />

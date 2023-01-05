@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
@@ -14,38 +17,162 @@
          <image>
             <Image url="@../../res/back.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="profilePic" fitHeight="57.0" fitWidth="66.0" layoutX="520.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../res/woman.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Label fx:id="multiplayerLabel" layoutX="162.0" layoutY="38.0" prefHeight="67.0" prefWidth="301.0" text="MultiPlayer Mode" textFill="WHITE">
          <font>
             <Font name="Impact" size="40.0" />
          </font>
       </Label>
-      <Circle fx:id="onlineCircle" fill="#44a7a1" layoutX="422.0" layoutY="210.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="onlineCircle" fill="#44a7a1" layoutX="422.0" layoutY="210.0" radius="51.0" stroke="BLACK" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Circle>
       <ImageView fx:id="onlineImage" fitHeight="78.0" fitWidth="81.0" layoutX="382.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../res/multiplayer.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <Circle fx:id="passAndPlayCircle" fill="#44a7a1" layoutX="193.0" layoutY="210.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="passAndPlayCircle" fill="#44a7a1" layoutX="193.0" layoutY="210.0" radius="51.0" stroke="BLACK" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Circle>
       <ImageView fx:id="passAndPlayImage" fitHeight="78.0" fitWidth="78.0" layoutX="155.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../res/battle.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Button fx:id="passAndPlayButton" layoutX="110.0" layoutY="249.0" mnemonicParsing="false" prefWidth="170.0" text="Pass &amp; Play" textFill="RED">
          <font>
             <Font name="Impact" size="23.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button fx:id="onlineButton" layoutX="335.0" layoutY="249.0" mnemonicParsing="false" prefWidth="170.0" text="Online" textFill="RED">
          <font>
             <Font name="Impact" size="23.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Pane id="enterNamesLayer" fx:id="playersNamesPane" layoutX="103.0" layoutY="77.0" prefHeight="302.0" prefWidth="406.0" visible="false" />
+      <ImageView fx:id="innerPaneBackButton" fitHeight="44.0" fitWidth="36.0" layoutX="117.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../res/back.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="enterNameLabel" layoutX="189.0" layoutY="83.0" text="Enter Your Names" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Impact" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerOneLabel" layoutX="160.0" layoutY="138.0" text="Player 1" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerTwoLabel" layoutX="387.0" layoutY="138.0" text="Player 2" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="playerOneAvatar" fitHeight="102.0" fitWidth="94.0" layoutX="146.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../res/man.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="playerTwoAvatar" fitHeight="102.0" fitWidth="94.0" layoutX="374.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../res/man.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <TextField id="TextField" fx:id="playerOneNameField" layoutX="112.0" layoutY="266.0" prefHeight="37.0" prefWidth="162.0" visible="false">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <TextField id="TextField" fx:id="playerTwoNameField" layoutX="338.0" layoutY="266.0" prefHeight="37.0" prefWidth="162.0" visible="false">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Pane id="genderSelectionLayer" fx:id="avatarChoicePane" layoutX="174.0" layoutY="133.0" prefHeight="159.0" prefWidth="278.0" visible="false" />
+      <ImageView fx:id="womanAvatar" fitHeight="115.0" fitWidth="102.0" layoutX="331.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../res/woman.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="manAvatar" fitHeight="115.0" fitWidth="102.0" layoutX="187.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../res/man.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="selectAvatarLabel" layoutX="235.0" layoutY="142.0" text="Select your Avatar" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="enterGameButton" layoutX="239.0" layoutY="320.0" mnemonicParsing="false" text="Enter Game" textFill="RED" visible="false">
+         <font>
+            <Font name="Impact" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Pane id="errorMassagePane" fx:id="errorMassagePane" layoutX="140.0" layoutY="152.0" prefHeight="146.0" prefWidth="336.0" visible="false" />
+      <Label fx:id="enterBothNamesLabel" layoutX="169.0" layoutY="172.0" text="Please Enter both Players Names" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="okButton" layoutX="265.0" layoutY="240.0" mnemonicParsing="false" prefWidth="80.0" text="OK" textFill="#fc0000" visible="false">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>
