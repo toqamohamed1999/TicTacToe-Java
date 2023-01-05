@@ -30,6 +30,5 @@ public class TicTacToeJava extends Application {
     public static void main(String[] args) {
         launch(args);  
        
-    }
-
+    }  
 }

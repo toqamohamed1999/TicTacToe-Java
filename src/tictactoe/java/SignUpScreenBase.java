@@ -38,7 +38,7 @@ public class SignUpScreenBase extends AnchorPane {
     protected final ImageView backButton;
 
     public SignUpScreenBase() {
-
+        
         logoImageView = new ImageView();
         userNameLabel = new Label();
         passwordLabel = new Label();

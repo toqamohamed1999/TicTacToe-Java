@@ -87,11 +87,12 @@ public class winnerScreen extends AnchorPane {
         playAgainButton.setTextFill(javafx.scene.paint.Color.RED);
         playAgainButton.setFont(new Font("Impact", 24.0));
         playAgainButton.setCursor(Cursor.HAND);
-         playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
+        playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                MultiPlayer mp=new MultiPlayer(winner, winnerAvatar, loser, loserAvatar);
                 Parent root=null;
-                root = new MultipleUserXOScreenBase(winner, winnerAvatar, loser, loserAvatar);
+                root = mp.multi ;
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) playAgainButton.getScene().getWindow();
                 stage.setScene(scene);

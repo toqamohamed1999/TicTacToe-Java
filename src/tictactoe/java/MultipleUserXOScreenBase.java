@@ -53,7 +53,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
 
 
     public MultipleUserXOScreenBase(String playerOneName,int playerOneAvatarNumber,String playerTwoName,int playerTwoAvatarNumber) {
-
+       
         user2ImageView = new ImageView();
         user1ImageView = new ImageView();
         user1NameText = new Text();
@@ -105,7 +105,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         user2ImageView.setPreserveRatio(true);
         if(playerTwoAvatarNumber==1)user2ImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
         else if(playerTwoAvatarNumber==2)user2ImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
-
+        
         user1ImageView.setFitHeight(87.0);
         user1ImageView.setFitWidth(94.0);
         user1ImageView.setId("user1ImageView");
@@ -146,7 +146,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         recordIndicatorImageView.setPickOnBounds(true);
         recordIndicatorImageView.setVisible(false);        
         recordIndicatorImageView.setImage(new Image(getClass().getResource("/res/record.png").toExternalForm()));
-
+      
         backImageView.setFitHeight(53.0);
         backImageView.setFitWidth(50.0);
         backImageView.setId("backImageView");
@@ -156,18 +156,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         backImageView.setPreserveRatio(true);
         backImageView.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         backImageView.setCursor(Cursor.HAND);
-        backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Parent root=null;
-                root = new multiPlayerScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) backImageView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
-
+       
         logoImageView.setFitHeight(83.0);
         logoImageView.setFitWidth(373.0);
         logoImageView.setId("logoImageView");
@@ -225,14 +214,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         recordGameButton.setTextFill(javafx.scene.paint.Color.valueOf("#e81111"));
         recordGameButton.setFont(new Font("Impact", 21.0));
         recordGameButton.setCursor(Cursor.HAND);
-        recordGameButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                recordIndicatorImageView.setVisible(true);
-                recordIndicatorButton.setVisible(true);
-            }
-        });
-
+      
         button_1Image.setFitHeight(45.0);
         button_1Image.setFitWidth(40.0);
         button_1Image.setLayoutX(185.0);
@@ -303,17 +285,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_1.setPrefHeight(70.0);
         button_1.setPrefWidth(70.0);
         button_1.setCursor(Cursor.HAND);
-        button_1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_1.getText().equals("")){
-                    setXorO(button_1,button_1Image);
-                    TheWinner();
-                }
-                
-            }
-        });
-
+       
         button_2.setLayoutX(265.0);
         button_2.setLayoutY(138.0);
         button_2.setMnemonicParsing(false);
@@ -321,16 +293,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_2.setPrefHeight(70.0);
         button_2.setPrefWidth(70.0);
         button_2.setCursor(Cursor.HAND);
-        button_2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_2.getText().equals("")){
-                    setXorO(button_2,button_2Image);
-                    TheWinner();
-                }   
-            }
-        });
-
+        
         button_3.setLayoutX(359.0);
         button_3.setLayoutY(140.0);
         button_3.setMnemonicParsing(false);
@@ -338,16 +301,6 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_3.setPrefHeight(70.0);
         button_3.setPrefWidth(70.0);
         button_3.setCursor(Cursor.HAND);
-        button_3.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_3.getText().equals("")){
-                    setXorO(button_3,button_3Image);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_4.setLayoutX(170.0);
         button_4.setLayoutY(212.0);
@@ -356,17 +309,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_4.setPrefHeight(70.0);
         button_4.setPrefWidth(70.0);
         button_4.setCursor(Cursor.HAND);
-        button_4.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_4.getText().equals("")){
-                    setXorO(button_4,button_4Image);
-                    TheWinner();
-                }
-                
-            }
-        });
-
+       
         button_5.setLayoutX(264.0);
         button_5.setLayoutY(212.0);
         button_5.setMnemonicParsing(false);
@@ -374,16 +317,6 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_5.setPrefHeight(70.0);
         button_5.setPrefWidth(70.0);
         button_5.setCursor(Cursor.HAND);
-        button_5.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_5.getText().equals("")){
-                    setXorO(button_5,button_5Image);
-                    TheWinner();
-                }
-                
-            }
-        });
 
         button_6.setLayoutX(358.0);
         button_6.setLayoutY(212.0);
@@ -392,18 +325,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_6.setPrefHeight(70.0);
         button_6.setPrefWidth(70.0);
         button_6.setCursor(Cursor.HAND);
-        button_6.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_6.getText().equals("")){
-                    setXorO(button_6,button_6Image);
-                    TheWinner();
-                }
-                
-            }
-        });
-
-
+       
         button_7.setLayoutX(170.0);
         button_7.setLayoutY(287.0);
         button_7.setMnemonicParsing(false);
@@ -411,17 +333,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_7.setPrefHeight(70.0);
         button_7.setPrefWidth(70.0);
         button_7.setCursor(Cursor.HAND);
-        button_7.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_7.getText().equals("")){
-                    setXorO(button_7,button_7Image);
-                    TheWinner();
-                }
-                
-            }
-        });
-
+        
         button_8.setLayoutX(265.0);
         button_8.setLayoutY(284.0);
         button_8.setMnemonicParsing(false);
@@ -429,17 +341,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_8.setPrefHeight(70.0);
         button_8.setPrefWidth(70.0);
         button_8.setCursor(Cursor.HAND);
-        button_8.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_8.getText().equals("")){
-                    setXorO(button_8,button_8Image);
-                    TheWinner();
-                }
-                
-            }
-        });
-
+ 
         button_9.setLayoutX(359.0);
         button_9.setLayoutY(284.0);
         button_9.setMnemonicParsing(false);
@@ -447,16 +349,7 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         button_9.setPrefHeight(70.0);
         button_9.setPrefWidth(70.0);
         button_9.setCursor(Cursor.HAND);
-        button_9.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(button_9.getText().equals("")){
-                    setXorO(button_9,button_9Image);
-                    TheWinner();
-                }  
-            }
-        });
-
+       
         getChildren().add(user2ImageView);
         getChildren().add(user1ImageView);
         getChildren().add(user1NameText);
@@ -489,106 +382,5 @@ public class MultipleUserXOScreenBase extends AnchorPane {
         getChildren().add(button_7);
         getChildren().add(button_8);
         getChildren().add(button_9);
-
     }
-    private void setXorO(Button btn,ImageView iv){
-        if(turn%2==0){
-            turn++;
-            btn.setText("X");
-            iv.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
-        }
-        else{
-            turn++;
-            btn.setText("O");
-            iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
-        }
-    }
-    private int XisWinner(){
-        counter++;
-        if (button_1.getText().equals("X")&&button_2.getText().equals("X")&&button_3.getText().equals("X")){
-            return 1;
-        }
-        if (button_4.getText().equals("X")&&button_5.getText().equals("X")&&button_6.getText().equals("X")){
-            return 1;
-        }
-        if (button_7.getText().equals("X")&&button_8.getText().equals("X")&&button_9.getText().equals("X")){
-            return 1;
-        }
-        if (button_1.getText().equals("X")&&button_4.getText().equals("X")&&button_7.getText().equals("X")){
-            return 1;
-        }
-        if (button_2.getText().equals("X")&&button_5.getText().equals("X")&&button_8.getText().equals("X")){
-            return 1;
-        }
-        if (button_3.getText().equals("X")&&button_6.getText().equals("X")&&button_9.getText().equals("X")){
-            return 1;
-        }
-        if (button_1.getText().equals("X")&&button_5.getText().equals("X")&&button_9.getText().equals("X")){
-            return 1;
-        }
-        if (button_3.getText().equals("X")&&button_5.getText().equals("X")&&button_7.getText().equals("X")){
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-     private int OisWinner(){
-        if (button_1.getText().equals("O")&&button_2.getText().equals("O")&&button_3.getText().equals("O")){
-            return 1;
-        }
-        if (button_4.getText().equals("O")&&button_5.getText().equals("O")&&button_6.getText().equals("O")){
-            return 1;
-        }
-        if (button_7.getText().equals("O")&&button_8.getText().equals("O")&&button_9.getText().equals("O")){
-            return 1;
-        }
-        if (button_1.getText().equals("O")&&button_4.getText().equals("O")&&button_7.getText().equals("O")){
-            return 1;
-        }
-        if (button_2.getText().equals("O")&&button_5.getText().equals("O")&&button_8.getText().equals("O")){
-            return 1;
-        }
-        if (button_3.getText().equals("O")&&button_6.getText().equals("O")&&button_9.getText().equals("O")){
-            return 1;
-        }
-        if (button_1.getText().equals("O")&&button_5.getText().equals("O")&&button_9.getText().equals("O")){
-            return 1;
-        }
-        if (button_3.getText().equals("O")&&button_5.getText().equals("O")&&button_7.getText().equals("O")){
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-    private void navigateToWinner(String winner,int winnerAvatar,String loser , int loserAvatar){
-        Parent root=null;
-        root = new winnerScreen(winner,winnerAvatar,loser, loserAvatar);
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) backImageView.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-    void TheWinner(){
-        int xResult=XisWinner();
-        int oResult=OisWinner();
-        if(xResult==1){
-            navigateToWinner(user1NameText.getText(),player1Avatar,user2NameText.getText(),player2Avatar);
-        }
-        else if(oResult==1){
-            navigateToWinner(user2NameText.getText(),player2Avatar,user1NameText.getText(),player1Avatar);
-        }
-        if(counter==9&&xResult!=1&&oResult!=1){
-             Parent root=null;
-            root = new drawScreen(user1NameText.getText(),player1Avatar,user2NameText.getText(),player2Avatar);
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) backImageView.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-     
-    }
-
 }

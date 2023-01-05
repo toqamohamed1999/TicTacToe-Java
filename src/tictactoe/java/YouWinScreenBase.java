@@ -33,10 +33,8 @@ public class YouWinScreenBase extends BorderPane {
         YouWinMediaView.setFitWidth(600.0);
         setCenter(YouWinMediaView);
         
-       // String Vurl=Paths.get("F:/Java Project/Test/TicTacToe-Java/src/res/YouWinVideo.mp4").toUri().toString();
        String path = "./src/res/YouWinVideo.mp4";  
        Media media = new Media(new File(path).toURI().toString());
-       // Media media=new Media("../../src/res/YouWinVideo.mp4");
         MediaPlayer mp=new MediaPlayer(media);
         mp.setAutoPlay(true);
         YouWinMediaView.setMediaPlayer(mp);
@@ -44,7 +42,7 @@ public class YouWinScreenBase extends BorderPane {
         YouWinMediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root=new SignInScreenBase();
+                Parent root=new winnerScreen("Ahmed",1,"Monica",2);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) YouWinMediaView.getScene().getWindow();
                 stage.setScene(scene);

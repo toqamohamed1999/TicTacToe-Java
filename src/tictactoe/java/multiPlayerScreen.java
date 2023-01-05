@@ -411,8 +411,9 @@ public class multiPlayerScreen extends AnchorPane {
                 else{
                     playerOneName=playerOneNameField.getText();
                     playerTwoName=playerTwoNameField.getText();
+                    MultiPlayer mp=new MultiPlayer(playerOneName,playerOneAvatarNumber,playerTwoName,playerTwoAvatarNumber);
                     Parent root=null;
-                    root = new MultipleUserXOScreenBase(playerOneName,playerOneAvatarNumber,playerTwoName,playerTwoAvatarNumber);
+                    root = mp.multi ;
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) enterGameButton.getScene().getWindow();
                     stage.setScene(scene);

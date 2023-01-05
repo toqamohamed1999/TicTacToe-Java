@@ -1,0 +1,100 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 24, 2022, 8:53:40 AM
+    Author     : Eman
+*/
+
+.root{
+   -fx-background-image: url('/res/BackGround.JPG'); 
+   -fx-background-size: stretch;
+}
+
+.button{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:white;      
+}
+
+
+.mygridStyle Line {
+  -fx-stroke: yellow;
+}
+
+
+.default-color0.chart-pie { -fx-pie-color: #FEF400; }
+.default-color1.chart-pie { -fx-pie-color: #F9002D; }
+
+.chart-pie-label-line {
+    -fx-stroke: #FEF400;
+    -fx-fill: #F9002D;
+}
+
+.chart-pie-label {
+    -fx-fill: #FEF400;
+    -fx-font-size: 1em;
+} 
+
+
+.list-view .list-cell{
+    -fx-font-family: 'Impact';
+    -fx-font-size: 20px; 
+    -fx-text-fill:#f9002d;
+}
+   
+
+#TextField{
+    -fx-background-radius: 30,30,30,30;
+}
+
+#SplashScreenAnchorPane{
+   -fx-background-image: url('/res/1.JPG'); 
+   -fx-background-size: stretch;
+}
+
+#HomeAnchorPane{
+   -fx-background-image: url('/res/HomeBackGround.JPG'); 
+   -fx-background-size: stretch;
+}
+
+#profileResultCard{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.3;
+}
+
+#difficultyLayer{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.85;
+}
+
+#genderSelectionLayer{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.85;
+}
+
+#enterNamesLayer{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:.85;
+}
+
+.label{
+    -fx-alignment: BASELINE_CENTER;
+}
+
+#textLabel {
+    text-align:center;
+    line-height:150%;
+    font-size:.85em;
+}
+
+#errorMassagePane{
+    -fx-background-radius: 30,30,30,30;
+    -fx-background-color:black;
+    -fx-opacity:1;
+}
