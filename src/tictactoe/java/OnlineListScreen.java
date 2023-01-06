@@ -48,7 +48,7 @@ public class OnlineListScreen extends AnchorPane {
             @Override
             public void handle(MouseEvent event) {
                 Parent root;
-                root = new OnlineUserXOScreen();
+                root = new MultipleUserXOScreenBase("A", 1, "A", 2);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) onlineListView.getScene().getWindow();
                 stage.setScene(scene);
