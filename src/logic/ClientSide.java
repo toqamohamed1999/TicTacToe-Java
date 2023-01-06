@@ -8,13 +8,8 @@ package logic;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 /**
  *
@@ -89,7 +84,7 @@ public class ClientSide implements Runnable {
         if (message != null) {
 
             ps.println(message);
-            System.out.println(message);
+            System.out.println("&&&&&&&&&&&&&"+message);
         }
 
     }
