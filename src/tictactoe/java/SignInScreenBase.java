@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import logic.SignUp;
 
 public class SignInScreenBase extends AnchorPane {
 
@@ -125,7 +126,8 @@ public class SignInScreenBase extends AnchorPane {
             public void handle(MouseEvent event) {
           
              Parent root=null;
-                root = new SignUpScreenBase();
+             SignUp signUp= new SignUp();
+                root = signUp.signUpScreenBase;
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signUpHyperLink.getScene().getWindow();
                 stage.setScene(scene);

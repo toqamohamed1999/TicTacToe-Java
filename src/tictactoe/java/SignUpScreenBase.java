@@ -22,18 +22,18 @@ public class SignUpScreenBase extends AnchorPane {
     protected final ImageView logoImageView;
     protected final Label userNameLabel;
     protected final Label passwordLabel;
-    protected final TextField userNameTextField;
-    protected final Button signUpButton;
+    public final TextField userNameTextField;
+    public final Button signUpButton;
     protected final DropShadow dropShadow;
     protected final Label alreadyHaveAccLabel;
     protected final Label signInHyperLink;
     protected final Label confirmPasswordLabel;
     protected final Label emailLabel;
-    protected final TextField passwordTextField;
-    protected final TextField EmailTextField;
-    protected final RadioButton maleRadioButton;
-    protected final RadioButton femaleRadioButton;
-    protected final TextField emailTextField;
+    public final TextField passwordTextField;
+    public final TextField EmailTextField;
+    public final RadioButton maleRadioButton;
+    public final RadioButton femaleRadioButton;
+    public final TextField emailTextField;
     protected final Label genderLabel;
     protected final ImageView backButton;
 
@@ -100,18 +100,7 @@ public class SignUpScreenBase extends AnchorPane {
         signUpButton.setText("Sign up");
         signUpButton.setTextFill(javafx.scene.paint.Color.RED);
         signUpButton.setFont(new Font("Impact", 26.0));
-        signUpButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-          
-             Parent root=null;
-                root = new OnlineListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) signUpButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
+
 
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
