@@ -127,7 +127,7 @@ public class SignInScreenBase extends AnchorPane {
           
              Parent root=null;
              SignUp signUp= new SignUp();
-                root = signUp.signUpScreenBase;
+             root = signUp.signUpScreenBase;
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signUpHyperLink.getScene().getWindow();
                 stage.setScene(scene);

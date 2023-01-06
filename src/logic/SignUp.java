@@ -18,40 +18,50 @@ import tictactoe.java.SignUpScreenBase;
  * @author Eman
  */
 public class SignUp {
-    
-    Client client ;
-    public SignUpScreenBase signUpScreenBase ;
-    ClientSide clientSide;
-    String email ;
-    String userName; 
+
+    public Client client;
+    public SignUpScreenBase signUpScreenBase;
+    public ClientSide clientSide;
+
+    String userName;
     String password;
-    String gender; 
+    String confirmPassword;
+    String email;
 
     public SignUp() {
         signUpScreenBase = new SignUpScreenBase();
-        clientSide= new ClientSide();
-        signUp();
+        clientSide = new ClientSide();
         signUpButton();
     }
-    
-    
-    public void signUp(){
-     email  = signUpScreenBase. EmailTextField.getText();
-     userName = signUpScreenBase.userNameTextField.getText();
-     password = signUpScreenBase.passwordTextField.getText();
+
+    public String[] signUpTextFields() {
+        userName = signUpScreenBase.userNameTextField.getText();
+        password = signUpScreenBase.passwordTextField.getText();
+        confirmPassword = signUpScreenBase.confirmTextField.getText();
+        email = signUpScreenBase.emailTextField.getText();
+        String gender = "";
+        if (signUpScreenBase.maleRadioButton.isSelected()) {
+            gender = signUpScreenBase.maleRadioButton.getText();
+        }
+        if (signUpScreenBase.femaleRadioButton.isSelected()) {
+            gender = signUpScreenBase.femaleRadioButton.getText();
+        }
+
+        String[] data = {userName, password, confirmPassword, email, gender};
+        return data;
     }
-    
-    public void signUpButton(){
-    
-    signUpScreenBase.signUpButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-              clientSide.setTextmessage(userName);
-              clientSide. sendToServer(userName);
-              System.out.println("$$$$$$$$$$$$$$$$$$");
+
+    public final void signUpButton() {
+
+        signUpScreenBase.signUpButton.setOnAction((ActionEvent event) -> {
+            clientSide.ps.println("I clicked signup");
+            if (signUpTextFields() != null) {
+                String[] signUpData = signUpTextFields();
+                for (int i = 0; i < signUpData.length; i++) {
+                    clientSide.ps.println(signUpData[i]);
+                }
             }
         });
-    
+
     }
-    
 }

@@ -30,7 +30,7 @@ public class SignUpScreenBase extends AnchorPane {
     protected final Label confirmPasswordLabel;
     protected final Label emailLabel;
     public final TextField passwordTextField;
-    public final TextField EmailTextField;
+    public final TextField confirmTextField;
     public final RadioButton maleRadioButton;
     public final RadioButton femaleRadioButton;
     public final TextField emailTextField;
@@ -38,7 +38,7 @@ public class SignUpScreenBase extends AnchorPane {
     protected final ImageView backButton;
 
     public SignUpScreenBase() {
-        
+
         logoImageView = new ImageView();
         userNameLabel = new Label();
         passwordLabel = new Label();
@@ -50,9 +50,9 @@ public class SignUpScreenBase extends AnchorPane {
         confirmPasswordLabel = new Label();
         emailLabel = new Label();
         passwordTextField = new TextField();
-        EmailTextField = new TextField();
-        maleRadioButton = new RadioButton();
-        femaleRadioButton = new RadioButton();
+        confirmTextField = new TextField();
+        maleRadioButton = new RadioButton("Male");
+        femaleRadioButton = new RadioButton("Female");
         emailTextField = new TextField();
         genderLabel = new Label();
         backButton = new ImageView();
@@ -101,7 +101,6 @@ public class SignUpScreenBase extends AnchorPane {
         signUpButton.setTextFill(javafx.scene.paint.Color.RED);
         signUpButton.setFont(new Font("Impact", 26.0));
 
-
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
         dropShadow.setOffsetY(4.0);
@@ -124,8 +123,8 @@ public class SignUpScreenBase extends AnchorPane {
         signInHyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-             Parent root=null;
+
+                Parent root = null;
                 root = new SignInScreenBase();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signInHyperLink.getScene().getWindow();
@@ -159,15 +158,15 @@ public class SignUpScreenBase extends AnchorPane {
         passwordTextField.setFont(new Font("Impact", 16.0));
         passwordTextField.setCursor(Cursor.TEXT);
 
-        AnchorPane.setBottomAnchor(EmailTextField, 182.0);
-        AnchorPane.setRightAnchor(EmailTextField, 100.0);
-        EmailTextField.setId("TextField");
-        EmailTextField.setLayoutX(300.0);
-        EmailTextField.setLayoutY(215.0);
-        EmailTextField.setPrefWidth(200.0);
-        EmailTextField.getStylesheets().add("/tictactoe/java/Styles.css");
-        EmailTextField.setFont(new Font("Impact", 16.0));
-        EmailTextField.setCursor(Cursor.TEXT);
+        AnchorPane.setBottomAnchor(confirmTextField, 182.0);
+        AnchorPane.setRightAnchor(confirmTextField, 100.0);
+        confirmTextField.setId("TextField");
+        confirmTextField.setLayoutX(300.0);
+        confirmTextField.setLayoutY(215.0);
+        confirmTextField.setPrefWidth(200.0);
+        confirmTextField.getStylesheets().add("/tictactoe/java/Styles.css");
+        confirmTextField.setFont(new Font("Impact", 16.0));
+        confirmTextField.setCursor(Cursor.TEXT);
 
         maleRadioButton.setLayoutX(228.0);
         maleRadioButton.setLayoutY(303.0);
@@ -208,7 +207,7 @@ public class SignUpScreenBase extends AnchorPane {
         backButton.setPreserveRatio(true);
         backButton.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         backButton.setCursor(Cursor.HAND);
-        backButton.setOnMouseClicked((MouseEvent e) -> { 
+        backButton.setOnMouseClicked((MouseEvent e) -> {
             Parent root;
             root = new multiPlayerScreen();
             Scene scene = new Scene(root);
@@ -228,7 +227,7 @@ public class SignUpScreenBase extends AnchorPane {
         getChildren().add(confirmPasswordLabel);
         getChildren().add(emailLabel);
         getChildren().add(passwordTextField);
-        getChildren().add(EmailTextField);
+        getChildren().add(confirmTextField);
         getChildren().add(maleRadioButton);
         getChildren().add(femaleRadioButton);
         getChildren().add(emailTextField);

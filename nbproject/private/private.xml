@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeans/TicTacToe-Java/nbproject/build-impl.xml</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/SignInScreenBase.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/ClientSide.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/Client.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/SignUpScreenBase.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/SignUp.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/splashScreen.java</file>
         </group>
     </open-files>
 </project-private>
