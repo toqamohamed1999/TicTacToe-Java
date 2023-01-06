@@ -415,7 +415,7 @@ public class HomeScreen extends AnchorPane {
             public void handle(MouseEvent event) {
                 femaleAvatarImage.setFitHeight(102.0);
                 femaleAvatarImage.setFitWidth(105.0);
-                playerAvatar=1;
+                playerAvatar=2;
                 maleAvatarImage.setFitHeight(114.0);
                 maleAvatarImage.setFitWidth(102.0);
             }  
@@ -454,7 +454,8 @@ public class HomeScreen extends AnchorPane {
                 }
                 else{
                     Parent root=null;
-                    root = new MultipleUserXOScreenBase(userNameTextField.getText(), playerAvatar, "Computer", 1);
+                    EasyMode easyMode = new EasyMode(userNameTextField.getText(),playerAvatar);
+                    root = easyMode.board;
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) singlePlayerEnterGameButton.getScene().getWindow();
                     stage.setScene(scene);
