@@ -1,44 +1,54 @@
 package tictactoe.java;
 
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+   //import net.synedra.validatorfx.Validator;
 
 public class SignUpScreenBase extends AnchorPane {
 
     protected final ImageView logoImageView;
     protected final Label userNameLabel;
     protected final Label passwordLabel;
-    protected final TextField userNameTextField;
-    protected final Button signUpButton;
+    public final TextField userNameTextField;
+    public final Button signUpButton;
     protected final DropShadow dropShadow;
     protected final Label alreadyHaveAccLabel;
     protected final Label signInHyperLink;
     protected final Label confirmPasswordLabel;
     protected final Label emailLabel;
-    protected final TextField passwordTextField;
-    protected final TextField EmailTextField;
-    protected final RadioButton maleRadioButton;
-    protected final RadioButton femaleRadioButton;
-    protected final TextField emailTextField;
+    public final PasswordField passwordTextField;
+    public final PasswordField confirmTextField;
+    public final RadioButton maleRadioButton;
+    public final RadioButton femaleRadioButton;
+    public final TextField emailTextField;
     protected final Label genderLabel;
     protected final ImageView backButton;
+    protected final ToggleGroup gender;
 
     public SignUpScreenBase() {
-        
+
         logoImageView = new ImageView();
         userNameLabel = new Label();
         passwordLabel = new Label();
@@ -49,13 +59,14 @@ public class SignUpScreenBase extends AnchorPane {
         signInHyperLink = new Label();
         confirmPasswordLabel = new Label();
         emailLabel = new Label();
-        passwordTextField = new TextField();
-        EmailTextField = new TextField();
+        passwordTextField = new PasswordField();
+        confirmTextField = new PasswordField();
         maleRadioButton = new RadioButton();
         femaleRadioButton = new RadioButton();
         emailTextField = new TextField();
         genderLabel = new Label();
         backButton = new ImageView();
+        gender = new ToggleGroup();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -100,17 +111,11 @@ public class SignUpScreenBase extends AnchorPane {
         signUpButton.setText("Sign up");
         signUpButton.setTextFill(javafx.scene.paint.Color.RED);
         signUpButton.setFont(new Font("Impact", 26.0));
-        signUpButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-          
-             Parent root=null;
-                root = new OnlineListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) signUpButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            }
+        signUpButton.setOnAction((event) -> {
+            if( userNameTextField.getText().length()==0){
+            userNameTextField.setStyle("-fx-border-color : red ; -fx-border-width:2px;");
+            //new animatefx.animation.shake(userNameTextField).play();
+        }
         });
 
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
@@ -135,8 +140,8 @@ public class SignUpScreenBase extends AnchorPane {
         signInHyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-             Parent root=null;
+
+                Parent root = null;
                 root = new SignInScreenBase();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signInHyperLink.getScene().getWindow();
@@ -169,16 +174,18 @@ public class SignUpScreenBase extends AnchorPane {
         passwordTextField.getStylesheets().add("/tictactoe/java/Styles.css");
         passwordTextField.setFont(new Font("Impact", 16.0));
         passwordTextField.setCursor(Cursor.TEXT);
+ 
 
-        AnchorPane.setBottomAnchor(EmailTextField, 182.0);
-        AnchorPane.setRightAnchor(EmailTextField, 100.0);
-        EmailTextField.setId("TextField");
-        EmailTextField.setLayoutX(300.0);
-        EmailTextField.setLayoutY(215.0);
-        EmailTextField.setPrefWidth(200.0);
-        EmailTextField.getStylesheets().add("/tictactoe/java/Styles.css");
-        EmailTextField.setFont(new Font("Impact", 16.0));
-        EmailTextField.setCursor(Cursor.TEXT);
+        AnchorPane.setBottomAnchor(confirmTextField, 182.0);
+        AnchorPane.setRightAnchor(confirmTextField, 100.0);
+        confirmTextField.setId("TextField");
+        confirmTextField.setLayoutX(300.0);
+        confirmTextField.setLayoutY(215.0);
+        confirmTextField.setPrefWidth(200.0);
+        confirmTextField.getStylesheets().add("/tictactoe/java/Styles.css");
+        confirmTextField.setFont(new Font("Impact", 16.0));
+        confirmTextField.setCursor(Cursor.TEXT);
+
 
         maleRadioButton.setLayoutX(228.0);
         maleRadioButton.setLayoutY(303.0);
@@ -186,6 +193,8 @@ public class SignUpScreenBase extends AnchorPane {
         maleRadioButton.setText("Male");
         maleRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         maleRadioButton.setFont(new Font("Impact", 16.0));
+        maleRadioButton.setToggleGroup(gender);
+        maleRadioButton.setOnAction(this::getGender);
 
         femaleRadioButton.setLayoutX(369.0);
         femaleRadioButton.setLayoutY(303.0);
@@ -193,6 +202,8 @@ public class SignUpScreenBase extends AnchorPane {
         femaleRadioButton.setText("Female");
         femaleRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         femaleRadioButton.setFont(new Font("Impact", 16.0));
+        femaleRadioButton.setToggleGroup(gender);
+        femaleRadioButton.setOnAction(this::getGender);
 
         AnchorPane.setBottomAnchor(emailTextField, 143.0);
         AnchorPane.setRightAnchor(emailTextField, 100.0);
@@ -219,7 +230,7 @@ public class SignUpScreenBase extends AnchorPane {
         backButton.setPreserveRatio(true);
         backButton.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         backButton.setCursor(Cursor.HAND);
-        backButton.setOnMouseClicked((MouseEvent e) -> { 
+        backButton.setOnMouseClicked((MouseEvent e) -> {
             Parent root;
             root = new multiPlayerScreen();
             Scene scene = new Scene(root);
@@ -239,7 +250,7 @@ public class SignUpScreenBase extends AnchorPane {
         getChildren().add(confirmPasswordLabel);
         getChildren().add(emailLabel);
         getChildren().add(passwordTextField);
-        getChildren().add(EmailTextField);
+        getChildren().add(confirmTextField);
         getChildren().add(maleRadioButton);
         getChildren().add(femaleRadioButton);
         getChildren().add(emailTextField);
@@ -247,4 +258,23 @@ public class SignUpScreenBase extends AnchorPane {
         getChildren().add(backButton);
 
     }
+
+    public String getGender(ActionEvent actionEvent) {
+        if (maleRadioButton.isSelected()) {
+            return maleRadioButton.getText();
+        } if (femaleRadioButton.isSelected()) {
+            return femaleRadioButton.getText();
+        } else {
+            return "Not Selected";
+        }
+    }
+    
+    public boolean validEmail(String input){
+        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern emailPattern = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPattern.matcher(input);
+        return matcher.find();
+    
+    }
+
 }
