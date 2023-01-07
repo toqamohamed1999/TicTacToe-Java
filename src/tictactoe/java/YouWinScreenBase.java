@@ -24,7 +24,7 @@ public class YouWinScreenBase extends BorderPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-        setPrefHeight(400.0);
+        setPrefHeight(430.0);
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
 
@@ -42,7 +42,9 @@ public class YouWinScreenBase extends BorderPane {
         YouWinMediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root=new winnerScreen("Ahmed",1,"Monica",2);
+                Parent root = null;
+                ResultLogic win = new ResultLogic("Ahmed",1,"Monica", 2,1); 
+                root = win.rs;
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) YouWinMediaView.getScene().getWindow();
                 stage.setScene(scene);

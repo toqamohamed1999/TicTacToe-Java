@@ -454,7 +454,7 @@ public class HomeScreen extends AnchorPane {
                 }
                 else{
                     Parent root=null;
-                    root = new MultipleUserXOScreenBase(userNameTextField.getText(), playerAvatar, "Computer", 1);
+                    root = new GameBoard(userNameTextField.getText(), playerAvatar, "Computer", 1);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) singlePlayerEnterGameButton.getScene().getWindow();
                     stage.setScene(scene);

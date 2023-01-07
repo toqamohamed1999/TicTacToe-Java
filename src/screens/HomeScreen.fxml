@@ -32,7 +32,7 @@
          </cursor></Circle>
       <ImageView fx:id="multiPlayerImage" fitHeight="78.0" fitWidth="81.0" layoutX="381.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../res/singles.png" />
+            <Image url="@../res/singles.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -44,7 +44,7 @@
          </cursor></Circle>
       <ImageView fx:id="singlePlayerImage" fitHeight="89.0" fitWidth="54.0" layoutX="166.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../res/Single.png" />
+            <Image url="@../res/Single.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -98,7 +98,7 @@
       </Label>
       <ImageView fx:id="backButton" fitHeight="44.0" fitWidth="36.0" layoutX="117.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../res/back.png" />
+            <Image url="@../res/back.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -106,7 +106,7 @@
       </ImageView>
       <ImageView fx:id="mediumImage" fitHeight="102.0" fitWidth="102.0" layoutX="256.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../res/Medium.png" />
+            <Image url="@../res/Medium.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -114,7 +114,7 @@
       </ImageView>
       <ImageView fx:id="hardImage" fitHeight="102.0" fitWidth="102.0" layoutX="385.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../res/Hard.png" />
+            <Image url="@../res/Hard.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -122,7 +122,7 @@
       </ImageView>
       <ImageView fx:id="easyImage" fitHeight="81029.0" fitWidth="102.0" layoutX="125.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../res/Easy.png" />
+            <Image url="@../res/Easy.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -139,7 +139,7 @@
             <Font name="Impact" size="24.0" />
          </font>
       </Label>
-      <TextField id="TextField" fx:id="userNameTextField" layoutX="306.0" layoutY="267.0" stylesheets="@Styles.css" visible="false">
+      <TextField id="TextField" fx:id="userNameTextField" layoutX="306.0" layoutY="267.0" stylesheets="@../tictactoe/java/Styles.css" visible="false">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
@@ -149,7 +149,7 @@
       </TextField>
       <ImageView fx:id="maleAvatarImage" fitHeight="114.0" fitWidth="102.0" layoutX="174.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../res/man.png" />
+            <Image url="@../res/man.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -157,7 +157,7 @@
       </ImageView>
       <ImageView fx:id="femaleAvatarImage" fitHeight="102.0" fitWidth="102.0" layoutX="354.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../res/woman.png" />
+            <Image url="@../res/woman.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -165,7 +165,7 @@
       </ImageView>
       <ImageView fx:id="avatarSelectionbackButton" fitHeight="44.0" fitWidth="36.0" layoutX="135.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../res/back.png" />
+            <Image url="@../res/back.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />

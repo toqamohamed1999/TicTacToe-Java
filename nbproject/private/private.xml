@@ -3,17 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/SignUpScreenBase.java</file>
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/GameBoard.java</file>
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/screens/multiPlayerScreen.fxml</file>
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/screens/ResultScreen.fxml</file>
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/ResultScreen.java</file>
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/screens/HomeScreen.fxml</file>
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/Win.java</file>
             <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/multiPlayerScreen.java</file>
             <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/HomeScreen.java</file>
             <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/Draw.java</file>
             <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/Styles.css</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/MultipleUserXOScreenBase.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/SignInScreenBase.java</file>
-=======
-            <file>file:/E:/Java%20Project/Test/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
->>>>>>> origin/multiPlayerFeature
+            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/MultiPlayer.java</file>
         </group>
     </open-files>
 </project-private>
