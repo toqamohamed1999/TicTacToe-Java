@@ -19,7 +19,7 @@ import tictactoe.java.SignUpScreenBase;
  * @author Eman
  */
 public class ClientSide implements Runnable {
-    
+    private static ClientSide clientSide;
     Socket clientSocket;
     DataInputStream dis;
     PrintStream ps;
@@ -27,7 +27,7 @@ public class ClientSide implements Runnable {
     Thread thread;
 
  
-    public ClientSide() {
+    private ClientSide() {
         thread = new Thread(this);
         thread.start();
 
@@ -41,6 +41,13 @@ public class ClientSide implements Runnable {
             System.out.println(ex.getMessage());
         }      
         
+    }
+    
+    public static ClientSide getInstanse() {
+        if (clientSide == null) {
+            return new ClientSide();
+        }
+        return clientSide;
     }
 
     @Override

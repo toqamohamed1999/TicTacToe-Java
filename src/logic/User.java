@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package tictactoe.java;
 
-/**
- *
- * @author Monica
- */
+package logic;
+
+
 public class User {
     
     int ID;
@@ -19,6 +12,9 @@ public class User {
     int score;
     String recordPath;
     String IP;
+    
+    
+    public User(){}
 
     public int getID() {
         return ID;
