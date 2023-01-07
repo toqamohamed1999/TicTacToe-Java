@@ -105,7 +105,8 @@ public class GameBoard extends AnchorPane {
         user2ImageView.setPreserveRatio(true);
         if(playerTwoAvatarNumber==1)user2ImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
         else if(playerTwoAvatarNumber==2)user2ImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
-        
+        else if(playerTwoAvatarNumber==3)user2ImageView.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
+     
         user1ImageView.setFitHeight(87.0);
         user1ImageView.setFitWidth(94.0);
         user1ImageView.setId("user1ImageView");
@@ -115,6 +116,7 @@ public class GameBoard extends AnchorPane {
         user1ImageView.setPreserveRatio(true);
         if(playerOneAvatarNumber==1)user1ImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
         else if(playerOneAvatarNumber==2)user1ImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        else if(playerOneAvatarNumber==3)user1ImageView.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
 
         user1NameText.setFill(javafx.scene.paint.Color.WHITE);
         user1NameText.setId("user1Text");

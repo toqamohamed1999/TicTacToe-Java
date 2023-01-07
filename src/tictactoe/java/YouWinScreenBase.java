@@ -43,7 +43,7 @@ public class YouWinScreenBase extends BorderPane {
             @Override
             public void handle(MouseEvent event) {
                 Parent root = null;
-                ResultLogic win = new ResultLogic("Ahmed",1,"Monica", 2,1); 
+                ResultLogic win = new ResultLogic("Ahmed",1,"Monica", 2,1,1,'x'); 
                 root = win.rs;
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) YouWinMediaView.getScene().getWindow();

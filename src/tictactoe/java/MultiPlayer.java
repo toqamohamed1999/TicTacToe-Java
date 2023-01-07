@@ -23,12 +23,14 @@ import javafx.stage.Stage;
 public class MultiPlayer 
 {
     GameBoard multi;
+    int sourceMode;
     
     public MultiPlayer(String playerOneName,int playerOneAvatarNumber,String playerTwoName,int playerTwoAvatarNumber) {
          multi=new GameBoard(playerOneName,playerOneAvatarNumber,playerTwoName,playerTwoAvatarNumber);
          record();
          back();
          buttonshandel();
+         sourceMode=4;
     }
     
     public void record(){
@@ -223,9 +225,9 @@ public class MultiPlayer
             return 0;
         }
     }
-    private void navigateToWinner(String player1 ,int player1Avatar , String player2 , int player2avatar){
+    private void navigateToWinner(String player1 ,int player1Avatar , String player2 , int player2avatar , char winnerChar){
         Parent root=null;
-        ResultLogic win = new ResultLogic(player1,player1Avatar,player2, player2avatar ,1); 
+        ResultLogic win = new ResultLogic(player1,player1Avatar,player2, player2avatar ,1,sourceMode , winnerChar ); 
         root = win.rs;
         Scene scene = new Scene(root);
         Stage stage = (Stage) multi.backImageView.getScene().getWindow();
@@ -237,14 +239,14 @@ public class MultiPlayer
         int xResult=XisWinner();
         int oResult=OisWinner();
         if(xResult==1){
-            navigateToWinner(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar);
+            navigateToWinner(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar ,'x');
         }
         else if(oResult==1){
-            navigateToWinner(multi.user2NameText.getText(),multi.player2Avatar,multi.user1NameText.getText(),multi.player1Avatar);
+            navigateToWinner(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar ,'o');
         }
         if(multi.counter==9&&xResult!=1&&oResult!=1){
             Parent root=null;
-            ResultLogic draw = new ResultLogic(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar,0);
+            ResultLogic draw = new ResultLogic(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar,0,sourceMode,'d');
             root = draw.rs;
             Scene scene = new Scene(root);
             Stage stage = (Stage) multi.backImageView.getScene().getWindow();

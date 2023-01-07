@@ -48,6 +48,7 @@ public class HomeScreen extends AnchorPane {
     protected final Label enterYourNameLabel;
     protected final Button okButton;
     int playerAvatar;
+    boolean selected;
 
     public HomeScreen() {
 
@@ -80,6 +81,7 @@ public class HomeScreen extends AnchorPane {
         enterYourNameLabel = new Label();
         okButton = new Button();
         playerAvatar=0;
+        selected=false;
 
         setId("HomeAnchorPane");
         setPrefHeight(430.0);
@@ -397,6 +399,7 @@ public class HomeScreen extends AnchorPane {
                 playerAvatar=1;
                 femaleAvatarImage.setFitHeight(99.0);
                 femaleAvatarImage.setFitWidth(102.0);
+                selected=true;
             }  
         });
 
@@ -415,9 +418,10 @@ public class HomeScreen extends AnchorPane {
             public void handle(MouseEvent event) {
                 femaleAvatarImage.setFitHeight(102.0);
                 femaleAvatarImage.setFitWidth(105.0);
-                playerAvatar=1;
+                playerAvatar=2;
                 maleAvatarImage.setFitHeight(114.0);
                 maleAvatarImage.setFitWidth(102.0);
+                selected=true;
             }  
         });
 
@@ -449,12 +453,16 @@ public class HomeScreen extends AnchorPane {
         singlePlayerEnterGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(userNameTextField.getText().equals("")){
+                if(userNameTextField.getText().equals("")||selected==false){
+                    if(selected==false)enterYourNameLabel.setText("Please select Your avatar pic");
+                    else enterYourNameLabel.setText("Please Enter Your Name First");
                     showErrorMassage();
                 }
                 else{
                     Parent root=null;
-                    root = new GameBoard(userNameTextField.getText(), playerAvatar, "Computer", 1);
+                    selected=false;
+                    EasyMode easyMode = new EasyMode(userNameTextField.getText(),playerAvatar,"Computer",3);
+                    root = easyMode.board;
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) singlePlayerEnterGameButton.getScene().getWindow();
                     stage.setScene(scene);

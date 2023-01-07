@@ -17,10 +17,14 @@ import javafx.stage.Stage;
 public class ResultLogic {
     ResultScreen rs;
     int state;
+    int sourceMode;
+    char winner;
     
-    public ResultLogic(String player1 , int player1Avatar , String player2 , int player2Avatar , int originNumber){
+    public ResultLogic(String player1 , int player1Avatar , String player2 , int player2Avatar , int originNumber , int source , char win){
         rs = new ResultScreen();
         state = originNumber;
+        sourceMode = source;
+        winner = win;
         playAgain(player1, player1Avatar, player2, player2Avatar);
         exitGame();
         setPlayer1Pic(player1Avatar);
@@ -28,7 +32,7 @@ public class ResultLogic {
         setPlayer1Name(player1);
         setPlayer2Name(player2);
         goHome();
-        setResultLabel(player1);
+        setResultLabel(player1,player2);
         setResultPic();
         setPlayerLabels();
     }
@@ -37,9 +41,16 @@ public class ResultLogic {
         rs.playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                MultiPlayer mp=new MultiPlayer(player1, player1Avatar, player2, player2Avatar);
                 Parent root=null;
-                root = mp.multi ;
+                System.out.println(sourceMode);
+                if(sourceMode==1){
+                    EasyMode easyMode = new EasyMode(player1,player1Avatar,player2,player2Avatar);
+                    root = easyMode.board;
+                }
+                else if(sourceMode==4){
+                    MultiPlayer mp=new MultiPlayer(player1, player1Avatar, player2, player2Avatar);
+                    root = mp.multi ;
+                }
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) rs.playAgainButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -57,21 +68,23 @@ public class ResultLogic {
     }
     
     public void setPlayer1Pic(int player1Avatar){
-        if(player1Avatar==1)rs.player2Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
-        else rs.player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        if(player1Avatar==1)rs.player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        else if(player1Avatar==2) rs.player1Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        else if(player1Avatar==3) rs.player1Pic.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
     }
     
     public void setPlayer2Pic(int Player2Avatar){
-        if(Player2Avatar==1)rs.player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
-        else rs.player1Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        if(Player2Avatar==1)rs.player2Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        else if(Player2Avatar==2) rs.player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        else if(Player2Avatar==3) rs.player2Pic.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
     }
     
     public void setPlayer1Name(String player1){
-        rs.player2Name.setText(player1);
+        rs.player1Name.setText(player1);
     }
     
     public void setPlayer2Name(String player2){
-        rs.player1Name.setText(player2);
+        rs.player2Name.setText(player2);
     }
     
     public void goHome(){
@@ -88,9 +101,12 @@ public class ResultLogic {
         });
     }
     
-    public void setResultLabel(String winner){     
+    public void setResultLabel(String player1, String player2){     
         if (state==0)rs.resultLabel.setText("Both Too Good");
-        else if(state==1)rs.resultLabel.setText(winner + " Wins");
+        else if(state==1){
+            if(winner=='x')rs.resultLabel.setText(player1 + " Wins");
+            else rs.resultLabel.setText(player2 + " Wins");
+        }
     }
 
     public void setResultPic(){ 
@@ -103,8 +119,13 @@ public class ResultLogic {
             rs.player1State.setText("Winner");
             rs.player2State.setText("Winner");
         }else if(state==1){
-            rs.player1State.setText("Loser");
-            rs.player2State.setText("Winner");
+            if(winner=='x'){
+                rs.player1State.setText("Winner");
+                rs.player2State.setText("Loser");
+            }else{
+                rs.player1State.setText("Loser");
+                rs.player2State.setText("Winner");
+            }
         }
     }
 }
