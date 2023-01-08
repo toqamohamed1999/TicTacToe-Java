@@ -1,7 +1,10 @@
 package logic;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -21,6 +24,7 @@ public class OnlineList {
     public ListView listView;
 
     String[] operationArr;
+    ArrayList<String> items = new ArrayList();
     String data = null;
 
     public OnlineList() {
@@ -29,16 +33,16 @@ public class OnlineList {
         listView = onlineListScreen.onlineListView;
         receiveMessgeFromServer();
         getAllOnlineUsers();
+        onItemClick();
     }
 
-    void getFields() {
-
+    void onItemClick() {
         listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("clicked on lsitview = "
-                        + listView.getSelectionModel().getSelectedItem());
-
+                String item =  (String)listView.getSelectionModel().getSelectedItem();
+                System.out.println("clicked on lsitview = "+item);
+                moveToGameBoardScreen();
             }
         });
     }
@@ -58,6 +62,7 @@ public class OnlineList {
                             String textmessage = clientSide.dis.readLine();
                             System.out.println("@@@@@@@@@@" + textmessage);
                             divideMessage(textmessage);
+                            doAction();
                             clientSide.ps.flush();
                         }
                     } catch (IOException ex) {
@@ -68,20 +73,21 @@ public class OnlineList {
         }).start();
     }
 
-    public String[] divideMessage(String operation) {
+    public void divideMessage(String operation) {
         operationArr = operation.split(",");
-        return operationArr;
     }
 
-    void doAction(String textmessage) {
+    void doAction() {
+        if (operationArr[0].equalsIgnoreCase("sendAllUsers")) {
+            items.add(operationArr[1]);
 
-        if (textmessage.equalsIgnoreCase("sendAllUsers")) {
-            listView.getItems().add("User " + operationArr[1]);
+            ObservableList<String> obsItems = FXCollections.observableArrayList(items);
+            listView.setItems(obsItems);
         }
 
     }
 
-    void moveToOnlineListScreen() {
+    void moveToGameBoardScreen() {
         Platform.runLater(() -> {
             Parent root;
             root = new GameBoard("A", 1, "A", 2);
@@ -98,7 +104,6 @@ public class OnlineList {
             alert.setTitle("SignIn incorrect");
             alert.setContentText("Make sure that, your email and password are empty or correct!");
             alert.show();
-
         });
     }
 }
