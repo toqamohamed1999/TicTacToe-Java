@@ -22,9 +22,9 @@ public class SignInScreenBase extends AnchorPane {
     protected final ImageView logoImageView;
     protected final Label userNameLabel;
     protected final Label passwordLabel;
-    protected final TextField userNameTextField;
-    protected final TextField passwordTextField;
-    protected final Button signInButton;
+    public final TextField emailTextField;
+    public final TextField passwordTextField;
+    public final Button signInButton;
     protected final DropShadow dropShadow;
     protected final Label dontHaveAccLabel;
     protected final Label signUpHyperLink;
@@ -35,7 +35,7 @@ public class SignInScreenBase extends AnchorPane {
         logoImageView = new ImageView();
         userNameLabel = new Label();
         passwordLabel = new Label();
-        userNameTextField = new TextField();
+        emailTextField = new TextField();
         passwordTextField = new TextField();
         signInButton = new Button();
         dropShadow = new DropShadow();
@@ -57,7 +57,7 @@ public class SignInScreenBase extends AnchorPane {
 
         userNameLabel.setLayoutX(142.0);
         userNameLabel.setLayoutY(191.0);
-        userNameLabel.setText("User Name");
+        userNameLabel.setText("Email");
         userNameLabel.setTextFill(javafx.scene.paint.Color.RED);
         userNameLabel.setFont(new Font("Impact", 24.0));
 
@@ -67,12 +67,12 @@ public class SignInScreenBase extends AnchorPane {
         passwordLabel.setTextFill(javafx.scene.paint.Color.RED);
         passwordLabel.setFont(new Font("Impact", 24.0));
 
-        userNameTextField.setId("TextField");
-        userNameTextField.setLayoutX(268.0);
-        userNameTextField.setLayoutY(188.0);
-        userNameTextField.setPrefWidth(200.0);
-        userNameTextField.getStylesheets().add("/tictactoe/java/Styles.css");
-        userNameTextField.setFont(new Font("Impact", 16.0));
+        emailTextField.setId("TextField");
+        emailTextField.setLayoutX(268.0);
+        emailTextField.setLayoutY(188.0);
+        emailTextField.setPrefWidth(200.0);
+        emailTextField.getStylesheets().add("/tictactoe/java/Styles.css");
+        emailTextField.setFont(new Font("Impact", 16.0));
 
         passwordTextField.setId("TextField");
         passwordTextField.setLayoutX(268.0);
@@ -92,13 +92,14 @@ public class SignInScreenBase extends AnchorPane {
         signInButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-          
+     /*     
              Parent root = null;
                 root = new OnlineListScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) signInButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
+*/
             }
         });
 
@@ -155,7 +156,7 @@ public class SignInScreenBase extends AnchorPane {
         getChildren().add(logoImageView);
         getChildren().add(userNameLabel);
         getChildren().add(passwordLabel);
-        getChildren().add(userNameTextField);
+        getChildren().add(emailTextField);
         getChildren().add(passwordTextField);
         getChildren().add(signInButton);
         getChildren().add(dontHaveAccLabel);

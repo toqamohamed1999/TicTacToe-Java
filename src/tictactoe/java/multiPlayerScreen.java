@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import logic.SignIn;
 
 public class multiPlayerScreen extends AnchorPane {
 
@@ -45,9 +46,8 @@ public class multiPlayerScreen extends AnchorPane {
     protected final Pane errorMassagePane;
     protected final Label enterBothNamesLabel;
     protected final Button okButton;
-    int oneOrTwo,playerOneAvatarNumber,playerTwoAvatarNumber;
-    String playerOneName,playerTwoName ;
-
+    int oneOrTwo, playerOneAvatarNumber, playerTwoAvatarNumber;
+    String playerOneName, playerTwoName;
 
     public multiPlayerScreen() {
 
@@ -78,8 +78,8 @@ public class multiPlayerScreen extends AnchorPane {
         enterBothNamesLabel = new Label();
         okButton = new Button();
         oneOrTwo = 0;
-        playerOneAvatarNumber=1;
-        playerTwoAvatarNumber=1;
+        playerOneAvatarNumber = 1;
+        playerTwoAvatarNumber = 1;
 
         setId("HomeAnchorPane");
         setPrefHeight(430.0);
@@ -97,9 +97,9 @@ public class multiPlayerScreen extends AnchorPane {
         backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-             Parent root=null;
-                root = new HomeScreen() ;
+
+                Parent root = null;
+                root = new HomeScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -118,8 +118,8 @@ public class multiPlayerScreen extends AnchorPane {
         profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-             Parent root=null;
+
+                Parent root = null;
                 root = new ProfileScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
@@ -148,7 +148,7 @@ public class multiPlayerScreen extends AnchorPane {
             public void handle(MouseEvent event) {
                 goToSignInScreen();
             }
-            
+
         });
 
         onlineImage.setFitHeight(78.0);
@@ -162,9 +162,9 @@ public class multiPlayerScreen extends AnchorPane {
         onlineImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               goToSignInScreen();
+                goToSignInScreen();
             }
-            
+
         });
 
         passAndPlayCircle.setFill(javafx.scene.paint.Color.valueOf("#44a7a1"));
@@ -177,9 +177,9 @@ public class multiPlayerScreen extends AnchorPane {
         passAndPlayCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               showPlayerNamesPane();
+                showPlayerNamesPane();
             }
-            
+
         });
 
         passAndPlayImage.setFitHeight(78.0);
@@ -193,9 +193,9 @@ public class multiPlayerScreen extends AnchorPane {
         passAndPlayImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               showPlayerNamesPane();
+                showPlayerNamesPane();
             }
-            
+
         });
 
         passAndPlayButton.setLayoutX(110.0);
@@ -247,9 +247,9 @@ public class multiPlayerScreen extends AnchorPane {
         innerPaneBackButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               hidePlayerNamesPane();
+                hidePlayerNamesPane();
             }
-            
+
         });
 
         enterNameLabel.setLayoutX(189.0);
@@ -285,10 +285,10 @@ public class multiPlayerScreen extends AnchorPane {
         playerOneAvatar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               oneOrTwo=1;
-               showAvatarChoicePane();
+                oneOrTwo = 1;
+                showAvatarChoicePane();
             }
-            
+
         });
 
         playerTwoAvatar.setFitHeight(102.0);
@@ -303,12 +303,11 @@ public class multiPlayerScreen extends AnchorPane {
         playerTwoAvatar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               oneOrTwo=2;
-               showAvatarChoicePane();
+                oneOrTwo = 2;
+                showAvatarChoicePane();
             }
-            
-        });
 
+        });
 
         playerOneNameField.setId("TextField");
         playerOneNameField.setLayoutX(112.0);
@@ -347,17 +346,16 @@ public class multiPlayerScreen extends AnchorPane {
         womanAvatar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               if(oneOrTwo==1){
-                   playerOneAvatar.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
-                   playerOneAvatarNumber=2;
-               }
-               else if(oneOrTwo==2){
-                   playerTwoAvatar.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
-                   playerTwoAvatarNumber=2;
-               }
-               hideAvatarChoicePane();
+                if (oneOrTwo == 1) {
+                    playerOneAvatar.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+                    playerOneAvatarNumber = 2;
+                } else if (oneOrTwo == 2) {
+                    playerTwoAvatar.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+                    playerTwoAvatarNumber = 2;
+                }
+                hideAvatarChoicePane();
             }
-            
+
         });
 
         manAvatar.setFitHeight(115.0);
@@ -372,17 +370,16 @@ public class multiPlayerScreen extends AnchorPane {
         manAvatar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               if(oneOrTwo==1){
-                   playerOneAvatar.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
-                   playerOneAvatarNumber=1;
-               }
-               else if(oneOrTwo==2){
-                   playerTwoAvatar.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
-                   playerTwoAvatarNumber=1;
-               }
-               hideAvatarChoicePane();
+                if (oneOrTwo == 1) {
+                    playerOneAvatar.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+                    playerOneAvatarNumber = 1;
+                } else if (oneOrTwo == 2) {
+                    playerTwoAvatar.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+                    playerTwoAvatarNumber = 1;
+                }
+                hideAvatarChoicePane();
             }
-            
+
         });
 
         selectAvatarLabel.setLayoutX(235.0);
@@ -403,17 +400,16 @@ public class multiPlayerScreen extends AnchorPane {
         enterGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(playerOneNameField.getText().equals("")||playerTwoNameField.getText().equals("")){
+                if (playerOneNameField.getText().equals("") || playerTwoNameField.getText().equals("")) {
                     errorMassagePane.setVisible(true);
                     enterBothNamesLabel.setVisible(true);
                     okButton.setVisible(true);
-                }
-                else{
-                    playerOneName=playerOneNameField.getText();
-                    playerTwoName=playerTwoNameField.getText();
-                    MultiPlayer mp=new MultiPlayer(playerOneName,playerOneAvatarNumber,playerTwoName,playerTwoAvatarNumber);
-                    Parent root=null;
-                    root = mp.multi ;
+                } else {
+                    playerOneName = playerOneNameField.getText();
+                    playerTwoName = playerTwoNameField.getText();
+                    MultiPlayer mp = new MultiPlayer(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
+                    Parent root = null;
+                    root = mp.multi;
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) enterGameButton.getScene().getWindow();
                     stage.setScene(scene);
@@ -421,7 +417,7 @@ public class multiPlayerScreen extends AnchorPane {
                 }
             }
         });
-        
+
         errorMassagePane.setId("errorMassagePane");
         errorMassagePane.setLayoutX(140.0);
         errorMassagePane.setLayoutY(152.0);
@@ -448,9 +444,9 @@ public class multiPlayerScreen extends AnchorPane {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                    errorMassagePane.setVisible(false);
-                    enterBothNamesLabel.setVisible(false);
-                    okButton.setVisible(false);
+                errorMassagePane.setVisible(false);
+                enterBothNamesLabel.setVisible(false);
+                okButton.setVisible(false);
             }
         });
 
@@ -482,8 +478,8 @@ public class multiPlayerScreen extends AnchorPane {
         getChildren().add(okButton);
 
     }
-    
-    void hidePlayerNamesPane(){
+
+    void hidePlayerNamesPane() {
         playersNamesPane.setVisible(false);
         innerPaneBackButton.setVisible(false);
         enterNameLabel.setVisible(false);
@@ -498,8 +494,8 @@ public class multiPlayerScreen extends AnchorPane {
         enterBothNamesLabel.setVisible(false);
         okButton.setVisible(false);
     }
-    
-    void showPlayerNamesPane(){
+
+    void showPlayerNamesPane() {
         playersNamesPane.setVisible(true);
         innerPaneBackButton.setVisible(true);
         enterNameLabel.setVisible(true);
@@ -511,27 +507,28 @@ public class multiPlayerScreen extends AnchorPane {
         playerTwoNameField.setVisible(true);
         enterGameButton.setVisible(true);
     }
-    
-    void hideAvatarChoicePane(){
+
+    void hideAvatarChoicePane() {
         avatarChoicePane.setVisible(false);
         womanAvatar.setVisible(false);
         manAvatar.setVisible(false);
         selectAvatarLabel.setVisible(false);
     }
-    
-    void showAvatarChoicePane(){
+
+    void showAvatarChoicePane() {
         avatarChoicePane.setVisible(true);
         womanAvatar.setVisible(true);
         manAvatar.setVisible(true);
         selectAvatarLabel.setVisible(true);
     }
-    
-    void goToSignInScreen(){
-        Parent root=null;
-		root = new SignInScreenBase();
-		Scene scene = new Scene(root);
-		Stage stage = (Stage) onlineButton.getScene().getWindow();
-		stage.setScene(scene);
-		stage.show();
+
+    void goToSignInScreen() {
+        Parent root = null;
+        SignIn signIn = new SignIn();
+        root = signIn.signInScreenBase;
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) onlineButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
