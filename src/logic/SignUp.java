@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.IOException;
 import tictactoe.java.SignUpScreenBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,7 @@ public class SignUp {
         signUpScreenBase = new SignUpScreenBase();
         clientSide = ClientSide.getInstanse();
         signUpButton();
+        receiveMessgeFromServer();
     }
 
     public String signUpTextFields() {
@@ -27,6 +29,7 @@ public class SignUp {
         password = signUpScreenBase.passwordTextField.getText();
         confirmPassword = signUpScreenBase.confirmTextField.getText();
         email = signUpScreenBase.emailTextField.getText();
+
         gender = signUpScreenBase.getGender(actionEvent);
         boolean isValiad = signUpScreenBase.validEmail(email);
         
@@ -54,5 +57,24 @@ public class SignUp {
             }
         });
 
+    }
+
+    void receiveMessgeFromServer() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        if (clientSide.dis != null) {
+                            String textmessage = clientSide.dis.readLine();
+                            System.out.println(textmessage);
+                             clientSide.ps.flush();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 }
