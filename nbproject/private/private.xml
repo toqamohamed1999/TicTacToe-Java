@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/SignUpScreenBase.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/ClientSide.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/SignUp.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
+        </group>
+>>>>>>> 74a27aae22ba0ecbb99d961576c2464a93b5131d
     </open-files>
 </project-private>

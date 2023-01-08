@@ -5,10 +5,6 @@
  */
 package logic;
 
-/**
- *
- * @author Monica
- */
 public class User {
     
     int ID;
@@ -19,7 +15,7 @@ public class User {
     int score;
     String recordPath;
     String IP;
-    
+
     public User(){}
 
     public int getID() {

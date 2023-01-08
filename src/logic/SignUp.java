@@ -1,13 +1,9 @@
 package logic;
 
 import java.io.IOException;
+import tictactoe.java.SignUpScreenBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import tictactoe.java.OnlineListScreen;
-import tictactoe.java.SignUpScreenBase;
 
 public class SignUp {
 
@@ -19,6 +15,7 @@ public class SignUp {
     String confirmPassword;
     String email;
     String gender;
+    ActionEvent actionEvent;
 
     public SignUp() {
         signUpScreenBase = new SignUpScreenBase();
@@ -27,31 +24,35 @@ public class SignUp {
         receiveMessgeFromServer();
     }
 
-    public String[] signUpTextFields() {
+    public String signUpTextFields() {
         userName = signUpScreenBase.userNameTextField.getText();
         password = signUpScreenBase.passwordTextField.getText();
         confirmPassword = signUpScreenBase.confirmTextField.getText();
         email = signUpScreenBase.emailTextField.getText();
-        gender = "";
-        if (signUpScreenBase.maleRadioButton.isSelected()) {
-            gender = signUpScreenBase.maleRadioButton.getText();
-        }
-        if (signUpScreenBase.femaleRadioButton.isSelected()) {
-            gender = signUpScreenBase.femaleRadioButton.getText();
-        }
 
-        String[] data = {userName, password, confirmPassword, email, gender};
-        return data;
+        gender = signUpScreenBase.getGender(actionEvent);
+        boolean isValiad = signUpScreenBase.validEmail(email);
+        
+        if (isValiad || confirmPassword.equals(password) || userName != null || gender=="Not Selected") {
+            String data ="SignUp"+ userName+","+ password +","+ confirmPassword+","+ email+","+ gender;
+            return data;
+        }
+        
+        return null;
     }
 
     public final void signUpButton() {
 
-        signUpScreenBase.signUpButton.setOnAction((ActionEvent event) -> {
-            clientSide.ps.println("I clicked signup");
-            if (signUpTextFields() != null) {
-                String[] signUpData = signUpTextFields();
-                for (int i = 0; i < signUpData.length; i++) {
-                    clientSide.ps.println(signUpData[i]);
+        signUpScreenBase.signUpButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                clientSide.ps.println("I clicked signup");
+                if (signUpTextFields() != null) {
+                    clientSide.ps.println(signUpTextFields());
+                   /* String[] signUpData = signUpTextFields();
+                    for (int i = 0; i < signUpData.length; i++) {
+                        clientSide.ps.println(signUpData[i]);
+                    }*/
                 }
             }
         });

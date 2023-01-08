@@ -1,22 +1,31 @@
 package tictactoe.java;
 
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.SignIn;
+
 
 public class SignUpScreenBase extends AnchorPane {
 
@@ -30,13 +39,14 @@ public class SignUpScreenBase extends AnchorPane {
     protected final Label signInHyperLink;
     protected final Label confirmPasswordLabel;
     protected final Label emailLabel;
-    public final TextField passwordTextField;
-    public final TextField confirmTextField;
+    public final PasswordField passwordTextField;
+    public final PasswordField confirmTextField;
     public final RadioButton maleRadioButton;
     public final RadioButton femaleRadioButton;
     public final TextField emailTextField;
     protected final Label genderLabel;
     protected final ImageView backButton;
+    protected final ToggleGroup gender;
 
     public SignUpScreenBase() {
 
@@ -50,13 +60,14 @@ public class SignUpScreenBase extends AnchorPane {
         signInHyperLink = new Label();
         confirmPasswordLabel = new Label();
         emailLabel = new Label();
-        passwordTextField = new TextField();
-        confirmTextField = new TextField();
-        maleRadioButton = new RadioButton("Male");
-        femaleRadioButton = new RadioButton("Female");
+        passwordTextField = new PasswordField();
+        confirmTextField = new PasswordField();
+        maleRadioButton = new RadioButton();
+        femaleRadioButton = new RadioButton();
         emailTextField = new TextField();
         genderLabel = new Label();
         backButton = new ImageView();
+        gender = new ToggleGroup();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -101,6 +112,12 @@ public class SignUpScreenBase extends AnchorPane {
         signUpButton.setText("Sign up");
         signUpButton.setTextFill(javafx.scene.paint.Color.RED);
         signUpButton.setFont(new Font("Impact", 26.0));
+        signUpButton.setOnAction((event) -> {
+            if( userNameTextField.getText().length()==0){
+            userNameTextField.setStyle("-fx-border-color : red ; -fx-border-width:2px;");
+            //new animatefx.animation.shake(userNameTextField).play();
+        }
+        });
 
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
@@ -159,6 +176,7 @@ public class SignUpScreenBase extends AnchorPane {
         passwordTextField.getStylesheets().add("/tictactoe/java/Styles.css");
         passwordTextField.setFont(new Font("Impact", 16.0));
         passwordTextField.setCursor(Cursor.TEXT);
+ 
 
         AnchorPane.setBottomAnchor(confirmTextField, 182.0);
         AnchorPane.setRightAnchor(confirmTextField, 100.0);
@@ -170,12 +188,15 @@ public class SignUpScreenBase extends AnchorPane {
         confirmTextField.setFont(new Font("Impact", 16.0));
         confirmTextField.setCursor(Cursor.TEXT);
 
+
         maleRadioButton.setLayoutX(228.0);
         maleRadioButton.setLayoutY(303.0);
         maleRadioButton.setMnemonicParsing(false);
         maleRadioButton.setText("Male");
         maleRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         maleRadioButton.setFont(new Font("Impact", 16.0));
+        maleRadioButton.setToggleGroup(gender);
+        maleRadioButton.setOnAction(this::getGender);
 
         femaleRadioButton.setLayoutX(369.0);
         femaleRadioButton.setLayoutY(303.0);
@@ -183,6 +204,8 @@ public class SignUpScreenBase extends AnchorPane {
         femaleRadioButton.setText("Female");
         femaleRadioButton.setTextFill(javafx.scene.paint.Color.WHITE);
         femaleRadioButton.setFont(new Font("Impact", 16.0));
+        femaleRadioButton.setToggleGroup(gender);
+        femaleRadioButton.setOnAction(this::getGender);
 
         AnchorPane.setBottomAnchor(emailTextField, 143.0);
         AnchorPane.setRightAnchor(emailTextField, 100.0);
@@ -237,4 +260,23 @@ public class SignUpScreenBase extends AnchorPane {
         getChildren().add(backButton);
 
     }
+
+    public String getGender(ActionEvent actionEvent) {
+        if (maleRadioButton.isSelected()) {
+            return maleRadioButton.getText();
+        } if (femaleRadioButton.isSelected()) {
+            return femaleRadioButton.getText();
+        } else {
+            return "Not Selected";
+        }
+    }
+    
+    public boolean validEmail(String input){
+        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern emailPattern = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPattern.matcher(input);
+        return matcher.find();
+    
+    }
+
 }
