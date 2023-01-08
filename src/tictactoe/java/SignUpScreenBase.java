@@ -111,12 +111,7 @@ public class SignUpScreenBase extends AnchorPane {
         signUpButton.setText("Sign up");
         signUpButton.setTextFill(javafx.scene.paint.Color.RED);
         signUpButton.setFont(new Font("Impact", 26.0));
-        signUpButton.setOnAction((event) -> {
-            if( userNameTextField.getText().length()==0){
-            userNameTextField.setStyle("-fx-border-color : red ; -fx-border-width:2px;");
-            //new animatefx.animation.shake(userNameTextField).play();
-        }
-        });
+    
 
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
