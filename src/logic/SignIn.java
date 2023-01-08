@@ -61,7 +61,7 @@ public class SignIn {
                     try {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
-                            System.out.println("@@@@@@@@@@" + textmessage);
+                           // System.out.println("@@@@@@@@@@" + textmessage);
                             doAction(textmessage);
                             clientSide.ps.flush();
                         }
