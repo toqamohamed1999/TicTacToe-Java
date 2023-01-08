@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logic;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -13,13 +9,8 @@ import javafx.stage.Stage;
 import tictactoe.java.OnlineListScreen;
 import tictactoe.java.SignUpScreenBase;
 
-/**
- *
- * @author Eman
- */
 public class SignUp {
 
-    public Client client;
     public SignUpScreenBase signUpScreenBase;
     public ClientSide clientSide;
 
@@ -27,11 +18,13 @@ public class SignUp {
     String password;
     String confirmPassword;
     String email;
+    String gender;
 
     public SignUp() {
         signUpScreenBase = new SignUpScreenBase();
-        clientSide = new ClientSide();
+        clientSide = ClientSide.getInstanse();
         signUpButton();
+        receiveMessgeFromServer();
     }
 
     public String[] signUpTextFields() {
@@ -39,7 +32,7 @@ public class SignUp {
         password = signUpScreenBase.passwordTextField.getText();
         confirmPassword = signUpScreenBase.confirmTextField.getText();
         email = signUpScreenBase.emailTextField.getText();
-        String gender = "";
+        gender = "";
         if (signUpScreenBase.maleRadioButton.isSelected()) {
             gender = signUpScreenBase.maleRadioButton.getText();
         }
@@ -63,5 +56,24 @@ public class SignUp {
             }
         });
 
+    }
+
+    void receiveMessgeFromServer() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        if (clientSide.dis != null) {
+                            String textmessage = clientSide.dis.readLine();
+                            System.out.println(textmessage);
+                             clientSide.ps.flush();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 }

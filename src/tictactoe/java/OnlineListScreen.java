@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class OnlineListScreen extends AnchorPane {
 
     protected final Label onlineListLabel;
-    protected final ListView onlineListView;
+    public final ListView onlineListView;
     protected final ImageView back;
 
     public OnlineListScreen() {
@@ -41,21 +41,10 @@ public class OnlineListScreen extends AnchorPane {
         onlineListView.setLayoutY(123.0);
         onlineListView.setPrefHeight(266.0);
         onlineListView.setPrefWidth(204.0);
-        for(int i =1;i<=20;i++ ) {
-            onlineListView.getItems().add("User "+i);
+      /*  for (int i = 1; i <= 20; i++) {
+            onlineListView.getItems().add("User " + i);
         }
-        onlineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Parent root;
-                root = new MultipleUserXOScreenBase("A", 1, "A", 2);
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) onlineListView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
-
+*/
         back.setFitHeight(53.0);
         back.setFitWidth(50.0);
         back.setLayoutX(30.0);
@@ -63,7 +52,7 @@ public class OnlineListScreen extends AnchorPane {
         back.setPickOnBounds(true);
         back.setPreserveRatio(true);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
-        back.setOnMouseClicked((MouseEvent e) -> {     
+        back.setOnMouseClicked((MouseEvent e) -> {
             Parent root;
             root = new HomeScreen();
             Scene scene = new Scene(root);

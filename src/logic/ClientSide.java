@@ -19,15 +19,15 @@ import tictactoe.java.SignUpScreenBase;
  * @author Eman
  */
 public class ClientSide implements Runnable {
-    
+
+    private static ClientSide clientSide;
     Socket clientSocket;
     DataInputStream dis;
     PrintStream ps;
-    String textmessage="";
+    String textmessage = "";
     Thread thread;
 
- 
-    public ClientSide() {
+    private ClientSide() {
         thread = new Thread(this);
         thread.start();
 
@@ -35,26 +35,33 @@ public class ClientSide implements Runnable {
             clientSocket = new Socket(InetAddress.getLocalHost(), 5005);
             dis = new DataInputStream(clientSocket.getInputStream());
             ps = new PrintStream(clientSocket.getOutputStream());
-
         } catch (IOException ex) {
             ex.printStackTrace();
-            System.out.println(ex.getMessage());
-        }      
-        
+        }
+
+    }
+
+    public static ClientSide getInstanse() {
+        if (clientSide == null) {
+            return new ClientSide();
+        }
+        return clientSide;
     }
 
     @Override
     public void run() {
-
-         while (true) {
+        /*      while (true) {
             try {
-                textmessage = dis.readLine();
-                ps.flush(); 
+                if (dis != null && textmessage != null) {
+                    textmessage = dis.readLine();
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$recived message2");
+                    System.out.println(textmessage);
+                    // ps.flush();
+                }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-
-        }
+        }*/
     }
 
 }

@@ -15,7 +15,7 @@ public class TicTacToeJava extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = new splashScreen();
+        Parent root = new splashScreen(stage);
         Scene scene = new Scene(root);
         stage.centerOnScreen();
         stage.setScene(scene);

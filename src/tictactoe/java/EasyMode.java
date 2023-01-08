@@ -207,6 +207,7 @@ public class EasyMode {
                 Platform.runLater(() -> {
                     stage.setScene(scene);
                     stage.show();
+                    timer.cancel();
                 });
             }
         }, 3000, 3000);
