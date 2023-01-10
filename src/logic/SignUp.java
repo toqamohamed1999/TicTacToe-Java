@@ -38,11 +38,13 @@ public class SignUp {
                 email = signUpScreenBase.emailTextField.getText();
                 gender = signUpScreenBase.getGender(actionEvent);
                 boolean isValiad = signUpScreenBase.validEmail(email);
+                
                 if (isValiad || confirmPassword.equals(password) || userName != null || gender == "Not Selected") {
+                
                     String ip = clientSide.clientSocket.getInetAddress().getHostAddress();
                     String data = "SignUp,"+ip+","+userName + "," + email + "," + password + "," + gender;
                     clientSide.ps.println(data);
-                    System.out.println("Your Data" + data);
+                  //  System.out.println("Your Data" + data);
                 }
                /* if(clientSide.dis == null){
                     showDialog();
@@ -78,18 +80,17 @@ public class SignUp {
     
     
 
-    void receiveMessgeFromServer() {
+      void receiveMessgeFromServer() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     try {
                         if (clientSide.dis != null) {
-                          
                             String textmessage = clientSide.dis.readLine();
-                            System.out.println("88888888888888888888"+textmessage);
+                            System.out.println("@@@@@@@@@@" + textmessage);
                             doAction(textmessage);
-                            clientSide.ps.flush();       
+                            clientSide.ps.flush();
                         }
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -98,6 +99,7 @@ public class SignUp {
             }
         }).start();
     }
+
 
   
 
