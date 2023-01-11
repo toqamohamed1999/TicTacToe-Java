@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class HomeScreen extends AnchorPane {
 
-    protected final ImageView profilePic;
+    public final ImageView profilePic;
     protected final Label modeSelectLabel;
     protected final Circle multiPlayerCirle;
     protected final ImageView multiPlayerImage;

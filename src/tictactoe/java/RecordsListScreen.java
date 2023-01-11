@@ -67,12 +67,7 @@ public class RecordsListScreen extends AnchorPane {
         back.setPreserveRatio(true);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {     
-            Parent root;
-            root = new ProfileScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) back.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+     
         });
 
         getChildren().add(recordListLabel);

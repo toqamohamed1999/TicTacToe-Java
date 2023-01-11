@@ -1,11 +1,18 @@
 package logic;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import tictactoe.java.SignUpScreenBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 public class SignUp {
 
@@ -38,36 +45,49 @@ public class SignUp {
                 email = signUpScreenBase.emailTextField.getText();
                 gender = signUpScreenBase.getGender(actionEvent);
                 boolean isValiad = signUpScreenBase.validEmail(email);
-                
+
                 if (isValiad || confirmPassword.equals(password) || userName != null || gender == "Not Selected") {
-                
-                    String ip = clientSide.clientSocket.getInetAddress().getHostAddress();
-                    String data = "SignUp,"+ip+","+userName + "," + email + "," + password + "," + gender;
-                    clientSide.ps.println(data);
-                  //  System.out.println("Your Data" + data);
+
+                    try {
+                        String ip = Inet4Address.getLocalHost().getHostAddress();
+                        String data = "SignUp" + "," + ip + "," + userName + "," + email + "," + password + "," + gender;
+                        clientSide.ps.println(data);
+                        //  System.out.println("Your Data" + data);
+                    } catch (UnknownHostException ex) {
+                        Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-               /* if(clientSide.dis == null){
+                /* if(clientSide.dis == null){
                     showDialog();
                 }*/
 
             }
         });
     }
-    
-    
-    
+
     void doAction(String textmessage) {
 
         if (textmessage.equalsIgnoreCase("signUpVerified")) {
-            System.out.println("i will navigate him to game board");
+            moveToOnlineListScreen();
         } else if (textmessage.equalsIgnoreCase("signUpNotVerified")) {
             showDialog();
         }
 
     }
-    
-    
-      void showDialog() {
+
+    void moveToOnlineListScreen() {
+        Platform.runLater(() -> {
+            Parent root = null;
+            OnlineList onlineList = new OnlineList();
+            root = onlineList.onlineListScreen;
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) signUpScreenBase.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        });
+    }
+
+    void showDialog() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("SignUp incorrect");
@@ -76,11 +96,8 @@ public class SignUp {
 
         });
     }
-    
-    
-    
 
-      void receiveMessgeFromServer() {
+    void receiveMessgeFromServer() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -99,8 +116,5 @@ public class SignUp {
             }
         }).start();
     }
-
-
-  
 
 }

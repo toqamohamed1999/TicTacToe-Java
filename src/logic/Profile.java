@@ -5,10 +5,68 @@
  */
 package logic;
 
-/**
- *
- * @author Eman
- */
+import java.io.IOException;
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import tictactoe.java.HomeScreen;
+import tictactoe.java.ProfileScreen;
+
 public class Profile {
-    
+
+    public ClientSide clientSide;
+    public HomeScreen homeScreen;
+
+    public Profile() {
+        clientSide = ClientSide.getInstanse();
+        homeScreen = new HomeScreen();
+    }
+
+    public void viewProfile() {
+
+    }
+
+    public final void profilePic() {
+
+        homeScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                
+                
+                
+                Parent root = null;
+                root = new ProfileScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage)  homeScreen.profilePic.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
+
+    }
+
+    void receiveMessgeFromServer() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        if (clientSide.dis != null) {
+                            String textmessage = clientSide.dis.readLine();
+                            System.out.println("@@@@@@@@@@" + textmessage);
+
+                            clientSide.ps.flush();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
 }
