@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+
 public class SignUp {
 
     public SignUpScreenBase signUpScreenBase;
@@ -53,6 +54,7 @@ public class SignUp {
                         String data = "SignUp" + "," + ip + "," + userName + "," + email + "," + password + "," + gender;
                         clientSide.ps.println(data);
                         //  System.out.println("Your Data" + data);
+                        moveToOnlineListScreen();
                     } catch (UnknownHostException ex) {
                         Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -63,6 +65,26 @@ public class SignUp {
 
             }
         });
+    }
+
+    public void receiveMessgeFromServer() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        if (clientSide.dis != null) {
+                            String textmessage = clientSide.dis.readLine();
+                            System.out.println("@@@@@@@@@@" + textmessage);
+                            doAction(textmessage);
+                            clientSide.ps.flush();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     void doAction(String textmessage) {
@@ -95,26 +117,6 @@ public class SignUp {
             alert.show();
 
         });
-    }
-
-    void receiveMessgeFromServer() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        if (clientSide.dis != null) {
-                            String textmessage = clientSide.dis.readLine();
-                            System.out.println("@@@@@@@@@@" + textmessage);
-                            doAction(textmessage);
-                            clientSide.ps.flush();
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        }).start();
     }
 
 }
