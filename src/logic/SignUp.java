@@ -83,8 +83,6 @@ public class SignUp {
                              clientSide.ps.flush();
                             System.out.println("@@@@@@@@@@" + textmessage);
                             doAction(textmessage);
-                                 String [] op = textmessage.split(",");
-                            System.out.println("2222222"+op[2]);
                             clientSide.ps.flush();
 
                         }
