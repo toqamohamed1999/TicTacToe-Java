@@ -113,20 +113,21 @@ public class multiPlayerScreen extends AnchorPane {
         profilePic.setLayoutY(21.0);
         profilePic.setPickOnBounds(true);
         profilePic.setPreserveRatio(true);
-        profilePic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        profilePic.setImage(new Image(getClass().getResource("/res/record.png").toExternalForm()));
         profilePic.setCursor(Cursor.HAND);
         profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
                 Parent root = null;
-                root = new ProfileScreen();
+                root = new RecordsListScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             }
         });
+        
 
         multiplayerLabel.setLayoutX(162.0);
         multiplayerLabel.setLayoutY(38.0);

@@ -1,6 +1,8 @@
 package tictactoe.java;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import logic.recordLogic;
 
 public class EasyMode {
 
@@ -43,6 +46,8 @@ public class EasyMode {
         {2, 4, 6}
     };
     int sourceMode;
+    recordLogic rec;
+    String fileName;
 
     public EasyMode(String playerOneName, int playerOneAvatarNumber , String playerTwoName ,int playerTwoAvatarNumber ) {
         board = new GameBoard(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
@@ -59,6 +64,9 @@ public class EasyMode {
             public void handle(ActionEvent event) {
                 board.recordIndicatorImageView.setVisible(true);
                 board.recordIndicatorButton.setVisible(true);
+                rec=new recordLogic();
+                fileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Calendar.getInstance().getTime());
+                rec.createFile(fileName);
             }
         });
     }
@@ -126,6 +134,10 @@ public class EasyMode {
                                 gameState[btnId] = activePlayer;
                                 checkForWinner();
                                 activePlayer = 0;
+                                if(fileName!=null){
+                                    btnId++;
+                                    rec.writeFile("X,"+btnId, fileName);
+                                   }
 
                                 for (int i = 0; i < gameState.length; i++) {
 
@@ -136,6 +148,11 @@ public class EasyMode {
                                         gameState[i] = activePlayer;
                                         checkForWinner();
                                         activePlayer = 1;
+                                        
+                                        if(fileName!=null){
+                                            btnId++;
+                                            rec.writeFile("O,"+btnId, fileName);
+                                           }
                                         break;
 
                                     }
