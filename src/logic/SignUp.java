@@ -56,7 +56,6 @@ public class SignUp {
                         String data = "SignUp" + "," + ip + "," + userName + "," + email + "," + password + "," + gender;
                         clientSide.ps.println(data);
                         //  System.out.println("Your Data" + data);
-                        moveToOnlineListScreen();
                     } catch (UnknownHostException ex) {
                         Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -84,6 +83,8 @@ public class SignUp {
                              clientSide.ps.flush();
                             System.out.println("@@@@@@@@@@" + textmessage);
                             doAction(textmessage);
+                                 String [] op = textmessage.split(",");
+                            System.out.println("2222222"+op[2]);
                             clientSide.ps.flush();
 
                         }
@@ -96,23 +97,28 @@ public class SignUp {
     }
 
 
-    void doAction(String textmessage) {
+  
+
+     void doAction(String textmessage) {
 
         if (textmessage.equalsIgnoreCase("signUpVerified")) {
             moveToOnlineListScreen();
         } else if (textmessage.equalsIgnoreCase("signUpNotVerified")) {
             showDialog();
         }
+        
+        
 
     }
-
-    void moveToOnlineListScreen() {
+    
+    
+   void moveToOnlineListScreen() {
         Platform.runLater(() -> {
             Parent root = null;
             OnlineList onlineList = new OnlineList();
             root = onlineList.onlineListScreen;
             Scene scene = new Scene(root);
-            Stage stage = (Stage) signUpScreenBase.getScene().getWindow();
+            Stage stage = (Stage)signUpScreenBase.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         });

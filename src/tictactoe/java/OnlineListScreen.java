@@ -1,6 +1,7 @@
 package tictactoe.java;
 
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,12 +18,14 @@ public class OnlineListScreen extends AnchorPane {
     protected final Label onlineListLabel;
     public final ListView onlineListView;
     protected final ImageView back;
+     public final ImageView profilePic;
 
     public OnlineListScreen() {
 
         onlineListLabel = new Label();
         onlineListView = new ListView();
         back = new ImageView();
+         profilePic = new ImageView();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -72,6 +75,29 @@ public class OnlineListScreen extends AnchorPane {
             stage.setScene(scene);
             stage.show();
         });
+        
+        
+        profilePic.setFitHeight(57.0);
+        profilePic.setFitWidth(66.0);
+        profilePic.setLayoutX(520.0);
+        profilePic.setLayoutY(21.0);
+        profilePic.setPickOnBounds(true);
+        profilePic.setPreserveRatio(true);
+        profilePic.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
+        profilePic.setCursor(Cursor.HAND);profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+          
+             Parent root=null;
+                root = new RecordsListScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) profilePic.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
+        
+        
 
         getChildren().add(onlineListLabel);
         getChildren().add(onlineListView);

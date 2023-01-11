@@ -9,10 +9,9 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
+
 import java.net.Socket;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import tictactoe.java.SignUpScreenBase;
+
 
 /**
  *

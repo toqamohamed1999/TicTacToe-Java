@@ -32,7 +32,7 @@ public class HomeScreen extends AnchorPane {
     protected final Button mediumButton;
     protected final Button hardButton;
     protected final Label levelSelectionHeader;
-    protected final ImageView backButton;
+    public final ImageView backButton;
     protected final ImageView mediumImage;
     protected final ImageView hardImage;
     protected final ImageView easyImage;

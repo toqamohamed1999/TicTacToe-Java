@@ -14,18 +14,19 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tictactoe.java.HomeScreen;
+import tictactoe.java.OnlineListScreen;
 import tictactoe.java.ProfileScreen;
 import tictactoe.java.SignUpScreenBase;
 
 public class Profile {
 
     public ClientSide clientSide;
-    public HomeScreen homeScreen;
+    public OnlineListScreen onlineListScreen;
 
     public Profile() {
         clientSide = ClientSide.getInstanse();
-        homeScreen = new HomeScreen();
-        receiveMessgeFromServer();
+        onlineListScreen = new OnlineListScreen();
+        
     }
 
     public void viewProfile() {
@@ -34,17 +35,18 @@ public class Profile {
 
     public final void profilePic() {
 
-        homeScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                  Platform.runLater(() -> {
-            Parent root = null;
-            root = new ProfileScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) homeScreen.profilePic.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        });
+                receiveMessgeFromServer();
+                Platform.runLater(() -> {
+                    Parent root = null;
+                    root = new ProfileScreen();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) onlineListScreen.profilePic.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
 
             }
         });
@@ -52,8 +54,7 @@ public class Profile {
     }
 
     void moveProfileScreen() {
-        
-      
+
     }
 
     void receiveMessgeFromServer() {
@@ -65,7 +66,8 @@ public class Profile {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
                             System.out.println("@@@@@@@@@@" + textmessage);
-
+                          String [] op = textmessage.split(",");
+                            System.out.println("2222222"+op[2]);
                             clientSide.ps.flush();
                         }
                     } catch (IOException ex) {

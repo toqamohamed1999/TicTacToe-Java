@@ -39,7 +39,7 @@ public class SignIn {
         if (!email.isEmpty() && !password.isEmpty()) {
             try {
 
-               String ip = Inet4Address.getLocalHost().getHostAddress();
+                String ip = Inet4Address.getLocalHost().getHostAddress();
 
                 data = "signIn," + ip + "," + email + "," + password;
             } catch (UnknownHostException ex) {
@@ -91,6 +91,9 @@ public class SignIn {
             moveToOnlineListScreen();
         } else if (textmessage.equalsIgnoreCase("signInNotVerified")) {
             showDialog();
+        } else if (textmessage.equalsIgnoreCase("refreshOnlineList")) {
+            moveToOnlineListScreen();
+
         }
 
     }
