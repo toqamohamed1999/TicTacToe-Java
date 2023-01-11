@@ -28,7 +28,7 @@ public class ProfileScreen extends AnchorPane {
     protected final ImageView back;
     protected final ImageView logout;
 
-    public ProfileScreen() {
+    public ProfileScreen(String profilData) {
 
         profileImageView = new ImageView();
         userNameLabel = new Label();
@@ -40,6 +40,10 @@ public class ProfileScreen extends AnchorPane {
         recordsButton = new Button();
         back = new ImageView();
         logout = new ImageView();
+
+        if (profilData != null) {
+            divideMessage(profilData);
+        }
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -55,14 +59,18 @@ public class ProfileScreen extends AnchorPane {
         profileImageView.setLayoutY(31.0);
         profileImageView.setPickOnBounds(true);
         profileImageView.setPreserveRatio(true);
-        profileImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        if (profileArr[4].equals("female")) {
+            profileImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        } else {
+            profileImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+        }
 
         userNameLabel.setLayoutX(112.0);
         userNameLabel.setLayoutY(169.0);
         userNameLabel.setText("UserName:");
         userNameLabel.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
         userNameLabel.setFont(new Font("Impact", 25.0));
-        
+
         scoreLabel.setLayoutX(112.0);
         scoreLabel.setLayoutY(270.0);
         scoreLabel.setText("Score:");
@@ -80,7 +88,7 @@ public class ProfileScreen extends AnchorPane {
         emailText.setLayoutY(242.0);
         emailText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         emailText.setStrokeWidth(0.0);
-        emailText.setText("eman@gmail.com ");
+        emailText.setText(profileArr[2]);
         emailText.setWrappingWidth(242.41796875);
         emailText.setFont(new Font("Impact", 26.0));
 
@@ -89,16 +97,16 @@ public class ProfileScreen extends AnchorPane {
         scoreText.setLayoutY(294.0);
         scoreText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         scoreText.setStrokeWidth(0.0);
-        scoreText.setText("90");
+        scoreText.setText(profileArr[3]);
         scoreText.setWrappingWidth(148.41796875);
-        scoreText.setFont(new Font("Impact", 26.0));   
+        scoreText.setFont(new Font("Impact", 26.0));
 
         userNameText.setFill(javafx.scene.paint.Color.WHITE);
         userNameText.setLayoutX(300.0);
         userNameText.setLayoutY(194.0);
         userNameText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         userNameText.setStrokeWidth(0.0);
-        userNameText.setText("Eman");
+        userNameText.setText(profileArr[1]);
         userNameText.setWrappingWidth(242.41796875);
         userNameText.setFont(new Font("Impact", 26.0));
 
@@ -113,17 +121,16 @@ public class ProfileScreen extends AnchorPane {
         recordsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-          
-            Parent root;
-            root = new RecordsListScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) recordsButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-            
+
+                Parent root;
+                root = new RecordsListScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) recordsButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+
             }
         });
-
 
         back.setFitHeight(53.0);
         back.setFitWidth(50.0);
@@ -133,7 +140,7 @@ public class ProfileScreen extends AnchorPane {
         back.setPreserveRatio(true);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {
-           
+
             Parent root;
             root = new HomeScreen();
             Scene scene = new Scene(root);
@@ -152,7 +159,7 @@ public class ProfileScreen extends AnchorPane {
         logout.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                 Parent root=null;
+                Parent root = null;
                 root = new SignInScreenBase();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) logout.getScene().getWindow();
@@ -172,5 +179,11 @@ public class ProfileScreen extends AnchorPane {
         getChildren().add(back);
         getChildren().add(logout);
 
+    }
+
+    String[] profileArr;
+
+    public void divideMessage(String operation) {
+        profileArr = operation.split(",");
     }
 }

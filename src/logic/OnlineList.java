@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tictactoe.java.GameBoard;
 import tictactoe.java.OnlineListScreen;
+import tictactoe.java.ProfileScreen;
 import tictactoe.java.SignInScreenBase;
 
 public class OnlineList {
@@ -42,6 +43,7 @@ public class OnlineList {
         receiveMessgeFromServer();
         getAllOnlineUsers();
         onItemClick();
+        onProfileClick();
     }
     int secondPlayerindex = -1;
     String secondPlayerIp = "";
@@ -73,11 +75,6 @@ public class OnlineList {
     void recieveRequest() {
         Platform.runLater(() -> {
             showRecieveDialog();
-       /*     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("message");
-            alert.setContentText("Player " + operationArr[1] + " want to play with you");
-            alert.show();
-*/
         });
     }
 
@@ -104,6 +101,7 @@ public class OnlineList {
         data = "getOnlineUsers";
         clientSide.ps.println(data);
     }
+    String profileStr = null;
 
     void receiveMessgeFromServer() {
         new Thread(new Runnable() {
@@ -113,7 +111,7 @@ public class OnlineList {
                     try {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
-                            System.out.println("@@@@@@@@@@" + textmessage);
+                            System.out.println("@@@@@@@@@@onlineList " + textmessage);
                             divideMessage(textmessage);
                             doAction();
                             clientSide.ps.flush();
@@ -142,7 +140,6 @@ public class OnlineList {
             System.out.println("yyyyyyyyyyyyyyyyyyyyyyyy " + Arrays.toString(operationArr));
             recieveRequest();
         }
-
     }
 
     void additemToList() {
@@ -172,6 +169,24 @@ public class OnlineList {
             alert.show();
         });
     }
-    
-    
+
+    void onProfileClick() {
+        onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Platform.runLater(() -> {
+                    Parent root;
+                    if (SignIn.profileDataArr != null) {
+                        root = new ProfileScreen(SignIn.profileDataArr);
+                    } else{
+                        root = new ProfileScreen(SignUp.profileDataArr);
+                    }
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) listView.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+            }
+        });
+    }
 }
