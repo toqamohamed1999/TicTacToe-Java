@@ -94,13 +94,13 @@ public class HomeScreen extends AnchorPane {
         profilePic.setLayoutY(21.0);
         profilePic.setPickOnBounds(true);
         profilePic.setPreserveRatio(true);
-        profilePic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+        profilePic.setImage(new Image(getClass().getResource("/res/record.png").toExternalForm()));
         profilePic.setCursor(Cursor.HAND);profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
           
              Parent root=null;
-                root = new ProfileScreen();
+                root = new RecordsListScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) profilePic.getScene().getWindow();
                 stage.setScene(scene);

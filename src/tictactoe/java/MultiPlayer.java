@@ -5,6 +5,8 @@
  */
 package tictactoe.java;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -14,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import logic.recordLogic;
 
 /**
  *
@@ -24,6 +27,8 @@ public class MultiPlayer
 {
     GameBoard multi;
     int sourceMode;
+    recordLogic rec;
+    String fileName;
     
     public MultiPlayer(String playerOneName,int playerOneAvatarNumber,String playerTwoName,int playerTwoAvatarNumber) {
          multi=new GameBoard(playerOneName,playerOneAvatarNumber,playerTwoName,playerTwoAvatarNumber);
@@ -37,8 +42,11 @@ public class MultiPlayer
      multi.recordGameButton.setOnAction(new EventHandler<ActionEvent>() {
          @Override
          public void handle(ActionEvent event) {
+             rec=new recordLogic();
              multi.recordIndicatorImageView.setVisible(true);
              multi.recordIndicatorButton.setVisible(true);
+              fileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Calendar.getInstance().getTime());
+             rec.createFile(fileName);
          }
      });   
    }
@@ -158,12 +166,21 @@ public class MultiPlayer
             multi.turn++;
             btn.setText("X");
             iv.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
-
+            if(fileName!=null){
+                int btnID=Integer.valueOf(btn.getId());
+                btnID++;
+                rec.writeFile("X,"+btnID, fileName);
+            }
         }
         else{
             multi.turn++;
             btn.setText("O");
             iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
+            if(fileName!=null){
+                int btnID=Integer.valueOf(btn.getId());
+                btnID++;
+                rec.writeFile("O,"+btnID, fileName);
+            }
         }
     }
     private int XisWinner(){
