@@ -1,6 +1,9 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package logic;
-
 
 public class User {
     
@@ -12,8 +15,7 @@ public class User {
     int score;
     String recordPath;
     String IP;
-    
-    
+
     public User(){}
 
     public int getID() {
@@ -79,6 +81,12 @@ public class User {
     public void setIP(String IP) {
         this.IP = IP;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "ID=" + ID + ", userName=" + userName + ", email=" + email + ", password=" + password + ", gender=" + gender + ", score=" + score + ", recordPath=" + recordPath + ", IP=" + IP + '}';
+    }
+
     
 }
    
