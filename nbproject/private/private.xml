@@ -2,30 +2,8 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/GameBoard.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/screens/multiPlayerScreen.fxml</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/screens/ResultScreen.fxml</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/ResultScreen.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/screens/HomeScreen.fxml</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/Win.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/multiPlayerScreen.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/HomeScreen.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/Draw.java</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/Styles.css</file>
-            <file>file:/D:/Java%20Project/TicTacToe-Java/src/tictactoe/java/MultiPlayer.java</file>
-=======
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/SignUpScreenBase.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/ClientSide.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/SignUp.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
->>>>>>> network
+            <file>file:/T:/NetBeans%20Projects/TicTacToe-Java/src/logic/OnlineList.java</file>
         </group>
->>>>>>> 74a27aae22ba0ecbb99d961576c2464a93b5131d
     </open-files>
 </project-private>

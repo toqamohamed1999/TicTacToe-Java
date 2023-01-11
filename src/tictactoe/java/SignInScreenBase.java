@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -23,7 +24,7 @@ public class SignInScreenBase extends AnchorPane {
     protected final Label userNameLabel;
     protected final Label passwordLabel;
     public final TextField emailTextField;
-    public final TextField passwordTextField;
+    public final PasswordField passwordTextField;
     public final Button signInButton;
     protected final DropShadow dropShadow;
     protected final Label dontHaveAccLabel;
@@ -36,7 +37,7 @@ public class SignInScreenBase extends AnchorPane {
         userNameLabel = new Label();
         passwordLabel = new Label();
         emailTextField = new TextField();
-        passwordTextField = new TextField();
+        passwordTextField = new PasswordField();
         signInButton = new Button();
         dropShadow = new DropShadow();
         dontHaveAccLabel = new Label();

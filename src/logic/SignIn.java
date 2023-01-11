@@ -1,6 +1,11 @@
 package logic;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,9 +37,16 @@ public class SignIn {
         email = signInScreenBase.emailTextField.getText() + "";
         password = signInScreenBase.passwordTextField.getText() + "";
         if (!email.isEmpty() && !password.isEmpty()) {
-            String ip = clientSide.clientSocket.getInetAddress().getHostAddress();
-            System.out.println("ip = " + ip);
-            data = "signIn," + ip + "," + email + "," + password;
+            try {
+               String ip = Inet4Address.getLocalHost().getHostAddress();
+           //    String ip2 = Inet4Address.getLocalHost().toString();
+             //  String ip3 = InetAddress.getLocalHost().toString();
+                System.out.println("ip = " + ip);
+               // System.out.println("ip2 = " + ip3);
+                data = "signIn," + ip + "," + email + "," + password;
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(SignIn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return data;
     }
@@ -47,7 +59,7 @@ public class SignIn {
                 if (data != null) {
                     clientSide.ps.println(data);
                 } else {
-                   showDialog();
+                    showDialog();
                 }
             }
         });
@@ -73,8 +85,6 @@ public class SignIn {
         }).start();
     }
 
-    
-     
     void doAction(String textmessage) {
 
         if (textmessage.equalsIgnoreCase("signInVerified")) {
