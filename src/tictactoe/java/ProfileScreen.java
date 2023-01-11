@@ -19,16 +19,17 @@ public class ProfileScreen extends AnchorPane {
 
     protected final ImageView profileImageView;
     protected final Label userNameLabel;
-    protected final Text emailText;
+    public final Text emailText;
     protected final Text scoreText;
     protected final Button recordsButton;
     protected final Label scoreLabel;
     protected final Label emailLabel;
-    protected final Text userNameText;
+    public final Text userNameText;
     protected final ImageView back;
     protected final ImageView logout;
 
     public ProfileScreen() {
+        
 
         profileImageView = new ImageView();
         userNameLabel = new Label();
@@ -98,7 +99,7 @@ public class ProfileScreen extends AnchorPane {
         userNameText.setLayoutY(194.0);
         userNameText.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         userNameText.setStrokeWidth(0.0);
-        userNameText.setText("Eman");
+        userNameText.setText("");
         userNameText.setWrappingWidth(242.41796875);
         userNameText.setFont(new Font("Impact", 26.0));
 

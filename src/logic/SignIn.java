@@ -38,11 +38,9 @@ public class SignIn {
         password = signInScreenBase.passwordTextField.getText() + "";
         if (!email.isEmpty() && !password.isEmpty()) {
             try {
+
                String ip = Inet4Address.getLocalHost().getHostAddress();
-           //    String ip2 = Inet4Address.getLocalHost().toString();
-             //  String ip3 = InetAddress.getLocalHost().toString();
-                System.out.println("ip = " + ip);
-               // System.out.println("ip2 = " + ip3);
+
                 data = "signIn," + ip + "," + email + "," + password;
             } catch (UnknownHostException ex) {
                 Logger.getLogger(SignIn.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,7 +71,9 @@ public class SignIn {
                     try {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
+
                             System.out.println("@@@@@@@@@@" + textmessage);
+
                             doAction(textmessage);
                             clientSide.ps.flush();
                         }

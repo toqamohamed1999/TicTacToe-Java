@@ -120,7 +120,11 @@ public class multiPlayerScreen extends AnchorPane {
             public void handle(MouseEvent event) {
 
                 Parent root = null;
+<<<<<<< HEAD
                 root = new RecordsListScreen();
+=======
+                root = new ProfileScreen();
+>>>>>>> onlineListFeature
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);

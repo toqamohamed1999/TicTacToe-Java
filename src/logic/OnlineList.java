@@ -1,6 +1,7 @@
 package logic;
 
 import java.io.IOException;
+
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -10,6 +11,9 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import javafx.application.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -23,6 +27,7 @@ import tictactoe.java.OnlineListScreen;
 import tictactoe.java.SignInScreenBase;
 
 public class OnlineList {
+
     
     public OnlineListScreen onlineListScreen;
     public ClientSide clientSide;
@@ -32,13 +37,14 @@ public class OnlineList {
     ArrayList<String> items = new ArrayList();
     ArrayList<User> usersList = new ArrayList();
     String data = null;
-    
+
     public OnlineList() {
         onlineListScreen = new OnlineListScreen();
         clientSide = ClientSide.getInstanse();
         listView = onlineListScreen.onlineListView;
         receiveMessgeFromServer();
         getAllOnlineUsers();
+
         onItemClick();
     }
     int secondPlayerindex = -1;
@@ -74,11 +80,31 @@ public class OnlineList {
         alert.show();
     }
     
+
+    
+
+    void getFields() {
+
+        listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("clicked on lsitview = "
+                        + listView.getSelectionModel().getSelectedItem());
+
+            }
+        });
+    }
+
+
     void getAllOnlineUsers() {
         data = "getOnlineUsers";
         clientSide.ps.println(data);
     }
+
     
+
+
+
     void receiveMessgeFromServer() {
         new Thread(new Runnable() {
             @Override
@@ -89,7 +115,9 @@ public class OnlineList {
                             String textmessage = clientSide.dis.readLine();
                             System.out.println("@@@@@@@@@@" + textmessage);
                             divideMessage(textmessage);
+
                             doAction();
+
                             clientSide.ps.flush();
                         }
                     } catch (IOException ex) {
@@ -99,6 +127,7 @@ public class OnlineList {
             }
         }).start();
     }
+
     
     public void divideMessage(String operation) {
         operationArr = operation.split(",");
@@ -127,7 +156,21 @@ public class OnlineList {
         usersList.add(user);        
     }
     
-    void moveToGameBoardScreen() {
+    void moveToGameBoardScreen() {}
+
+
+   
+
+    void doAction(String textmessage) {
+
+        if (textmessage.equalsIgnoreCase("sendAllUsers")) {
+            listView.getItems().add("User " + operationArr[1]);
+        }
+
+    }
+
+    void moveToOnlineListScreen() {
+
         Platform.runLater(() -> {
             Parent root;
             root = new GameBoard("A", 1, "A", 2);
@@ -137,13 +180,18 @@ public class OnlineList {
             stage.show();
         });
     }
+
     
+
+
+
     void showDialog() {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("SignIn incorrect");
             alert.setContentText("Make sure that, your email and password are empty or correct!");
             alert.show();
+
         });
     }
 }

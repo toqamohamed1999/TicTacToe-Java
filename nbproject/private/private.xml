@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <group/>
 =======
         <group>
@@ -16,5 +17,13 @@
 >>>>>>> div
         </group>
 >>>>>>> 5b9607c2264f4f4ac8f37a9092c24595b0d4e140
+=======
+        <group>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/SignIn.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/ClientSide.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/SignUp.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
+        </group>
+>>>>>>> onlineListFeature
     </open-files>
 </project-private>
