@@ -288,6 +288,7 @@ public class GameBoard extends AnchorPane {
         button_1.setPrefWidth(70.0);
         button_1.setCursor(Cursor.HAND);
         button_1.setId(0+"");
+        button_1.setText("");
        
         button_2.setLayoutX(265.0);
         button_2.setLayoutY(138.0);
@@ -297,6 +298,7 @@ public class GameBoard extends AnchorPane {
         button_2.setPrefWidth(70.0);
         button_2.setCursor(Cursor.HAND);
         button_2.setId(1+"");
+        button_2.setText("");
 
         
         button_3.setLayoutX(359.0);
@@ -307,7 +309,9 @@ public class GameBoard extends AnchorPane {
         button_3.setPrefWidth(70.0);
         button_3.setCursor(Cursor.HAND);
         button_3.setId(2+"");
+        button_3.setText("");
 
+        
         button_4.setLayoutX(170.0);
         button_4.setLayoutY(212.0);
         button_4.setMnemonicParsing(false);
@@ -316,6 +320,7 @@ public class GameBoard extends AnchorPane {
         button_4.setPrefWidth(70.0);
         button_4.setCursor(Cursor.HAND);
         button_4.setId(3+"");
+        button_4.setText("");
 
        
         button_5.setLayoutX(264.0);
@@ -326,6 +331,7 @@ public class GameBoard extends AnchorPane {
         button_5.setPrefWidth(70.0);
         button_5.setCursor(Cursor.HAND);
         button_5.setId(4+"");
+        button_5.setText("");
 
         button_6.setLayoutX(358.0);
         button_6.setLayoutY(212.0);
@@ -335,6 +341,7 @@ public class GameBoard extends AnchorPane {
         button_6.setPrefWidth(70.0);
         button_6.setCursor(Cursor.HAND);
         button_6.setId(5+"");
+        button_6.setText("");
         
         button_7.setLayoutX(170.0);
         button_7.setLayoutY(287.0);
@@ -344,6 +351,7 @@ public class GameBoard extends AnchorPane {
         button_7.setPrefWidth(70.0);
         button_7.setCursor(Cursor.HAND);
         button_7.setId(6+"");
+        button_7.setText("");
 
         
         button_8.setLayoutX(265.0);
@@ -354,6 +362,7 @@ public class GameBoard extends AnchorPane {
         button_8.setPrefWidth(70.0);
         button_8.setCursor(Cursor.HAND);
         button_8.setId(7+"");
+        button_8.setText("");
  
         button_9.setLayoutX(359.0);
         button_9.setLayoutY(284.0);
@@ -363,6 +372,8 @@ public class GameBoard extends AnchorPane {
         button_9.setPrefWidth(70.0);
         button_9.setCursor(Cursor.HAND);
         button_9.setId(8+"");
+        button_9.setText("");
+
        
         getChildren().add(user2ImageView);
         getChildren().add(user1ImageView);
