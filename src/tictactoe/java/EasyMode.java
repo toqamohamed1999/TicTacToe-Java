@@ -197,11 +197,6 @@ public class EasyMode {
                         alert.setContentText((activePlayer == 1 ? "X " : "0 ") + " has won the game");
                         if(activePlayer==1)navigateToWinner(board.user1NameText.getText(), board.player1Avatar, board.user2NameText.getText(), board.player2Avatar , 'x');
                         else navigateToWinner(board.user1NameText.getText(), board.player1Avatar, board.user2NameText.getText(), board.player2Avatar , 'o');
-                   //     btns[wp[0]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                   //     btns[wp[1]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                   //     btns[wp[2]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                        //   btns[wp[2]].setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-                      //  alert.show();
                         gameOver = true;
                         break;
                     }
