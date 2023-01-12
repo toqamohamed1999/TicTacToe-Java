@@ -68,10 +68,11 @@ public class recordLogic {
     }
 
     public String[] getAllFiles(String dirPath) {
+        String files[]=null;
         //Creating a File object for directory
         File directoryPath = new File(dirPath);
         //List of all files and directories
-        String files[] = directoryPath.list();
+         files = directoryPath.list();
         System.out.println("List of files and directories in the specified directory:\n");
         return files;
     }

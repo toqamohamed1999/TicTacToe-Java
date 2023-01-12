@@ -79,11 +79,11 @@ public class OnlineListScreen extends AnchorPane {
             stage.show();
         });
 
-        refresh.setLayoutX(400.0);
-        refresh.setLayoutY(21.0);
+        refresh.setLayoutX(420.0);
+        refresh.setLayoutY(360.0);
         refresh.setMnemonicParsing(false);
         refresh.setPrefHeight(25.0);
-        refresh.setPrefWidth(177.0);
+        refresh.setPrefWidth(120.0);
         refresh.setText("Refresh");
         refresh.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
         refresh.setFont(new Font("Impact", 24.0));
@@ -101,6 +101,7 @@ public class OnlineListScreen extends AnchorPane {
         getChildren().add(onlineListView);
         getChildren().add(back);
         getChildren().add(profilePic);
+        getChildren().add(refresh);
 
     }
 }

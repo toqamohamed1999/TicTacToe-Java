@@ -59,7 +59,7 @@ public class ProfileScreen extends AnchorPane {
         profileImageView.setLayoutY(31.0);
         profileImageView.setPickOnBounds(true);
         profileImageView.setPreserveRatio(true);
-        if (profileArr[4].equals("female")) {
+        if (profileArr[4].toLowerCase().equals("female")) {
             profileImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
         } else {
             profileImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));

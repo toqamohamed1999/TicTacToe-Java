@@ -35,7 +35,6 @@ public class OnlineList {
     ArrayList<String> items = new ArrayList();
     ArrayList<User> usersList = new ArrayList();
     String data = null;
-    
 
     public OnlineList() {
         onlineListScreen = new OnlineListScreen();
@@ -76,11 +75,12 @@ public class OnlineList {
 
     void recieveRequest() {
         Platform.runLater(() -> {
-            showRecieveDialog();
+            showRecieveDialog(operationArr[1], operationArr[2]);
+
         });
     }
 
-    void showRecieveDialog() {
+    void showRecieveDialog(String myIp, String secondIp) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Test");
@@ -92,7 +92,7 @@ public class OnlineList {
         ButtonType button = result.orElse(ButtonType.CANCEL);
 
         if (button == ButtonType.OK) {
-            System.out.println("Ok pressed");
+            clientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
             moveToGameBoardScreen();
         } else {
             alert.close();
@@ -141,7 +141,11 @@ public class OnlineList {
         } else if (operationArr[0].equals("recieveRequest")) {
             System.out.println("yyyyyyyyyyyyyyyyyyyyyyyy " + Arrays.toString(operationArr));
             recieveRequest();
+        } else if (operationArr[0].equals("confirmRequest")) {
+            System.out.println("fffffffffffff " + Arrays.toString(operationArr));
+            moveToGameBoardScreen();
         }
+
     }
 
     void additemToList() {
@@ -180,7 +184,7 @@ public class OnlineList {
                     Parent root;
                     if (SignIn.profileDataArr != null) {
                         root = new ProfileScreen(SignIn.profileDataArr);
-                    } else{
+                    } else {
                         root = new ProfileScreen(SignUp.profileDataArr);
                     }
                     Scene scene = new Scene(root);
@@ -191,13 +195,13 @@ public class OnlineList {
             }
         });
     }
-    
-    void setRefresh(){
-    
-      onlineListScreen.refresh.setOnAction(new EventHandler<ActionEvent>() {
+
+    void setRefresh() {
+
+        onlineListScreen.refresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("refreshhhhhhhhhhhhhhhhhhh");
+                getAllOnlineUsers();
             }
         });
     }
