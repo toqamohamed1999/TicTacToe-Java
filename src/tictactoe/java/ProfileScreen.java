@@ -19,14 +19,15 @@ public class ProfileScreen extends AnchorPane {
 
     protected final ImageView profileImageView;
     protected final Label userNameLabel;
-    protected final Text emailText;
+    public final Text emailText;
     protected final Text scoreText;
     protected final Button recordsButton;
     protected final Label scoreLabel;
     protected final Label emailLabel;
-    protected final Text userNameText;
+    public final Text userNameText;
     protected final ImageView back;
     protected final ImageView logout;
+        
 
     public ProfileScreen(String profilData) {
 

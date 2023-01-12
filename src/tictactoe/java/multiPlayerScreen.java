@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.SignIn;
+import logic.OnlineGame;
 
 public class multiPlayerScreen extends AnchorPane {
 

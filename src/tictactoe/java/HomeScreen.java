@@ -479,11 +479,11 @@ public class HomeScreen extends AnchorPane {
                     Parent root=null;
                     selected=false;
                     if(selectedLevel.equals("hard")){
-                        HardMode easyMode = new HardMode(userNameTextField.getText(),playerAvatar,"Computer",3);
-                        root = easyMode.board;
+                        HardMode hardMode = new HardMode(userNameTextField.getText(),playerAvatar,"Hard bot",5);
+                        root = hardMode.board;
                         }
                     else if(selectedLevel.equals("easy")){
-                        EasyMode easyMode = new EasyMode(userNameTextField.getText(),playerAvatar,"Computer",5);
+                        EasyMode easyMode = new EasyMode(userNameTextField.getText(),playerAvatar,"Easy bot",3);
                         root = easyMode.board;
                         }
                     

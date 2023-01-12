@@ -17,39 +17,39 @@ import javafx.stage.Stage;
 
 public class GameBoard extends AnchorPane {
 
-    protected final ImageView user2ImageView;
-    protected final ImageView user1ImageView;
-    protected final Text user1NameText;
-    protected final Text user2NameText;
-    protected final Button recordIndicatorButton;
-    protected final ImageView recordIndicatorImageView;
-    protected final ImageView backImageView;
+    public final ImageView user2ImageView;
+    public final ImageView user1ImageView;
+    public final Text user1NameText;
+    public final Text user2NameText;
+    public final Button recordIndicatorButton;
+    public final ImageView recordIndicatorImageView;
+    public final ImageView backImageView;
     protected final ImageView logoImageView;
     protected final Button oButton;
     protected final ImageView oImageView;
     protected final Button xButton;
     protected final ImageView xImageView;
     protected final ImageView xoBoard;
-    protected final Button recordGameButton;
-    protected final ImageView button_1Image;
-    protected final ImageView button_2Image;
-    protected final ImageView button_3Image;
-    protected final ImageView button_4Image;
-    protected final ImageView button_5Image;
-    protected final ImageView button_6Image;
-    protected final ImageView button_7Image;
-    protected final ImageView button_8Image;
-    protected final ImageView button_9Image;
-    protected final Button button_1;
-    protected final Button button_2;
-    protected final Button button_3;
-    protected final Button button_4;
-    protected final Button button_5;
-    protected final Button button_6;
-    protected final Button button_7;
-    protected final Button button_8;
-    protected final Button button_9;
-    int turn,player1Avatar,player2Avatar,counter;
+    public final Button recordGameButton;
+    public final ImageView button_1Image;
+    public final ImageView button_2Image;
+    public final ImageView button_3Image;
+    public final ImageView button_4Image;
+    public final ImageView button_5Image;
+    public final ImageView button_6Image;
+    public final ImageView button_7Image;
+    public final ImageView button_8Image;
+    public final ImageView button_9Image;
+    public final Button button_1;
+    public final Button button_2;
+    public final Button button_3;
+    public final Button button_4;
+    public final Button button_5;
+    public final Button button_6;
+    public final Button button_7;
+    public final Button button_8;
+    public final Button button_9;
+    public int turn,player1Avatar,player2Avatar,counter;
 
 
     public GameBoard(String playerOneName,int playerOneAvatarNumber,String playerTwoName,int playerTwoAvatarNumber) {
@@ -106,7 +106,8 @@ public class GameBoard extends AnchorPane {
         if(playerTwoAvatarNumber==1)user2ImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
         else if(playerTwoAvatarNumber==2)user2ImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
         else if(playerTwoAvatarNumber==3)user2ImageView.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
-     
+        else if(playerTwoAvatarNumber==5)user2ImageView.setImage(new Image(getClass().getResource("/res/Hard.png").toExternalForm()));
+
         user1ImageView.setFitHeight(87.0);
         user1ImageView.setFitWidth(94.0);
         user1ImageView.setId("user1ImageView");
@@ -117,6 +118,7 @@ public class GameBoard extends AnchorPane {
         if(playerOneAvatarNumber==1)user1ImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
         else if(playerOneAvatarNumber==2)user1ImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
         else if(playerOneAvatarNumber==3)user1ImageView.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
+        else if(playerOneAvatarNumber==5)user1ImageView.setImage(new Image(getClass().getResource("/res/Hard.png").toExternalForm()));
 
         user1NameText.setFill(javafx.scene.paint.Color.WHITE);
         user1NameText.setId("user1Text");

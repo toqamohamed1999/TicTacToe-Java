@@ -26,6 +26,7 @@ public class ClientSide implements Runnable {
     PrintStream ps;
     String textmessage = "";
     Thread thread;
+    
 
     private ClientSide() {
         thread = new Thread(this);
@@ -48,6 +49,7 @@ public class ClientSide implements Runnable {
         return clientSide;
     }
     
+
     @Override
     public void run() {
         /*      while (true) {
