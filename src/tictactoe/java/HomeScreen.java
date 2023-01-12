@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class HomeScreen extends AnchorPane {
 
@@ -89,6 +90,13 @@ public class HomeScreen extends AnchorPane {
         setPrefHeight(430.0);
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
+        
+//        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//            @Override
+//            public void handle(WindowEvent event) {
+//                System.exit(0);
+//            }
+//        });
 
         profilePic.setFitHeight(57.0);
         profilePic.setFitWidth(66.0);
