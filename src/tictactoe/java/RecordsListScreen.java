@@ -48,9 +48,9 @@ public class RecordsListScreen extends AnchorPane {
         String path = "C:" + File.separator + "TicTacToe";
         String records[]=rec.getAllFiles(path);
         if(records!=null){
-        for(int i =0;i<records.length;i++ ) {
-            recordListView.getItems().add(records[i]);
-        }
+            for(int i =0;i<records.length;i++ ) {
+                recordListView.getItems().add(records[i]);
+            }
         }
         
         recordListView.setOnMouseClicked(new EventHandler<MouseEvent>() {

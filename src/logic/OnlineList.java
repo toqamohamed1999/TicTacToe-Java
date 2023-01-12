@@ -76,12 +76,10 @@ public class OnlineList {
     void recieveRequest() {
         Platform.runLater(() -> {
             showRecieveDialog(operationArr[1],operationArr[2]);
-
         });
     }
 
     void showRecieveDialog(String myIp,String secondIp) {
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Test");
         alert.setHeaderText("Tic Tac Toe");
@@ -145,8 +143,6 @@ public class OnlineList {
             System.out.println("fffffffffffff " + Arrays.toString(operationArr));
             moveToGameBoardScreen();
         }
-        
-        
     }
 
     void additemToList() {
@@ -199,11 +195,11 @@ public class OnlineList {
 
     void setRefresh() {
 
-       /* onlineListScreen.refresh.setOnAction(new EventHandler<ActionEvent>() {
+        onlineListScreen.refresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("refreshhhhhhhhhhhhhhhhhhh");
+                getAllOnlineUsers();
             }
-        });*/
+        });
     }
 }

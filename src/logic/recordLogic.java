@@ -72,7 +72,7 @@ public class recordLogic {
         //Creating a File object for directory
         File directoryPath = new File(dirPath);
         //List of all files and directories
-         files= directoryPath.list();
+         files = directoryPath.list();
         System.out.println("List of files and directories in the specified directory:\n");
         return files;
     }
