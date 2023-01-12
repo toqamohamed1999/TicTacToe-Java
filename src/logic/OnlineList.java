@@ -45,6 +45,7 @@ public class OnlineList {
         receiveMessgeFromServer();
         getAllOnlineUsers();
         onItemClick();
+        onProfileClick();
     }
     int secondPlayerindex = -1;
     String secondPlayerIp = "";
@@ -76,11 +77,6 @@ public class OnlineList {
     void recieveRequest() {
         Platform.runLater(() -> {
             showRecieveDialog();
-       /*     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("message");
-            alert.setContentText("Player " + operationArr[1] + " want to play with you");
-            alert.show();
-*/
         });
     }
 
@@ -107,6 +103,7 @@ public class OnlineList {
         data = "getOnlineUsers";
         clientSide.ps.println(data);
     }
+    String profileStr = null;
 
     void receiveMessgeFromServer() {
         new Thread(new Runnable() {
@@ -116,7 +113,7 @@ public class OnlineList {
                     try {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
-                            System.out.println("@@@@@@@@@@" + textmessage);
+                            System.out.println("@@@@@@@@@@onlineList " + textmessage);
                             divideMessage(textmessage);
                             doAction();
                             clientSide.ps.flush();
@@ -145,10 +142,7 @@ public class OnlineList {
             System.out.println("yyyyyyyyyyyyyyyyyyyyyyyy " + Arrays.toString(operationArr));
             recieveRequest();
         }
-        else if(operationArr[0].equals("profileData")){
-            System.out.println("Doneeeeeee");
-        
-        }
+
        
 
     }
@@ -180,23 +174,27 @@ public class OnlineList {
             alert.show();
         });
     }
+
     
-    public void profile(){
-     onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+    void onProfileClick() {
+        onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
-                Parent root = null;
-                root = new ProfileScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) onlineListScreen.profilePic.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                Platform.runLater(() -> {
+                    Parent root;
+                    if (SignIn.profileDataArr != null) {
+                        root = new ProfileScreen(SignIn.profileDataArr);
+                    } else{
+                        root = new ProfileScreen(SignUp.profileDataArr);
+                    }
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) listView.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
             }
         });
- 
     }
-    
-    
-    
+
 }

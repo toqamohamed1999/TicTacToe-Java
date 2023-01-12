@@ -16,11 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-
 public class SignUp {
 
     public SignUpScreenBase signUpScreenBase;
     public ClientSide clientSide;
+    static String profileDataArr = null;
 
     String userName;
     String password;
@@ -68,7 +68,6 @@ public class SignUp {
         });
     }
 
-
     public void receiveMessgeFromServer() {
 
         new Thread(new Runnable() {
@@ -79,12 +78,13 @@ public class SignUp {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
 
-                            System.out.println(textmessage);
-                             clientSide.ps.flush();
                             System.out.println("@@@@@@@@@@" + textmessage);
+                            if (textmessage.contains("profileData")) {
+                                profileDataArr = textmessage;
+                            }
+
                             doAction(textmessage);
                             clientSide.ps.flush();
-
                         }
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -94,29 +94,23 @@ public class SignUp {
         }).start();
     }
 
-
-  
-
-     void doAction(String textmessage) {
+    void doAction(String textmessage) {
 
         if (textmessage.equalsIgnoreCase("signUpVerified")) {
             moveToOnlineListScreen();
         } else if (textmessage.equalsIgnoreCase("signUpNotVerified")) {
             showDialog();
         }
-        
-        
 
     }
-    
-    
-   void moveToOnlineListScreen() {
+
+    void moveToOnlineListScreen() {
         Platform.runLater(() -> {
             Parent root = null;
             OnlineList onlineList = new OnlineList();
             root = onlineList.onlineListScreen;
             Scene scene = new Scene(root);
-            Stage stage = (Stage)signUpScreenBase.getScene().getWindow();
+            Stage stage = (Stage) signUpScreenBase.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         });

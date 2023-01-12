@@ -76,14 +76,16 @@ public class OnlineListScreen extends AnchorPane {
             stage.show();
         });
         
-        
+
         profilePic.setFitHeight(57.0);
         profilePic.setFitWidth(66.0);
         profilePic.setLayoutX(520.0);
         profilePic.setLayoutY(21.0);
         profilePic.setPickOnBounds(true);
         profilePic.setPreserveRatio(true);
+
         profilePic.setCursor(Cursor.HAND);
+
         profilePic.setImage(new Image(getClass().getResource("/res/profile.png").toExternalForm()));
 
         
