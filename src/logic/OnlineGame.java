@@ -320,17 +320,11 @@ public class OnlineGame {
      //       });
         } else {
             turn++;
-            try{
     //        Platform.runLater(() -> {
                 btn.setText("O");
                 iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
      //       });
-         }
-             catch(Exception ex){
-            
         }
-        }
-       
         
     }
 

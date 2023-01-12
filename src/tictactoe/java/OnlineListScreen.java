@@ -17,12 +17,14 @@ public class OnlineListScreen extends AnchorPane {
     protected final Label onlineListLabel;
     public final ListView onlineListView;
     protected final ImageView back;
+    public final ImageView profilePic;
 
     public OnlineListScreen() {
 
         onlineListLabel = new Label();
         onlineListView = new ListView();
         back = new ImageView();
+        profilePic = new ImageView();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -72,10 +74,19 @@ public class OnlineListScreen extends AnchorPane {
             stage.setScene(scene);
             stage.show();
         });
+        
+        profilePic.setFitHeight(57.0);
+        profilePic.setFitWidth(66.0);
+        profilePic.setLayoutX(520.0);
+        profilePic.setLayoutY(21.0);
+        profilePic.setPickOnBounds(true);
+        profilePic.setPreserveRatio(true);
+        profilePic.setImage(new Image(getClass().getResource("/res/profile.png").toExternalForm()));
 
         getChildren().add(onlineListLabel);
         getChildren().add(onlineListView);
         getChildren().add(back);
+        getChildren().add(profilePic);
 
     }
 }

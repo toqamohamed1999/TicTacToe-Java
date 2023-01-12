@@ -16,11 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-
 public class SignUp {
 
     public SignUpScreenBase signUpScreenBase;
     public ClientSide clientSide;
+    static String profileDataArr = null;
 
     String userName;
     String password;
@@ -56,7 +56,6 @@ public class SignUp {
                         String data = "SignUp" + "," + ip + "," + userName + "," + email + "," + password + "," + gender;
                         clientSide.ps.println(data);
                         //  System.out.println("Your Data" + data);
-                        moveToOnlineListScreen();
                     } catch (UnknownHostException ex) {
                         Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -69,7 +68,6 @@ public class SignUp {
         });
     }
 
-
     public void receiveMessgeFromServer() {
 
         new Thread(new Runnable() {
@@ -80,12 +78,13 @@ public class SignUp {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
 
-                            System.out.println(textmessage);
-                             clientSide.ps.flush();
                             System.out.println("@@@@@@@@@@" + textmessage);
+                            if (textmessage.contains("profileData")) {
+                                profileDataArr = textmessage;
+                            }
+
                             doAction(textmessage);
                             clientSide.ps.flush();
-
                         }
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -94,7 +93,6 @@ public class SignUp {
             }
         }).start();
     }
-
 
     void doAction(String textmessage) {
 
@@ -127,5 +125,4 @@ public class SignUp {
 
         });
     }
-
 }
