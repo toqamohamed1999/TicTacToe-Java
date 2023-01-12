@@ -15,12 +15,34 @@ import javafx.stage.Stage;
  */
 
 public class ResultLogic {
-    ResultScreen rs;
+    
+    public ResultScreen rs;
     int state;
     int sourceMode;
     char winner;
+    String statusletter;
     
-    public ResultLogic(String player1 , int player1Avatar , String player2 , int player2Avatar , int originNumber , int source , char win){
+    public ResultLogic(String stateLetter , int source , String name , int playerAvatar) {
+        rs = new ResultScreen();
+        sourceMode=source;
+        exitGame();
+        goHome();
+        hideLabels();
+        statusletter=stateLetter;
+        checkAndShow(statusletter);
+        playAgain(name, playerAvatar);
+    }
+
+    public ResultLogic(String stateLetter) {
+        rs = new ResultScreen();
+        exitGame();
+        goHome();
+        hideLabels();
+        statusletter=stateLetter;
+        checkAndShow(statusletter);       
+    }
+    
+     public ResultLogic(String player1 , int player1Avatar , String player2 , int player2Avatar , int originNumber , int source , char win){
         rs = new ResultScreen();
         state = originNumber;
         sourceMode = source;
@@ -35,6 +57,56 @@ public class ResultLogic {
         setResultLabel(player1,player2);
         setResultPic();
         setPlayerLabels();
+    }
+    
+    public void checkAndShow(String stateLetter){
+        if(stateLetter.equals("w")){
+            rs.resultLabel.setText("You Win");
+            rs.resultPic.setImage(new Image(getClass().getResource("/res/win.png").toExternalForm()));
+        }
+        if(stateLetter.equals("d")){
+            rs.resultLabel.setText("It's a Draw");
+            rs.resultPic.setImage(new Image(getClass().getResource("/res/draw.png").toExternalForm()));
+        }
+        if(stateLetter.equals("l")){
+            rs.resultLabel.setText("You lost");
+            rs.resultPic.setImage(new Image(getClass().getResource("/res/lost.png").toExternalForm()));
+        }
+    }
+   
+    public void hideLabels(){
+        rs.player1Pic.setVisible(false);
+        rs.player2Pic.setVisible(false);
+        rs.player1Name.setVisible(false);
+        rs.player2Name.setVisible(false);
+        rs.player1CardPane.setVisible(false);
+        rs.player2CardPane.setVisible(false);
+        rs.player1State.setVisible(false);
+        rs.player2State.setVisible(false);
+    }
+    
+   
+    public void playAgain(String player ,int playerAvatar){
+            rs.playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root=null;
+                if(sourceMode==1){
+                    EasyMode easyMode = new EasyMode(player , playerAvatar , "Computer" , 3);
+                    root = easyMode.board;
+                }
+                if(sourceMode==3){
+                    HardMode hardMode = new HardMode(player , playerAvatar , "Computer" , 5);
+                    root = hardMode.board;
+                }
+               
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) rs.playAgainButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
+
     }
     
     public void playAgain(String player1 , int player1Avatar , String player2 , int player2Avatar){

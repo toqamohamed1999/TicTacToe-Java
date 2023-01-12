@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.SignIn;
+import logic.OnlineGame;
 
 public class multiPlayerScreen extends AnchorPane {
 
@@ -120,11 +121,7 @@ public class multiPlayerScreen extends AnchorPane {
             public void handle(MouseEvent event) {
 
                 Parent root = null;
-<<<<<<< HEAD
                 root = new RecordsListScreen();
-=======
-                root = new ProfileScreen();
->>>>>>> onlineListFeature
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);

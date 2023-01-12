@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class HomeScreen extends AnchorPane {
 
-    public final ImageView profilePic;
+    protected final ImageView profilePic;
     protected final Label modeSelectLabel;
     protected final Circle multiPlayerCirle;
     protected final ImageView multiPlayerImage;
@@ -49,6 +49,7 @@ public class HomeScreen extends AnchorPane {
     protected final Button okButton;
     int playerAvatar;
     boolean selected;
+    String selectedLevel;
 
     public HomeScreen() {
 
@@ -82,6 +83,7 @@ public class HomeScreen extends AnchorPane {
         okButton = new Button();
         playerAvatar=0;
         selected=false;
+        selectedLevel=null;
 
         setId("HomeAnchorPane");
         setPrefHeight(430.0);
@@ -243,6 +245,7 @@ public class HomeScreen extends AnchorPane {
         easyButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                selectedLevel="easy";
                 showAvatarSelectionPanel();
             }   
         });
@@ -260,6 +263,7 @@ public class HomeScreen extends AnchorPane {
                 mediumButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                selectedLevel="medium";
                 showAvatarSelectionPanel();
             }           
         });
@@ -277,6 +281,7 @@ public class HomeScreen extends AnchorPane {
         hardButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                selectedLevel="hard";
                 showAvatarSelectionPanel();
             } 
         });
@@ -317,6 +322,7 @@ public class HomeScreen extends AnchorPane {
         mediumImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                selectedLevel="medium";
                showAvatarSelectionPanel();
             }  
         });
@@ -333,6 +339,7 @@ public class HomeScreen extends AnchorPane {
         hardImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                selectedLevel="hard";
                showAvatarSelectionPanel();
             }  
         });
@@ -349,6 +356,7 @@ public class HomeScreen extends AnchorPane {
         easyImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                selectedLevel="easy";
                showAvatarSelectionPanel();
             }  
         });
@@ -459,10 +467,18 @@ public class HomeScreen extends AnchorPane {
                     showErrorMassage();
                 }
                 else{
+                    
                     Parent root=null;
                     selected=false;
-                    EasyMode easyMode = new EasyMode(userNameTextField.getText(),playerAvatar,"Computer",3);
-                    root = easyMode.board;
+                    if(selectedLevel.equals("hard")){
+                        HardMode hardMode = new HardMode(userNameTextField.getText(),playerAvatar,"Hard bot",5);
+                        root = hardMode.board;
+                        }
+                    else if(selectedLevel.equals("easy")){
+                        EasyMode easyMode = new EasyMode(userNameTextField.getText(),playerAvatar,"Easy bot",3);
+                        root = easyMode.board;
+                        }
+                    
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) singlePlayerEnterGameButton.getScene().getWindow();
                     stage.setScene(scene);
@@ -546,6 +562,7 @@ public class HomeScreen extends AnchorPane {
     }
 
     void hideDifficultyChoices(){
+        
         levelSelectionPane.setVisible(false);
         easyButton.setVisible(false);
         easyImage.setVisible(false);

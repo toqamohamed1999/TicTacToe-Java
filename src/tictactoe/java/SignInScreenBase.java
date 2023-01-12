@@ -24,11 +24,7 @@ public class SignInScreenBase extends AnchorPane {
     protected final Label userNameLabel;
     protected final Label passwordLabel;
     public final TextField emailTextField;
-<<<<<<< HEAD
     public final PasswordField passwordTextField;
-=======
-    public final TextField passwordTextField;
->>>>>>> onlineListFeature
     public final Button signInButton;
     protected final DropShadow dropShadow;
     protected final Label dontHaveAccLabel;
@@ -41,11 +37,7 @@ public class SignInScreenBase extends AnchorPane {
         userNameLabel = new Label();
         passwordLabel = new Label();
         emailTextField = new TextField();
-<<<<<<< HEAD
         passwordTextField = new PasswordField();
-=======
-        passwordTextField = new TextField();
->>>>>>> onlineListFeature
         signInButton = new Button();
         dropShadow = new DropShadow();
         dontHaveAccLabel = new Label();

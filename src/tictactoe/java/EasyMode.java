@@ -183,20 +183,14 @@ public class EasyMode {
             System.out.println(Arrays.toString(gameState));
             if (!contains) {
                 System.out.println(Arrays.toString(gameState));
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("message");
-                alert.setContentText("No one has won the game");
-                alert.show();
+                navigateToWinner("d");
                 gameOver = true;
             } else {
                 for (int wp[] : winingPosition) {
                     if (gameState[wp[0]] == gameState[wp[1]] && gameState[wp[1]] == gameState[wp[2]] && gameState[wp[1]] != 3) {
                         // activePlayer has winner
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Success message");
-                        alert.setContentText((activePlayer == 1 ? "X " : "0 ") + " has won the game");
-                        if(activePlayer==1)navigateToWinner(board.user1NameText.getText(), board.player1Avatar, board.user2NameText.getText(), board.player2Avatar , 'x');
-                        else navigateToWinner(board.user1NameText.getText(), board.player1Avatar, board.user2NameText.getText(), board.player2Avatar , 'o');
+                        if(activePlayer==1)navigateToWinner("w");
+                        else navigateToWinner("l");
                    //     btns[wp[0]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
                    //     btns[wp[1]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
                    //     btns[wp[2]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
@@ -211,10 +205,13 @@ public class EasyMode {
         }
     }
 
-    private void navigateToWinner(String player1 ,int player1Avatar , String player2 , int player2avatar , char winner) {
+    private void navigateToWinner(String s) {
         Parent root = null;
-        ResultLogic win = new ResultLogic(player1,player1Avatar,player2, player2avatar ,1,sourceMode , winner); 
+        if(s.equals("w"))root = new YouWinScreenBase(s,1,board.user1NameText.getText(),board.player1Avatar);
+        else{
+        ResultLogic win = new ResultLogic(s,1,board.user1NameText.getText(),board.player1Avatar); 
         root = win.rs;
+        }
         Scene scene = new Scene(root);
         Stage stage = (Stage) board.backImageView.getScene().getWindow();
 
@@ -228,7 +225,7 @@ public class EasyMode {
                     timer.cancel();
                 });
             }
-        }, 3000, 3000);
+        }, 1000, 1000);
        
 
     }

@@ -244,7 +244,7 @@ public class MultiPlayer
     }
     private void navigateToWinner(String player1 ,int player1Avatar , String player2 , int player2avatar , char winnerChar){
         Parent root=null;
-        ResultLogic win = new ResultLogic(player1,player1Avatar,player2, player2avatar ,1,sourceMode , winnerChar ); 
+        ResultLogic win = new ResultLogic(player1,player1Avatar,player2, player2avatar ,1, sourceMode , winnerChar ); 
         root = win.rs;
         Scene scene = new Scene(root);
         Stage stage = (Stage) multi.backImageView.getScene().getWindow();

@@ -11,12 +11,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class TicTacToeJava extends Application {
-
+ public static Scene scene1;
     @Override
     public void start(Stage stage) throws Exception {
         
         Parent root = new splashScreen(stage);
         Scene scene = new Scene(root);
+        scene1=scene;
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.resizableProperty().setValue(false);  
