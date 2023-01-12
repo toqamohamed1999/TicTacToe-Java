@@ -96,7 +96,7 @@ public class GameBoard extends AnchorPane {
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
 
-        user2ImageView.setFitHeight(87.0);
+         user2ImageView.setFitHeight(87.0);
         user2ImageView.setFitWidth(94.0);
         user2ImageView.setId("user2ImageView");
         user2ImageView.setLayoutX(475.0);

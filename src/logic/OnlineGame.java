@@ -26,7 +26,7 @@ import tictactoe.java.multiPlayerScreen;
  *
  * @author Ahmed Abdo
  */
-public class OnlineGame {
+public class OnlineGame{
 
     public ClientSide clientSide;
     public GameBoard Online;
@@ -56,6 +56,7 @@ public class OnlineGame {
                     try {
                         if (clientSide.dis != null) {
                             String textmessage = clientSide.dis.readLine();
+                            System.out.println(textmessage);
                             String[] arr = textmessage.split(" ");
                             if (arr[0].equals("game")) {
                                 
@@ -320,11 +321,17 @@ public class OnlineGame {
      //       });
         } else {
             turn++;
+            try{
     //        Platform.runLater(() -> {
                 btn.setText("O");
                 iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
      //       });
+         }
+             catch(Exception ex){
+            
         }
+        }
+       
         
     }
 

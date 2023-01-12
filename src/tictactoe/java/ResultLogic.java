@@ -119,10 +119,6 @@ public class ResultLogic {
                     EasyMode easyMode = new EasyMode(player1,player1Avatar,player2,player2Avatar);
                     root = easyMode.board;
                 }
-                else if(sourceMode==3){
-                    HardMode hardMode=new HardMode(player1, player1Avatar, player2, player2Avatar);
-                    root = hardMode.board ;
-                }
                 else if(sourceMode==4){
                     MultiPlayer mp=new MultiPlayer(player1, player1Avatar, player2, player2Avatar);
                     root = mp.multi ;
@@ -147,15 +143,12 @@ public class ResultLogic {
         if(player1Avatar==1)rs.player1Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
         else if(player1Avatar==2) rs.player1Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
         else if(player1Avatar==3) rs.player1Pic.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
-        else if(player1Avatar==5) rs.player1Pic.setImage(new Image(getClass().getResource("/res/Hard.png").toExternalForm()));
     }
     
     public void setPlayer2Pic(int Player2Avatar){
         if(Player2Avatar==1)rs.player2Pic.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
         else if(Player2Avatar==2) rs.player2Pic.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
         else if(Player2Avatar==3) rs.player2Pic.setImage(new Image(getClass().getResource("/res/Easy.png").toExternalForm()));
-        else if(Player2Avatar==5) rs.player2Pic.setImage(new Image(getClass().getResource("/res/Hard.png").toExternalForm()));
-
     }
     
     public void setPlayer1Name(String player1){

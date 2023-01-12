@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import logic.SignIn;
 import logic.OnlineGame;
 
@@ -103,6 +104,12 @@ public class multiPlayerScreen extends AnchorPane {
                 root = new HomeScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                 @Override
+                 public void handle(WindowEvent event) {
+                     System.exit(0);
+                 }
+             });
                 stage.setScene(scene);
                 stage.show();
             }
@@ -124,6 +131,12 @@ public class multiPlayerScreen extends AnchorPane {
                 root = new RecordsListScreen();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                 @Override
+                 public void handle(WindowEvent event) {
+                     System.exit(0);
+                 }
+             });
                 stage.setScene(scene);
                 stage.show();
             }
@@ -414,6 +427,12 @@ public class multiPlayerScreen extends AnchorPane {
                     root = mp.multi;
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) enterGameButton.getScene().getWindow();
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                 @Override
+                 public void handle(WindowEvent event) {
+                     System.exit(0);
+                 }
+             });
                     stage.setScene(scene);
                     stage.show();
                 }
@@ -519,7 +538,10 @@ public class multiPlayerScreen extends AnchorPane {
 
     void showAvatarChoicePane() {
         avatarChoicePane.setVisible(true);
-        womanAvatar.setVisible(true);
+       
+        
+        
+     womanAvatar.setVisible(true);
         manAvatar.setVisible(true);
         selectAvatarLabel.setVisible(true);
     }
@@ -530,6 +552,12 @@ public class multiPlayerScreen extends AnchorPane {
         root = signIn.signInScreenBase;
         Scene scene = new Scene(root);
         Stage stage = (Stage) onlineButton.getScene().getWindow();
+       stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                 @Override
+                 public void handle(WindowEvent event) {
+                     System.exit(0);
+                 }
+             });
         stage.setScene(scene);
         stage.show();
     }
