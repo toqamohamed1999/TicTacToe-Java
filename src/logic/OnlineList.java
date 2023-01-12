@@ -35,6 +35,7 @@ public class OnlineList {
     ArrayList<String> items = new ArrayList();
     ArrayList<User> usersList = new ArrayList();
     String data = null;
+    
 
     public OnlineList() {
         onlineListScreen = new OnlineListScreen();
@@ -44,6 +45,7 @@ public class OnlineList {
         getAllOnlineUsers();
         onItemClick();
         onProfileClick();
+        setRefresh();
     }
     int secondPlayerindex = -1;
     String secondPlayerIp = "";
@@ -186,6 +188,16 @@ public class OnlineList {
                     stage.setScene(scene);
                     stage.show();
                 });
+            }
+        });
+    }
+    
+    void setRefresh(){
+    
+      onlineListScreen.refresh.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("refreshhhhhhhhhhhhhhhhhhh");
             }
         });
     }

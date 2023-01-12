@@ -1,8 +1,10 @@
 package tictactoe.java;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -18,6 +20,7 @@ public class OnlineListScreen extends AnchorPane {
     public final ListView onlineListView;
     protected final ImageView back;
     public final ImageView profilePic;
+    public final Button refresh;
 
     public OnlineListScreen() {
 
@@ -25,6 +28,7 @@ public class OnlineListScreen extends AnchorPane {
         onlineListView = new ListView();
         back = new ImageView();
         profilePic = new ImageView();
+        refresh = new Button();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -43,7 +47,7 @@ public class OnlineListScreen extends AnchorPane {
         onlineListView.setLayoutY(123.0);
         onlineListView.setPrefHeight(266.0);
         onlineListView.setPrefWidth(204.0);
-      /*  for (int i = 1; i <= 20; i++) {
+        /*  for (int i = 1; i <= 20; i++) {
             onlineListView.getItems().add("User " + i);
         }
 
@@ -58,7 +62,7 @@ public class OnlineListScreen extends AnchorPane {
                 stage.show();
             }
         });
-*/
+         */
         back.setFitHeight(53.0);
         back.setFitWidth(50.0);
         back.setLayoutX(30.0);
@@ -74,7 +78,17 @@ public class OnlineListScreen extends AnchorPane {
             stage.setScene(scene);
             stage.show();
         });
-        
+
+        refresh.setLayoutX(400.0);
+        refresh.setLayoutY(21.0);
+        refresh.setMnemonicParsing(false);
+        refresh.setPrefHeight(25.0);
+        refresh.setPrefWidth(177.0);
+        refresh.setText("Refresh");
+        refresh.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
+        refresh.setFont(new Font("Impact", 24.0));
+      
+
         profilePic.setFitHeight(57.0);
         profilePic.setFitWidth(66.0);
         profilePic.setLayoutX(520.0);
