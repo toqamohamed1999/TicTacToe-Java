@@ -28,7 +28,7 @@ public class ProfileScreen extends AnchorPane {
     protected final ImageView back;
     protected final ImageView logout;
 
-    public ProfileScreen() {
+    public ProfileScreen(String profilData) {
 
         profileImageView = new ImageView();
         userNameLabel = new Label();
