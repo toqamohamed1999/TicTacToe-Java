@@ -21,7 +21,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tictactoe.java.GameBoard;
+import tictactoe.java.HomeScreen;
 import tictactoe.java.OnlineListScreen;
+import tictactoe.java.ProfileScreen;
 import tictactoe.java.SignInScreenBase;
 
 public class OnlineList {
@@ -29,6 +31,7 @@ public class OnlineList {
     public OnlineListScreen onlineListScreen;
     public ClientSide clientSide;
     public ListView listView;
+   
 
     String[] operationArr;
     ArrayList<String> items = new ArrayList();
@@ -142,6 +145,11 @@ public class OnlineList {
             System.out.println("yyyyyyyyyyyyyyyyyyyyyyyy " + Arrays.toString(operationArr));
             recieveRequest();
         }
+        else if(operationArr[0].equals("profileData")){
+            System.out.println("Doneeeeeee");
+        
+        }
+       
 
     }
 
@@ -172,6 +180,23 @@ public class OnlineList {
             alert.show();
         });
     }
+    
+    public void profile(){
+     onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                Parent root = null;
+                root = new ProfileScreen();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) onlineListScreen.profilePic.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
+ 
+    }
+    
     
     
 }
