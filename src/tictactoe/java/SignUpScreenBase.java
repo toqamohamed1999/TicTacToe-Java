@@ -267,7 +267,8 @@ public class SignUpScreenBase extends AnchorPane {
     }
     
     public boolean validEmail(String input){
-        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        // ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$
+        String emailRegex = "^.+@.+\\..+$";
         Pattern emailPattern = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPattern.matcher(input);
         return matcher.find();

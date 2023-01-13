@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 
 import tictactoe.java.SignUpScreenBase;
@@ -19,21 +17,25 @@ import javafx.stage.Stage;
 public class SignUp {
 
     public SignUpScreenBase signUpScreenBase;
-    public ClientSide clientSide;
+    static SignUp signUp;
     static String profileDataArr = null;
-
     String userName;
     String password;
     String confirmPassword;
     String email;
     String gender;
     ActionEvent actionEvent;
+    String ip = null;
 
     public SignUp() {
         signUpScreenBase = new SignUpScreenBase();
-        clientSide = ClientSide.getInstanse();
+        signUp = this;
+        try {
+            ip = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException ex) {
+            ex.printStackTrace();
+        }
         signUpButton();
-        receiveMessgeFromServer();
     }
 
     public final void signUpButton() {
@@ -51,47 +53,12 @@ public class SignUp {
 
                 if (isValiad || confirmPassword.equals(password) || userName != null || gender == "Not Selected") {
 
-                    try {
-                        String ip = Inet4Address.getLocalHost().getHostAddress();
-                        String data = "SignUp" + "," + ip + "," + userName + "," + email + "," + password + "," + gender;
-                        clientSide.ps.println(data);
-                        //  System.out.println("Your Data" + data);
-                    } catch (UnknownHostException ex) {
-                        Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    String data = "SignUp" + "," + ip + "," + userName + "," + email + "," + password + "," + gender;
+                    ClientSide.ps.println(data);
                 }
-                /* if(clientSide.dis == null){
-                    showDialog();
-                }*/
 
             }
         });
-    }
-
-    public void receiveMessgeFromServer() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        if (clientSide.dis != null) {
-                            String textmessage = clientSide.dis.readLine();
-
-                            System.out.println("@@@@@@@@@@" + textmessage);
-                            if (textmessage.contains("profileData")) {
-                                profileDataArr = textmessage;
-                            }
-
-                            doAction(textmessage);
-                            clientSide.ps.flush();
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        }).start();
     }
 
     void doAction(String textmessage) {
@@ -107,7 +74,7 @@ public class SignUp {
     void moveToOnlineListScreen() {
         Platform.runLater(() -> {
             Parent root = null;
-            OnlineList onlineList = new OnlineList();
+            OnlineList onlineList = new OnlineList(email);
             root = onlineList.onlineListScreen;
             Scene scene = new Scene(root);
             Stage stage = (Stage) signUpScreenBase.getScene().getWindow();

@@ -10,32 +10,35 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import static logic.SignIn.profileDataArr;
 import tictactoe.java.SignUpScreenBase;
 
-/**
- *
- * @author Eman
- */
 public class ClientSide implements Runnable {
 
-    private static ClientSide clientSide;
+    private static ClientSide clientSide = new ClientSide();
     Socket clientSocket;
     DataInputStream dis;
-    PrintStream ps;
+    static PrintStream ps;
     String textmessage = "";
-    Thread thread;
-    
+   // Thread thread;
 
     private ClientSide() {
-        thread = new Thread(this);
-        thread.start();
+   //     thread = new Thread(this);
+   //     thread.start();
 
         try {
-            clientSocket = new Socket("10.145.23.204", 5005);
+            clientSocket = new Socket(InetAddress.getLocalHost(), 5005);
             dis = new DataInputStream(clientSocket.getInputStream());
             ps = new PrintStream(clientSocket.getOutputStream());
+        }
+        catch (SocketException ex) {
+            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -43,27 +46,47 @@ public class ClientSide implements Runnable {
     }
 
     public static ClientSide getInstanse() {
-        if (clientSide == null) {
-            return new ClientSide();
-        }
         return clientSide;
     }
-    
 
     @Override
     public void run() {
-        /*      while (true) {
+        while (true) {
             try {
-                if (dis != null && textmessage != null) {
-                    textmessage = dis.readLine();
-                    System.out.println("$$$$$$$$$$$$$$$$$$$$$recived message2");
-                    System.out.println(textmessage);
-                    // ps.flush();
+                if (dis != null) {
+                    String textmessage = dis.readLine();
+                    System.out.println("@@@@@@@@@@@" + textmessage);
+
+                    handleAction(textmessage);
+
+                    if (textmessage.contains("profileData")) {
+                        profileDataArr = textmessage;
+                    }
+                    ps.flush();
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }*/
+        }
+    }
+
+    void handleAction(String msg) {
+        if (msg.endsWith("signInVerified") || msg.equals("signInNotVerified")) {
+            SignIn.signIn.doAction(msg);
+        }
+        else if (msg.endsWith("signUpVerified") || msg.equals("signUpNotVerified")) {
+            SignUp.signUp.doAction(msg);
+        }
+         else if (msg.contains("sendAllUsers") || msg.contains("recieveRequest")
+                 || msg.contains("confirmRequest")) {
+            OnlineList.onlineList.receiveOnlineList(msg);
+        }
+        else if (msg.contains("game") ) {
+            OnlineGame.onlineGame.doAction(msg);
+        }
+        
+         
+
     }
 
 }

@@ -20,33 +20,43 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import static logic.SignIn.profileDataArr;
 import tictactoe.java.GameBoard;
 import tictactoe.java.OnlineListScreen;
 import tictactoe.java.ProfileScreen;
 import tictactoe.java.SignInScreenBase;
+import tictactoe.java.TicTacToeJava;
 
 public class OnlineList {
 
     public OnlineListScreen onlineListScreen;
-    public ClientSide clientSide;
+    static OnlineList onlineList;
     public ListView listView;
 
     String[] operationArr;
-    ArrayList<String> items = new ArrayList();
+    ArrayList<String> usersName = new ArrayList();
     ArrayList<User> usersList = new ArrayList();
     String data = null;
+    String email = null;
+    String ip = null;
 
-    public OnlineList() {
+    public OnlineList(String email) {
         onlineListScreen = new OnlineListScreen();
-        clientSide = ClientSide.getInstanse();
+        onlineList = this;
         listView = onlineListScreen.onlineListView;
-        receiveMessgeFromServer();
+        this.email = email;
+        try {
+            ip = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException ex) {
+            ex.printStackTrace();
+        }
         getAllOnlineUsers();
         onItemClick();
         onProfileClick();
         setRefresh();
+
     }
-    int secondPlayerindex = -1;
+    int secondPlayerIndex = -1;
     String secondPlayerIp = "";
 
     void onItemClick() {
@@ -54,32 +64,24 @@ public class OnlineList {
             @Override
             public void handle(MouseEvent event) {
                 String item = (String) listView.getSelectionModel().getSelectedItem();
-                System.out.println("clicked on lsitview = " + item);
-                secondPlayerindex = listView.getSelectionModel().getSelectedIndex();
+                secondPlayerIndex = listView.getSelectionModel().getSelectedIndex();
                 sendRequest();
-                // moveToGameBoardScreen();
             }
         });
     }
 
     void sendRequest() {
-        try {
-            String ip = Inet4Address.getLocalHost().getHostAddress();
-            secondPlayerIp = usersList.get(secondPlayerindex).getIP();
-            System.out.println("seconddddddddddd = " + secondPlayerIp);
-            clientSide.ps.println("sendRequest," + ip + "," + secondPlayerIp);
-        } catch (UnknownHostException ex) {
-            ex.printStackTrace();
-        }
+        secondPlayerIp = usersList.get(secondPlayerIndex).getIP();
+        ClientSide.ps.println("sendRequest," + ip + "," + secondPlayerIp);
     }
 
     void recieveRequest() {
         Platform.runLater(() -> {
-            showRecieveDialog(operationArr[1],operationArr[2]);
+            showRecieveDialog(operationArr[1], operationArr[2]);
         });
     }
 
-    void showRecieveDialog(String myIp,String secondIp) {
+    void showRecieveDialog(String myIp, String secondIp) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Test");
         alert.setHeaderText("Tic Tac Toe");
@@ -90,38 +92,24 @@ public class OnlineList {
         ButtonType button = result.orElse(ButtonType.CANCEL);
 
         if (button == ButtonType.OK) {
-            clientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
+            ClientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
+            System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
             moveToGameBoardScreen();
+
         } else {
             alert.close();
         }
     }
 
     void getAllOnlineUsers() {
-        data = "getOnlineUsers";
-        clientSide.ps.println(data);
+        data = "getOnlineUsers," + ip;
+        ClientSide.ps.println(data);
     }
     String profileStr = null;
 
-    void receiveMessgeFromServer() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        if (clientSide.dis != null) {
-                            String textmessage = clientSide.dis.readLine();
-                            System.out.println("@@@@@@@@@@onlineList " + textmessage);
-                            divideMessage(textmessage);
-                            doAction();
-                            clientSide.ps.flush();
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        }).start();
+    void receiveOnlineList(String msg) {
+        divideMessage(msg);
+        doAction();
     }
 
     public void divideMessage(String operation) {
@@ -129,49 +117,54 @@ public class OnlineList {
     }
 
     void doAction() {
-        System.out.println(Arrays.toString(operationArr));
         if (operationArr[0].equalsIgnoreCase("sendAllUsers")) {
-            items.add(operationArr[2]);
-            additemToList();
+            String userIp = operationArr[1];
+            String userName = operationArr[2];
+            //          if (!userIp.equals(ip)) {
+            usersName.add(userName);
+            //           }
+            addUserToList();
 
-            ObservableList<String> obsItems = FXCollections.observableArrayList(items);
+            ObservableList<String> obsItems = FXCollections.observableArrayList(usersName);
             listView.setItems(obsItems);
         } else if (operationArr[0].equals("recieveRequest")) {
-            System.out.println("yyyyyyyyyyyyyyyyyyyyyyyy " + Arrays.toString(operationArr));
             recieveRequest();
         } else if (operationArr[0].equals("confirmRequest")) {
-            System.out.println("fffffffffffff " + Arrays.toString(operationArr));
             moveToGameBoardScreen();
         }
     }
+// ps.println("sendAllUsers," + loopIp + "," + user.getUserName() + "," + user.getEmail() + "," + user.getGender());
 
-    void additemToList() {
+    void addUserToList() {
         User user = new User();
         user.setIP(operationArr[1]);
         user.setUserName(operationArr[2]);
         user.setEmail(operationArr[3]);
+        user.setGender(operationArr[4]);
+        user.setScore(Integer.valueOf(operationArr[5]));
         usersList.add(user);
     }
 
     void moveToGameBoardScreen() {
-        Platform.runLater(() -> {
-            Parent root;
-            root = new GameBoard("A", 1, "A", 2);
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) listView.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+        //       User firstUser = getFirstPlayer();
+//        User secondUser = usersList.get(secondPlayerIndex);
+
+        Platform.runLater(new Runnable() {
+            public void run() {
+                Parent root = null;
+                OnlineGame onlineGame = new OnlineGame("A", 1, "B", 2);
+                root = onlineGame.gameBoard;
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) onlineListScreen.getScene().getWindow();
+                stage.setScene(scene);
+                System.out.println("ya sater ya rabbbbbbbbbbbbbbbbbbbbb");
+                stage.show();
+            }
         });
+        System.out.println("ya rabbbbbbbbbbbbbbbbb");
+
     }
 
-    void showDialog() {
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("SignIn incorrect");
-            alert.setContentText("Make sure that, your email and password are empty or correct!");
-            alert.show();
-        });
-    }
 
     void onProfileClick() {
         onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -198,8 +191,20 @@ public class OnlineList {
         onlineListScreen.refresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                listView.getItems().clear();
                 getAllOnlineUsers();
             }
         });
+    }
+
+    User getFirstPlayer() {
+        User user = null;
+        for (int i = 0; i < usersList.size(); i++) {
+
+            if (ip.equals(usersList.get(i).getIP())) {
+                user = usersList.get(i);
+            }
+        }
+        return user;
     }
 }
