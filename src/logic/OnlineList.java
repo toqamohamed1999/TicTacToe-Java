@@ -85,14 +85,13 @@ public class OnlineList {
         ButtonType button = result.orElse(ButtonType.CANCEL);
 
         if (button == ButtonType.OK) {
-               ClientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
-                System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+            ClientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
+            System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
         } else {
             alert.close();
         }
 
     }
-
 
     private void getAllOnlineUsers() {
         data = "getOnlineUsers," + ip;
@@ -139,18 +138,26 @@ public class OnlineList {
     }
 
     void moveToGameBoardScreen() {
-        //       User firstUser = getFirstPlayer();
-//        User secondUser = usersList.get(secondPlayerIndex);
+        User firstUser = getFirstPlayer();
+//        User secondUsed = usersList.get(secondPlayerIndex);
+
+        System.out.println("first user = " + firstUser.toString());
+    
+        User second = new User();
+        second.setIP("");
+        second.setEmail("aml.gmail.com");
+        second.setGender("female");
+        second.setScore(20);
+        second.setUserName("aml");
+        //   System.out.println("second user = " + secondUser.toString());
 
         Platform.runLater(new Runnable() {
             public void run() {
-               OnlineGame onlineGame = new OnlineGame("A", 1, "B", 2);
-               TicTacToeJava.stage.setScene(new Scene(onlineGame.gameBoard));
+                OnlineGame onlineGame = new OnlineGame(firstUser,second);
+                TicTacToeJava.stage.setScene(new Scene(onlineGame.gameBoard));
             }
         });
     }
-    
-      
 
     private void onProfileClick() {
         onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -163,10 +170,7 @@ public class OnlineList {
                     } else {
                         root = new ProfileScreen(SignUp.profileDataArr);
                     }
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) listView.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
+                    TicTacToeJava.stage.setScene(new Scene(root));
                 });
             }
         });

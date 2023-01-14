@@ -46,6 +46,18 @@ public class OnlineGame {
         buttonshandel();
 
     }
+     public OnlineGame(User user1,User user2) {
+        onlineGame = this;
+        yourTurn = true;
+        turn = 2;
+        counter = 0;
+      //  gameBoard = new GameBoard(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
+        sourceMode = 2;
+        record();
+        back();
+        buttonshandel();
+
+    }
 
     void doAction(String textmessage) {
 
