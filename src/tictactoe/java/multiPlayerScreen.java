@@ -100,18 +100,14 @@ public class multiPlayerScreen extends AnchorPane {
             @Override
             public void handle(MouseEvent event) {
 
-                Parent root = null;
-                root = new HomeScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) backButton.getScene().getWindow();
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                 @Override
-                 public void handle(WindowEvent event) {
-                     System.exit(0);
-                 }
-             });
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
+
+                TicTacToeJava.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        System.exit(0);
+                    }
+                });
             }
         });
 
@@ -127,21 +123,16 @@ public class multiPlayerScreen extends AnchorPane {
             @Override
             public void handle(MouseEvent event) {
 
-                Parent root = null;
-                root = new RecordsListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) backButton.getScene().getWindow();
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                 @Override
-                 public void handle(WindowEvent event) {
-                     System.exit(0);
-                 }
-             });
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new RecordsListScreen()));
+
+                TicTacToeJava.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        System.exit(0);
+                    }
+                });
             }
         });
-        
 
         multiplayerLabel.setLayoutX(162.0);
         multiplayerLabel.setLayoutY(38.0);
@@ -423,18 +414,14 @@ public class multiPlayerScreen extends AnchorPane {
                     playerOneName = playerOneNameField.getText();
                     playerTwoName = playerTwoNameField.getText();
                     MultiPlayer mp = new MultiPlayer(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
-                    Parent root = null;
-                    root = mp.multi;
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) enterGameButton.getScene().getWindow();
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                 @Override
-                 public void handle(WindowEvent event) {
-                     System.exit(0);
-                 }
-             });
-                    stage.setScene(scene);
-                    stage.show();
+                    TicTacToeJava.stage.setScene(new Scene(mp.board));
+
+                    TicTacToeJava.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent event) {
+                            System.exit(0);
+                        }
+                    });
                 }
             }
         });
@@ -538,27 +525,22 @@ public class multiPlayerScreen extends AnchorPane {
 
     void showAvatarChoicePane() {
         avatarChoicePane.setVisible(true);
-       
-        
-        
-     womanAvatar.setVisible(true);
+
+        womanAvatar.setVisible(true);
         manAvatar.setVisible(true);
         selectAvatarLabel.setVisible(true);
     }
 
     void goToSignInScreen() {
-        Parent root = null;
+
         SignIn signIn = new SignIn();
-        root = signIn.signInScreenBase;
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) onlineButton.getScene().getWindow();
-       stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                 @Override
-                 public void handle(WindowEvent event) {
-                     System.exit(0);
-                 }
-             });
-        stage.setScene(scene);
-        stage.show();
+        TicTacToeJava.stage.setScene(new Scene(signIn.signInScreenBase));
+
+        TicTacToeJava.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.exit(0);
+            }
+        });
     }
 }

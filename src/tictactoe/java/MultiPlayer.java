@@ -25,13 +25,13 @@ import logic.recordLogic;
 
 public class MultiPlayer 
 {
-    GameBoard multi;
+    GameBoard board;
     int sourceMode;
     recordLogic rec;
     String fileName;
     
     public MultiPlayer(String playerOneName,int playerOneAvatarNumber,String playerTwoName,int playerTwoAvatarNumber) {
-         multi=new GameBoard(playerOneName,playerOneAvatarNumber,playerTwoName,playerTwoAvatarNumber);
+         board=new GameBoard(playerOneName,playerOneAvatarNumber,playerTwoName,playerTwoAvatarNumber);
          record();
          back();
          buttonshandel();
@@ -39,12 +39,12 @@ public class MultiPlayer
     }
     
     public void record(){
-     multi.recordGameButton.setOnAction(new EventHandler<ActionEvent>() {
+     board.recordGameButton.setOnAction(new EventHandler<ActionEvent>() {
          @Override
          public void handle(ActionEvent event) {
              rec=new recordLogic();
-             multi.recordIndicatorImageView.setVisible(true);
-             multi.recordIndicatorButton.setVisible(true);
+             board.recordIndicatorImageView.setVisible(true);
+             board.recordIndicatorButton.setVisible(true);
               fileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Calendar.getInstance().getTime());
              rec.createFile(fileName);
          }
@@ -52,13 +52,13 @@ public class MultiPlayer
    }
     
     public void back(){
-        multi.backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        board.backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 Parent root=null;
                 root = new multiPlayerScreen();
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) multi.backImageView.getScene().getWindow();
+                Stage stage = (Stage) board.backImageView.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             }
@@ -66,93 +66,93 @@ public class MultiPlayer
     }
     
     public void buttonshandel(){
-        multi.button_1.setOnAction(new EventHandler<ActionEvent>() {
+        board.button_1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_1.getText().equals("")){
-                    setXorO( multi.button_1,multi.button_1Image);
+                if( board.button_1.getText().equals("")){
+                    setXorO(board.button_1,board.button_1Image);
                     TheWinner();
                 }
                 
             }
         });
         
-         multi.button_2.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_2.getText().equals("")){
-                    setXorO( multi.button_2,multi.button_2Image);
+                if( board.button_2.getText().equals("")){
+                    setXorO(board.button_2,board.button_2Image);
                     TheWinner();
                 }
                 
             }
         });
          
-         multi.button_3.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_3.getText().equals("")){
-                    setXorO( multi.button_3,multi.button_3Image);
+                if( board.button_3.getText().equals("")){
+                    setXorO(board.button_3,board.button_3Image);
                     TheWinner();
                 }
                 
             }
         });
-         multi.button_4.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_4.getText().equals("")){
-                    setXorO( multi.button_4,multi.button_4Image);
+                if( board.button_4.getText().equals("")){
+                    setXorO(board.button_4,board.button_4Image);
                     TheWinner();
                 }
                 
             }
         });
-         multi.button_5.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_5.getText().equals("")){
-                    setXorO( multi.button_5,multi.button_5Image);
+                if( board.button_5.getText().equals("")){
+                    setXorO(board.button_5,board.button_5Image);
                     TheWinner();
                 }
                 
             }
         });
-         multi.button_6.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_6.getText().equals("")){
-                    setXorO( multi.button_6,multi.button_6Image);
+                if( board.button_6.getText().equals("")){
+                    setXorO(board.button_6,board.button_6Image);
                     TheWinner();
                 }
                 
             }
         });
-         multi.button_7.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_7.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_7.getText().equals("")){
-                    setXorO( multi.button_7,multi.button_7Image);
+                if( board.button_7.getText().equals("")){
+                    setXorO(board.button_7,board.button_7Image);
                     TheWinner();
                 }
                 
             }
         });
-         multi.button_8.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_8.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_8.getText().equals("")){
-                    setXorO( multi.button_8,multi.button_8Image);
+                if( board.button_8.getText().equals("")){
+                    setXorO(board.button_8,board.button_8Image);
                     TheWinner();
                 }
                 
             }
         });
-         multi.button_9.setOnAction(new EventHandler<ActionEvent>() {
+         board.button_9.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if( multi.button_9.getText().equals("")){
-                    setXorO( multi.button_9,multi.button_9Image);
+                if( board.button_9.getText().equals("")){
+                    setXorO(board.button_9,board.button_9Image);
                     TheWinner();
                 }
                 
@@ -162,8 +162,8 @@ public class MultiPlayer
     }
     
     private void setXorO(Button btn,ImageView iv){
-        if(multi.turn%2==0){
-            multi.turn++;
+        if(board.turn%2==0){
+            board.turn++;
             btn.setText("X");
             iv.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
             if(fileName!=null){
@@ -173,7 +173,7 @@ public class MultiPlayer
             }
         }
         else{
-            multi.turn++;
+            board.turn++;
             btn.setText("O");
             iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
             if(fileName!=null){
@@ -184,29 +184,29 @@ public class MultiPlayer
         }
     }
     private int XisWinner(){
-        multi.counter++;
-        if (multi.button_1.getText().equals("X")&&multi.button_2.getText().equals("X")&&multi.button_3.getText().equals("X")){
+        board.counter++;
+        if (board.button_1.getText().equals("X")&&board.button_2.getText().equals("X")&&board.button_3.getText().equals("X")){
             return 1;
         }
-        if (multi.button_4.getText().equals("X")&&multi.button_5.getText().equals("X")&&multi.button_6.getText().equals("X")){
+        if (board.button_4.getText().equals("X")&&board.button_5.getText().equals("X")&&board.button_6.getText().equals("X")){
             return 1;
         }
-        if (multi.button_7.getText().equals("X")&&multi.button_8.getText().equals("X")&&multi.button_9.getText().equals("X")){
+        if (board.button_7.getText().equals("X")&&board.button_8.getText().equals("X")&&board.button_9.getText().equals("X")){
             return 1;
         }
-        if (multi.button_1.getText().equals("X")&&multi.button_4.getText().equals("X")&&multi.button_7.getText().equals("X")){
+        if (board.button_1.getText().equals("X")&&board.button_4.getText().equals("X")&&board.button_7.getText().equals("X")){
             return 1;
         }
-        if (multi.button_2.getText().equals("X")&&multi.button_5.getText().equals("X")&&multi.button_8.getText().equals("X")){
+        if (board.button_2.getText().equals("X")&&board.button_5.getText().equals("X")&&board.button_8.getText().equals("X")){
             return 1;
         }
-        if (multi.button_3.getText().equals("X")&&multi.button_6.getText().equals("X")&&multi.button_9.getText().equals("X")){
+        if (board.button_3.getText().equals("X")&&board.button_6.getText().equals("X")&&board.button_9.getText().equals("X")){
             return 1;
         }
-        if (multi.button_1.getText().equals("X")&&multi.button_5.getText().equals("X")&&multi.button_9.getText().equals("X")){
+        if (board.button_1.getText().equals("X")&&board.button_5.getText().equals("X")&&board.button_9.getText().equals("X")){
             return 1;
         }
-        if (multi.button_3.getText().equals("X")&&multi.button_5.getText().equals("X")&&multi.button_7.getText().equals("X")){
+        if (board.button_3.getText().equals("X")&&board.button_5.getText().equals("X")&&board.button_7.getText().equals("X")){
             return 1;
         }
         else {
@@ -214,28 +214,28 @@ public class MultiPlayer
         }
     }
      private int OisWinner(){
-        if (multi.button_1.getText().equals("O")&&multi.button_2.getText().equals("O")&&multi.button_3.getText().equals("O")){
+        if (board.button_1.getText().equals("O")&&board.button_2.getText().equals("O")&&board.button_3.getText().equals("O")){
             return 1;
         }
-        if (multi.button_4.getText().equals("O")&&multi.button_5.getText().equals("O")&&multi.button_6.getText().equals("O")){
+        if (board.button_4.getText().equals("O")&&board.button_5.getText().equals("O")&&board.button_6.getText().equals("O")){
             return 1;
         }
-        if (multi.button_7.getText().equals("O")&&multi.button_8.getText().equals("O")&&multi.button_9.getText().equals("O")){
+        if (board.button_7.getText().equals("O")&&board.button_8.getText().equals("O")&&board.button_9.getText().equals("O")){
             return 1;
         }
-        if (multi.button_1.getText().equals("O")&&multi.button_4.getText().equals("O")&&multi.button_7.getText().equals("O")){
+        if (board.button_1.getText().equals("O")&&board.button_4.getText().equals("O")&&board.button_7.getText().equals("O")){
             return 1;
         }
-        if (multi.button_2.getText().equals("O")&&multi.button_5.getText().equals("O")&&multi.button_8.getText().equals("O")){
+        if (board.button_2.getText().equals("O")&&board.button_5.getText().equals("O")&&board.button_8.getText().equals("O")){
             return 1;
         }
-        if (multi.button_3.getText().equals("O")&&multi.button_6.getText().equals("O")&&multi.button_9.getText().equals("O")){
+        if (board.button_3.getText().equals("O")&&board.button_6.getText().equals("O")&&board.button_9.getText().equals("O")){
             return 1;
         }
-        if (multi.button_1.getText().equals("O")&&multi.button_5.getText().equals("O")&&multi.button_9.getText().equals("O")){
+        if (board.button_1.getText().equals("O")&&board.button_5.getText().equals("O")&&board.button_9.getText().equals("O")){
             return 1;
         }
-        if (multi.button_3.getText().equals("O")&&multi.button_5.getText().equals("O")&&multi.button_7.getText().equals("O")){
+        if (board.button_3.getText().equals("O")&&board.button_5.getText().equals("O")&&board.button_7.getText().equals("O")){
             return 1;
         }
         else {
@@ -245,9 +245,9 @@ public class MultiPlayer
     private void navigateToWinner(String player1 ,int player1Avatar , String player2 , int player2avatar , char winnerChar){
         Parent root=null;
         ResultLogic win = new ResultLogic(player1,player1Avatar,player2, player2avatar ,1, sourceMode , winnerChar ); 
-        root = win.rs;
+        root = win.result;
         Scene scene = new Scene(root);
-        Stage stage = (Stage) multi.backImageView.getScene().getWindow();
+        Stage stage = (Stage) board.backImageView.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
@@ -256,17 +256,17 @@ public class MultiPlayer
         int xResult=XisWinner();
         int oResult=OisWinner();
         if(xResult==1){
-            navigateToWinner(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar ,'x');
+            navigateToWinner(board.user1NameText.getText(),board.player1Avatar,board.user2NameText.getText(),board.player2Avatar ,'x');
         }
         else if(oResult==1){
-            navigateToWinner(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar ,'o');
+            navigateToWinner(board.user1NameText.getText(),board.player1Avatar,board.user2NameText.getText(),board.player2Avatar ,'o');
         }
-        if(multi.counter==9&&xResult!=1&&oResult!=1){
+        if(board.counter==9&&xResult!=1&&oResult!=1){
             Parent root=null;
-            ResultLogic draw = new ResultLogic(multi.user1NameText.getText(),multi.player1Avatar,multi.user2NameText.getText(),multi.player2Avatar,0,sourceMode,'d');
-            root = draw.rs;
+            ResultLogic draw = new ResultLogic(board.user1NameText.getText(),board.player1Avatar,board.user2NameText.getText(),board.player2Avatar,0,sourceMode,'d');
+            root = draw.result;
             Scene scene = new Scene(root);
-            Stage stage = (Stage) multi.backImageView.getScene().getWindow();
+            Stage stage = (Stage) board.backImageView.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         }

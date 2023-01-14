@@ -122,36 +122,18 @@ public class OnlineGame {
 
         } else if (arr[0].equals("2ndPlayer")) {
             if (arr[1].equals("w")) {
-                System.out.println("yaaraab");
-                Parent root = null;
                 ResultLogic win = new ResultLogic("w");
-                root = win.rs;
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) gameBoard.button_1Image.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(win.result));
             }
 
             if (arr[1].equals("l")) {
-                System.out.println("yaaraab");
-                Parent root = null;
                 ResultLogic lose = new ResultLogic("l");
-                root = lose.rs;
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) gameBoard.button_2Image.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(lose.result));
             }
 
             if (arr[1].equals("d")) {
-                System.out.println(arr[1]);
-                Parent root = null;
                 ResultLogic draw = new ResultLogic("l");
-                root = draw.rs;
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) gameBoard.button_2.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(draw.result));
             }
         }
 
@@ -172,12 +154,7 @@ public class OnlineGame {
         gameBoard.backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root = null;
-                root = new multiPlayerScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) gameBoard.backImageView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new multiPlayerScreen()));
             }
         });
     }
@@ -299,17 +276,17 @@ public class OnlineGame {
     public void setXorO(Button btn, ImageView iv) {
         if (turn % 2 == 0) {
             turn++;
-            //        Platform.runLater(() -> {
+            //       Platform.runLater(() -> {
             btn.setText("X");
             iv.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
-            //       });
+            //         });
         } else {
             turn++;
             try {
-                //        Platform.runLater(() -> {
+                //            Platform.runLater(() -> {
                 btn.setText("O");
                 iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
-                //       });
+                //           });
             } catch (Exception ex) {
 
             }
@@ -378,14 +355,8 @@ public class OnlineGame {
     }
 
     public void navigateToWinner(String player1, int player1Avatar, String player2, int player2avatar, char winnerChar) {
-        Parent root = null;
         ResultLogic win = new ResultLogic(player1, player1Avatar, player2, player2avatar, 1, sourceMode, winnerChar);
-        root = win.rs;
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) gameBoard.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-        //    TicTacToeJava.scene1.setRoot(win.rs);
+        TicTacToeJava.stage.setScene(new Scene(win.result));
     }
 
     public void TheWinner() {
@@ -399,14 +370,11 @@ public class OnlineGame {
             } else {
                 ClientSide.ps.println("2ndPlayer,w");
                 ResultLogic lose = new ResultLogic("l");
-                root = lose.rs;
+                root = lose.result;
 
             }
             //   navigateToWinner(Online.user1NameText.getText(), Online.player1Avatar, Online.user2NameText.getText(), Online.player2Avatar, 'x');
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) gameBoard.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            TicTacToeJava.stage.setScene(new Scene(root));
 //        } else if (oResult == 1) {
 //            clientSide.ps.println("2ndPlayer w");
 //         //   navigateToWinner(Online.user1NameText.getText(), Online.player1Avatar, Online.user2NameText.getText(), Online.player2Avatar, 'o');
@@ -423,11 +391,7 @@ public class OnlineGame {
             Parent root = null;
             //  ResultLogic draw = new ResultLogic(Online.user1NameText.getText(), Online.player1Avatar, Online.user2NameText.getText(), Online.player2Avatar, 0, sourceMode, 'd');
             ResultLogic draw = new ResultLogic("d");
-            root = draw.rs;
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) gameBoard.backImageView.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            TicTacToeJava.stage.setScene(new Scene(draw.result));
             //  TicTacToeJava.scene1.setRoot(draw.rs);
         }
     }

@@ -1,6 +1,5 @@
 package logic;
 
-
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import javafx.application.Platform;
@@ -11,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import tictactoe.java.SignInScreenBase;
+import tictactoe.java.TicTacToeJava;
 
 public class SignIn {
 
@@ -18,24 +18,24 @@ public class SignIn {
     static String profileDataArr = null;
     static ClientSide clientSide = ClientSide.getInstanse();
     Thread thread;
-    
+
     static SignIn signIn;
 
     String email;
     String password;
     String data = null;
-    String ip  = null;
+    String ip = null;
 
     public SignIn() {
         thread = new Thread(clientSide);
         thread.start();
-        
+
         signInScreenBase = new SignInScreenBase();
         clientSide = ClientSide.getInstanse();
         signIn = this;
-        
+
         try {
-           ip = Inet4Address.getLocalHost().getHostAddress();
+            ip = Inet4Address.getLocalHost().getHostAddress();
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }
@@ -78,17 +78,11 @@ public class SignIn {
         }
 
     }
-    
 
     void moveToOnlineListScreen() {
         Platform.runLater(() -> {
-            Parent root = null;
             OnlineList onlineList = new OnlineList(email);
-            root = onlineList.onlineListScreen;
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) signInScreenBase.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            TicTacToeJava.stage.setScene(new Scene(onlineList.onlineListScreen));
         });
     }
 

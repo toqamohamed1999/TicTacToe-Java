@@ -18,22 +18,18 @@ public class splashScreen extends AnchorPane {
         setPrefHeight(430.0);
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
-        navigateToHome(stage); 
+        navigateToHome(stage);
 
     }
 
     private void navigateToHome(Stage stage) {
-            Parent root = null;
-        root = new HomeScreen();
-        Scene scene = new Scene(root);
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    stage.setScene(scene);
-                    stage.show();
+                    TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
                     timer.cancel();
                 });
             }

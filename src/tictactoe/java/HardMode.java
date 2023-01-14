@@ -76,12 +76,7 @@ public class HardMode {
         board.backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root = null;
-                root = new HomeScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) board.backImageView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
             }
         });
     }
@@ -151,17 +146,15 @@ public class HardMode {
             root = new YouWinScreenBase(state, source, player, playerAvatar);
         } else {
             ResultLogic win = new ResultLogic(state, source, player, playerAvatar);
-            root = win.rs;
+            root = win.result;
         }
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) board.backImageView.getScene().getWindow();
+        final Parent root1 = root;
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    stage.setScene(scene);
-                    stage.show();
+                    TicTacToeJava.stage.setScene(new Scene(root1));
                     timer.cancel();
                 });
             }

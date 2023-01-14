@@ -1,13 +1,9 @@
 package logic;
 
-import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,17 +16,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import static logic.SignIn.profileDataArr;
-import tictactoe.java.GameBoard;
 import tictactoe.java.OnlineListScreen;
 import tictactoe.java.ProfileScreen;
-import tictactoe.java.SignInScreenBase;
 import tictactoe.java.TicTacToeJava;
 
 public class OnlineList {
 
     public OnlineListScreen onlineListScreen;
-    static OnlineList onlineList;
+    public static OnlineList onlineList;
     public ListView listView;
 
     String[] operationArr;
@@ -54,12 +47,11 @@ public class OnlineList {
         onItemClick();
         onProfileClick();
         setRefresh();
-
     }
     int secondPlayerIndex = -1;
     String secondPlayerIp = "";
 
-    void onItemClick() {
+    private void onItemClick() {
         listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -80,6 +72,7 @@ public class OnlineList {
             showRecieveDialog(operationArr[1], operationArr[2]);
         });
     }
+    Optional<ButtonType> result;
 
     void showRecieveDialog(String myIp, String secondIp) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -92,16 +85,16 @@ public class OnlineList {
         ButtonType button = result.orElse(ButtonType.CANCEL);
 
         if (button == ButtonType.OK) {
-            ClientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
-            System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-            moveToGameBoardScreen();
-
+               ClientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
+                System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
         } else {
             alert.close();
         }
+
     }
 
-    void getAllOnlineUsers() {
+
+    private void getAllOnlineUsers() {
         data = "getOnlineUsers," + ip;
         ClientSide.ps.println(data);
     }
@@ -151,22 +144,15 @@ public class OnlineList {
 
         Platform.runLater(new Runnable() {
             public void run() {
-                Parent root = null;
-                OnlineGame onlineGame = new OnlineGame("A", 1, "B", 2);
-                root = onlineGame.gameBoard;
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) onlineListScreen.getScene().getWindow();
-                stage.setScene(scene);
-                System.out.println("ya sater ya rabbbbbbbbbbbbbbbbbbbbb");
-                stage.show();
+               OnlineGame onlineGame = new OnlineGame("A", 1, "B", 2);
+               TicTacToeJava.stage.setScene(new Scene(onlineGame.gameBoard));
             }
         });
-        System.out.println("ya rabbbbbbbbbbbbbbbbb");
-
     }
+    
+      
 
-
-    void onProfileClick() {
+    private void onProfileClick() {
         onlineListScreen.profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -186,7 +172,7 @@ public class OnlineList {
         });
     }
 
-    void setRefresh() {
+    private void setRefresh() {
 
         onlineListScreen.refresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override

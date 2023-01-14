@@ -28,7 +28,6 @@ public class ProfileScreen extends AnchorPane {
     public final Text userNameText;
     protected final ImageView back;
     protected final ImageView logout;
-        
 
     public ProfileScreen(String profilData) {
 
@@ -123,14 +122,7 @@ public class ProfileScreen extends AnchorPane {
         recordsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                Parent root;
-                root = new RecordsListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) recordsButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-
+                TicTacToeJava.stage.setScene(new Scene(new RecordsListScreen()));
             }
         });
 
@@ -142,13 +134,7 @@ public class ProfileScreen extends AnchorPane {
         back.setPreserveRatio(true);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {
-
-            Parent root;
-            root = new HomeScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) back.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            TicTacToeJava.stage.setScene(new Scene(OnlineList.onlineList.onlineListScreen));
         });
 
         logout.setFitHeight(53.0);
@@ -161,12 +147,7 @@ public class ProfileScreen extends AnchorPane {
         logout.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root = null;
-                root = new SignInScreenBase();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) logout.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new SignInScreenBase()));
             }
         });
 
