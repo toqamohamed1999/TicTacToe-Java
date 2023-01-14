@@ -46,12 +46,13 @@ public class OnlineGame {
         buttonshandel();
 
     }
-     public OnlineGame(User user1,User user2) {
+
+    public OnlineGame(User user1, User user2) {
         onlineGame = this;
         yourTurn = true;
         turn = 2;
         counter = 0;
-      //  gameBoard = new GameBoard(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
+        //  gameBoard = new GameBoard(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
         sourceMode = 2;
         record();
         back();
@@ -288,17 +289,19 @@ public class OnlineGame {
     public void setXorO(Button btn, ImageView iv) {
         if (turn % 2 == 0) {
             turn++;
-            //       Platform.runLater(() -> {
-            btn.setText("X");
-            iv.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
-            //         });
+            Platform.setImplicitExit(false);
+            Platform.runLater(() -> {
+                btn.setText("X");
+                iv.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
+            });
         } else {
             turn++;
             try {
-                //            Platform.runLater(() -> {
-                btn.setText("O");
-                iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
-                //           });
+                Platform.setImplicitExit(false);
+                Platform.runLater(() -> {
+                    btn.setText("O");
+                    iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
+                });
             } catch (Exception ex) {
 
             }
