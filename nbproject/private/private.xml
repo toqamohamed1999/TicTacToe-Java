@@ -3,20 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/HardMode.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/RecordsListScreen.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/SignIn.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/recordLogic.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/OnlineGame.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/OnlineList.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/multiPlayerScreen.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/YouWinScreenBase.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/recordLogic.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/OnlineListScreen.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/GameBoard.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/ClientSide.java</file>
-            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/HomeScreen.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/ResultLogic.java</file>
+            <file>file:/D:/NetBeans/TicTacToe-Java/src/logic/SignUp.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/TicTacToeJava.java</file>
             <file>file:/D:/NetBeans/TicTacToe-Java/src/tictactoe/java/splashScreen.java</file>
-=======
-            <file>file:/E:/Java%20Project/Test/TicTacToe-Java/src/logic/OnlineList.java</file>
->>>>>>> 674a6ddedaee625b2b3fed07e3d041b5f1483266
         </group>
     </open-files>
 </project-private>

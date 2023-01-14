@@ -1,6 +1,5 @@
 package tictactoe.java;
 
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
@@ -25,7 +24,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.SignIn;
-
 
 public class SignUpScreenBase extends AnchorPane {
 
@@ -112,7 +110,6 @@ public class SignUpScreenBase extends AnchorPane {
         signUpButton.setText("Sign up");
         signUpButton.setTextFill(javafx.scene.paint.Color.RED);
         signUpButton.setFont(new Font("Impact", 26.0));
-    
 
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
@@ -171,7 +168,6 @@ public class SignUpScreenBase extends AnchorPane {
         passwordTextField.getStylesheets().add("/tictactoe/java/Styles.css");
         passwordTextField.setFont(new Font("Impact", 16.0));
         passwordTextField.setCursor(Cursor.TEXT);
- 
 
         AnchorPane.setBottomAnchor(confirmTextField, 182.0);
         AnchorPane.setRightAnchor(confirmTextField, 100.0);
@@ -182,7 +178,6 @@ public class SignUpScreenBase extends AnchorPane {
         confirmTextField.getStylesheets().add("/tictactoe/java/Styles.css");
         confirmTextField.setFont(new Font("Impact", 16.0));
         confirmTextField.setCursor(Cursor.TEXT);
-
 
         maleRadioButton.setLayoutX(228.0);
         maleRadioButton.setLayoutY(303.0);
@@ -259,20 +254,37 @@ public class SignUpScreenBase extends AnchorPane {
     public String getGender(ActionEvent actionEvent) {
         if (maleRadioButton.isSelected()) {
             return maleRadioButton.getText();
-        } if (femaleRadioButton.isSelected()) {
+        }
+        if (femaleRadioButton.isSelected()) {
             return femaleRadioButton.getText();
         } else {
             return "Not Selected";
         }
     }
-    
-    public boolean validEmail(String input){
-        // ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$
+
+    public boolean validEmail(String input) {
+        
         String emailRegex = "^.+@.+\\..+$";
-        Pattern emailPattern = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+        Pattern emailPattern = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPattern.matcher(input);
         return matcher.find();
-    
+
+    }
+
+    public static boolean validPassword(String password) {
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8,20}$";
+        
+        Pattern passwordPattern = Pattern.compile(regex);
+
+        if (password == null) {
+            return false;
+        }
+        Matcher m = passwordPattern.matcher(password);
+
+        return m.matches();
     }
 
 }
