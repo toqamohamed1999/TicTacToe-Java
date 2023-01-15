@@ -80,7 +80,9 @@ public class ClientSide implements Runnable {
                 || msg.contains("confirmRequest")) {
             OnlineList.onlineList.receiveOnlineList(msg);
         } else if (msg.contains("game")) {
+
             OnlineGame.onlineGame.doAction(msg);
+
         }
 
     }
