@@ -56,6 +56,7 @@ public class ClientSide implements Runnable {
                 if (dis != null) {
                     String textmessage = dis.readLine();
                     System.out.println("@@@@@@@@@@@" + textmessage);
+                    Platform.setImplicitExit(false);
                     Platform.runLater(() -> {
                         handleAction(textmessage);
                     });
