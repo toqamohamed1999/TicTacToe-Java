@@ -51,27 +51,19 @@ public class DisplayRecordScreen extends AnchorPane {
     public DisplayRecordScreen(String path) {
 
         //gridPane = new GridPane();
-  
         backImageView = new ImageView();
         logoImageView = new ImageView();
         youPlayedButton = new Button();
         xPlayedImageView = new ImageView();
         youPlayedText = new Text();
-        rec=new recordLogic();
-        
-        
+        rec = new recordLogic();
+
         setId("AnchorPane");
         setLayoutX(-1.0);
         setPrefHeight(430.0);
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
 
-//        gridPane.setGridLinesVisible(true);
-//        gridPane.setId("xoGridPane");
-//        gridPane.setLayoutX(165.0);
-//        gridPane.setLayoutY(140.0);
-//        gridPane.setPrefHeight(185.0);
-//        gridPane.setPrefWidth(280.0);
         button_1Image = new ImageView();
         button_2Image = new ImageView();
         button_3Image = new ImageView();
@@ -96,17 +88,13 @@ public class DisplayRecordScreen extends AnchorPane {
         backImageView.setLayoutX(30.0);
         backImageView.setLayoutY(21.0);
         backImageView.setPickOnBounds(true);
-        backImageView.setPreserveRatio(true);	
+        backImageView.setPreserveRatio(true);
         backImageView.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root=null;
-                root = new RecordsListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) backImageView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new RecordsListScreen()));
+
             }
         });
 
@@ -142,7 +130,7 @@ public class DisplayRecordScreen extends AnchorPane {
         youPlayedText.setText("You played This game as ");
         youPlayedText.setWrappingWidth(253.0000001192093);
         youPlayedText.setFont(new Font("Impact", 24.0));
-        
+
         button_1Image.setFitHeight(45.0);
         button_1Image.setFitWidth(40.0);
         button_1Image.setLayoutX(185.0);
@@ -213,10 +201,8 @@ public class DisplayRecordScreen extends AnchorPane {
         button_1.setPrefHeight(70.0);
         button_1.setPrefWidth(70.0);
         button_1.setCursor(Cursor.HAND);
-        button_1.setId(0+"");
-        
-        
-       
+        button_1.setId(0 + "");
+
         button_2.setLayoutX(265.0);
         button_2.setLayoutY(138.0);
         button_2.setMnemonicParsing(false);
@@ -224,9 +210,8 @@ public class DisplayRecordScreen extends AnchorPane {
         button_2.setPrefHeight(70.0);
         button_2.setPrefWidth(70.0);
         button_2.setCursor(Cursor.HAND);
-        button_2.setId(1+"");
+        button_2.setId(1 + "");
 
-        
         button_3.setLayoutX(359.0);
         button_3.setLayoutY(140.0);
         button_3.setMnemonicParsing(false);
@@ -234,7 +219,7 @@ public class DisplayRecordScreen extends AnchorPane {
         button_3.setPrefHeight(70.0);
         button_3.setPrefWidth(70.0);
         button_3.setCursor(Cursor.HAND);
-        button_3.setId(2+"");
+        button_3.setId(2 + "");
 
         button_4.setLayoutX(170.0);
         button_4.setLayoutY(212.0);
@@ -243,9 +228,8 @@ public class DisplayRecordScreen extends AnchorPane {
         button_4.setPrefHeight(70.0);
         button_4.setPrefWidth(70.0);
         button_4.setCursor(Cursor.HAND);
-        button_4.setId(3+"");
+        button_4.setId(3 + "");
 
-       
         button_5.setLayoutX(264.0);
         button_5.setLayoutY(212.0);
         button_5.setMnemonicParsing(false);
@@ -253,7 +237,7 @@ public class DisplayRecordScreen extends AnchorPane {
         button_5.setPrefHeight(70.0);
         button_5.setPrefWidth(70.0);
         button_5.setCursor(Cursor.HAND);
-        button_5.setId(4+"");
+        button_5.setId(4 + "");
 
         button_6.setLayoutX(358.0);
         button_6.setLayoutY(212.0);
@@ -262,8 +246,8 @@ public class DisplayRecordScreen extends AnchorPane {
         button_6.setPrefHeight(70.0);
         button_6.setPrefWidth(70.0);
         button_6.setCursor(Cursor.HAND);
-        button_6.setId(5+"");
-        
+        button_6.setId(5 + "");
+
         button_7.setLayoutX(170.0);
         button_7.setLayoutY(287.0);
         button_7.setMnemonicParsing(false);
@@ -271,9 +255,8 @@ public class DisplayRecordScreen extends AnchorPane {
         button_7.setPrefHeight(70.0);
         button_7.setPrefWidth(70.0);
         button_7.setCursor(Cursor.HAND);
-        button_7.setId(6+"");
+        button_7.setId(6 + "");
 
-        
         button_8.setLayoutX(265.0);
         button_8.setLayoutY(284.0);
         button_8.setMnemonicParsing(false);
@@ -281,8 +264,8 @@ public class DisplayRecordScreen extends AnchorPane {
         button_8.setPrefHeight(70.0);
         button_8.setPrefWidth(70.0);
         button_8.setCursor(Cursor.HAND);
-        button_8.setId(7+"");
- 
+        button_8.setId(7 + "");
+
         button_9.setLayoutX(359.0);
         button_9.setLayoutY(284.0);
         button_9.setMnemonicParsing(false);
@@ -290,9 +273,8 @@ public class DisplayRecordScreen extends AnchorPane {
         button_9.setPrefHeight(70.0);
         button_9.setPrefWidth(70.0);
         button_9.setCursor(Cursor.HAND);
-        button_9.setId(8+"");
-        
-            
+        button_9.setId(8 + "");
+
 //        gridPane.setStyle("-fx-padding: 0;"
 //                + "-fx-border-style: solid inside;"
 //                + "-fx-border-width: 10;"
@@ -305,51 +287,48 @@ public class DisplayRecordScreen extends AnchorPane {
 //        ImageView imageView9 = new ImageView(image);
 //        gridPane.add(imageView9, 0, 0, 1, 1);
 //        GridPane.setHalignment(imageView9, HPos.CENTER);
-        
-        List<String> gameSteps=rec.readFile(path);
+        List<String> gameSteps = rec.readFile(path);
         System.out.println(gameSteps.size());
-        for(int i=0;i<gameSteps.size()-1;i++){
-            String[] arr=gameSteps.get(i).split(",");
-            String src=null;
-            if(arr[0].equals("X")){
-                src="/res/X.png";
+        for (int i = 0; i < gameSteps.size() - 1; i++) {
+            String[] arr = gameSteps.get(i).split(",");
+            String src = null;
+            if (arr[0].equals("X")) {
+                src = "/res/X.png";
+            } else if (arr[0].equals("O")) {
+                src = "/res/O.png";
             }
-            else if(arr[0].equals("O")){
-                src="/res/O.png";
-            }
-            switch(arr[1]){
+            switch (arr[1]) {
                 case "1":
-                button_1Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_1Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "2":
-                button_2Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_2Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "3":
-                button_3Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_3Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "4":
-                button_4Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_4Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "5":
-                button_5Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_5Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "6":
-                button_6Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_6Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "7":
-                button_7Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_7Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "8":
-                button_8Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_8Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
                 case "9":
-                button_9Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                    button_9Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
                     break;
-                    
+
             }
         }
 
-        
         //getChildren().add(gridPane);
         getChildren().add(backImageView);
         getChildren().add(logoImageView);
@@ -376,5 +355,5 @@ public class DisplayRecordScreen extends AnchorPane {
         getChildren().add(button_9);
 
     }
-    
+
 }

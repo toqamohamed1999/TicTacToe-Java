@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import tictactoe.java.TicTacToeJava;
 
 public class SignUp {
 
@@ -83,13 +84,8 @@ public class SignUp {
 
     void moveToOnlineListScreen() {
         Platform.runLater(() -> {
-            Parent root = null;
             OnlineList onlineList = new OnlineList(email);
-            root = onlineList.onlineListScreen;
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) signUpScreenBase.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            TicTacToeJava.stage.setScene(new Scene(onlineList.onlineListScreen));
         });
     }
 

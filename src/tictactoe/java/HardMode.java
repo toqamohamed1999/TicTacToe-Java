@@ -3,6 +3,7 @@ package tictactoe.java;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -76,12 +78,8 @@ public class HardMode {
         board.backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root = null;
-                root = new HomeScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) board.backImageView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                showAlert();
+                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
             }
         });
     }
@@ -151,17 +149,15 @@ public class HardMode {
             root = new YouWinScreenBase(state, source, player, playerAvatar);
         } else {
             ResultLogic win = new ResultLogic(state, source, player, playerAvatar);
-            root = win.rs;
+            root = win.result;
         }
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) board.backImageView.getScene().getWindow();
+        final Parent root1 = root;
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    stage.setScene(scene);
-                    stage.show();
+                    TicTacToeJava.stage.setScene(new Scene(root1));
                     timer.cancel();
                 });
             }
@@ -287,5 +283,24 @@ public class HardMode {
     public boolean haveTheSameValueAndNotEmpty(Button x, Button y, Button z) {
         return x.getText().equals(y.getText()) && x.getText().equals(z.getText()) && !(x.getText().equals(""));
     }
+    
+    
+      public void showAlert() {
+       
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Exit!");
+            alert.setHeaderText("If you exit the game you will lose.");        
+
+            Optional<ButtonType> result = alert.showAndWait();
+            ButtonType button = result.orElse(ButtonType.CANCEL);
+            
+             if (button == ButtonType.OK) {
+                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
+            } else {
+                alert.close();
+            }           
+          
+        }
+    
 
 }

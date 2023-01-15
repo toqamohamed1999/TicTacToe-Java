@@ -90,19 +90,6 @@ public class SignInScreenBase extends AnchorPane {
         signInButton.setText("Sign In");
         signInButton.setTextFill(javafx.scene.paint.Color.RED);
         signInButton.setFont(new Font("Impact", 26.0));
-        signInButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-     /*     
-             Parent root = null;
-                root = new OnlineListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) signInButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-*/
-            }
-        });
 
         dropShadow.setBlurType(javafx.scene.effect.BlurType.ONE_PASS_BOX);
         dropShadow.setColor(javafx.scene.paint.Color.WHITE);
@@ -126,14 +113,8 @@ public class SignInScreenBase extends AnchorPane {
         signUpHyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-             Parent root=null;
-             SignUp signUp= new SignUp();
-             root = signUp.signUpScreenBase;
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) signUpHyperLink.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                SignUp signUp = new SignUp();
+                TicTacToeJava.stage.setScene(new Scene(signUp.signUpScreenBase));
             }
         });
 

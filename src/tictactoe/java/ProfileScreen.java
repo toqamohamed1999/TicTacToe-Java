@@ -125,14 +125,6 @@ public class ProfileScreen extends AnchorPane {
         recordsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                Parent root;
-                root = new RecordsListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) recordsButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-
             }
         });
 
@@ -144,13 +136,7 @@ public class ProfileScreen extends AnchorPane {
         back.setPreserveRatio(true);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {
-
-            Parent root;
-            root = new HomeScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) back.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            TicTacToeJava.stage.setScene(new Scene(OnlineList.onlineList.onlineListScreen));
         });
 
         logout.setFitHeight(53.0);
@@ -187,21 +173,20 @@ public class ProfileScreen extends AnchorPane {
     }
 
     public void showAlart() {
-        Platform.runLater(() -> {
+       
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Logout!");
-            alert.setHeaderText("Do you want to logout.");
-            alert.show();
+            alert.setHeaderText("Do you want to logout.");        
+
             Optional<ButtonType> result = alert.showAndWait();
             ButtonType button = result.orElse(ButtonType.CANCEL);
-
-            if (button == ButtonType.OK) {
-                System.out.println("Ok pressed");
+            
+             if (button == ButtonType.OK) {
+                TicTacToeJava.stage.setScene(new Scene(new SignInScreenBase()));
             } else {
                 alert.close();
-            }
+            }           
+          
+        }
 
-           });
     }
-
-}

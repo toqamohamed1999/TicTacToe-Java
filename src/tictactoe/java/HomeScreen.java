@@ -82,22 +82,21 @@ public class HomeScreen extends AnchorPane {
         errorMassagePane = new Pane();
         enterYourNameLabel = new Label();
         okButton = new Button();
-        playerAvatar=0;
-        selected=false;
-        selectedLevel=null;
+        playerAvatar = 0;
+        selected = false;
+        selectedLevel = null;
 
         setId("HomeAnchorPane");
         setPrefHeight(430.0);
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
-        
+
 //        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 //            @Override
 //            public void handle(WindowEvent event) {
 //                System.exit(0);
 //            }
 //        });
-
         profilePic.setFitHeight(57.0);
         profilePic.setFitWidth(66.0);
         profilePic.setLayoutX(520.0);
@@ -105,16 +104,11 @@ public class HomeScreen extends AnchorPane {
         profilePic.setPickOnBounds(true);
         profilePic.setPreserveRatio(true);
         profilePic.setImage(new Image(getClass().getResource("/res/record.png").toExternalForm()));
-        profilePic.setCursor(Cursor.HAND);profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        profilePic.setCursor(Cursor.HAND);
+        profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-             Parent root=null;
-                root = new RecordsListScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) profilePic.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new RecordsListScreen()));
             }
         });
 
@@ -136,13 +130,7 @@ public class HomeScreen extends AnchorPane {
         multiPlayerCirle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-             Parent root=null;
-                root = new multiPlayerScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) multiPlayerCirle.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new multiPlayerScreen()));
             }
         });
 
@@ -157,13 +145,7 @@ public class HomeScreen extends AnchorPane {
         multiPlayerImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-          
-                Parent root=null;
-                root = new multiPlayerScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) multiPlayerImage.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new multiPlayerScreen()));
             }
         });
 
@@ -192,7 +174,7 @@ public class HomeScreen extends AnchorPane {
         singlePlayerImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                showDifficultyChoices(); 
+                showDifficultyChoices();
             }
         });
 
@@ -207,10 +189,10 @@ public class HomeScreen extends AnchorPane {
         singlePlayerButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showDifficultyChoices(); 
-            }        
+                showDifficultyChoices();
+            }
         });
-        
+
         multiPlayerButton.setLayoutX(335.0);
         multiPlayerButton.setLayoutY(259.0);
         multiPlayerButton.setMnemonicParsing(false);
@@ -222,13 +204,7 @@ public class HomeScreen extends AnchorPane {
         multiPlayerButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-          
-             Parent root=null;
-                root = new multiPlayerScreen() {};
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) multiPlayerButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new multiPlayerScreen()));
             }
         });
 
@@ -253,9 +229,9 @@ public class HomeScreen extends AnchorPane {
         easyButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                selectedLevel="easy";
+                selectedLevel = "easy";
                 showAvatarSelectionPanel();
-            }   
+            }
         });
 
         mediumButton.setLayoutX(251.0);
@@ -268,12 +244,12 @@ public class HomeScreen extends AnchorPane {
         mediumButton.setVisible(false);
         mediumButton.setFont(new Font("Impact", 16.0));
         mediumButton.setCursor(Cursor.HAND);
-                mediumButton.setOnAction(new EventHandler<ActionEvent>() {
+        mediumButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                selectedLevel="medium";
+                selectedLevel = "medium";
                 showAvatarSelectionPanel();
-            }           
+            }
         });
 
         hardButton.setLayoutX(380.0);
@@ -289,9 +265,9 @@ public class HomeScreen extends AnchorPane {
         hardButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                selectedLevel="hard";
+                selectedLevel = "hard";
                 showAvatarSelectionPanel();
-            } 
+            }
         });
 
         levelSelectionHeader.setLayoutX(189.0);
@@ -313,9 +289,9 @@ public class HomeScreen extends AnchorPane {
         backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               hideDifficultyChoices();
+                hideDifficultyChoices();
             }
-            
+
         });
 
         mediumImage.setFitHeight(102.0);
@@ -330,9 +306,9 @@ public class HomeScreen extends AnchorPane {
         mediumImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                selectedLevel="medium";
-               showAvatarSelectionPanel();
-            }  
+                selectedLevel = "medium";
+                showAvatarSelectionPanel();
+            }
         });
 
         hardImage.setFitHeight(102.0);
@@ -347,9 +323,9 @@ public class HomeScreen extends AnchorPane {
         hardImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                selectedLevel="hard";
-               showAvatarSelectionPanel();
-            }  
+                selectedLevel = "hard";
+                showAvatarSelectionPanel();
+            }
         });
 
         easyImage.setFitHeight(81029.0);
@@ -364,9 +340,9 @@ public class HomeScreen extends AnchorPane {
         easyImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                selectedLevel="easy";
-               showAvatarSelectionPanel();
-            }  
+                selectedLevel = "easy";
+                showAvatarSelectionPanel();
+            }
         });
 
         avatarSelectionPane.setId("avatarSelectionLayerSinglePlayer");
@@ -412,13 +388,12 @@ public class HomeScreen extends AnchorPane {
             public void handle(MouseEvent event) {
                 maleAvatarImage.setFitHeight(117.0);
                 maleAvatarImage.setFitWidth(105.0);
-                playerAvatar=1;
+                playerAvatar = 1;
                 femaleAvatarImage.setFitHeight(99.0);
                 femaleAvatarImage.setFitWidth(102.0);
-                selected=true;
-            }  
+                selected = true;
+            }
         });
-
 
         femaleAvatarImage.setFitHeight(99.0);
         femaleAvatarImage.setFitWidth(102.0);
@@ -434,11 +409,11 @@ public class HomeScreen extends AnchorPane {
             public void handle(MouseEvent event) {
                 femaleAvatarImage.setFitHeight(102.0);
                 femaleAvatarImage.setFitWidth(105.0);
-                playerAvatar=2;
+                playerAvatar = 2;
                 maleAvatarImage.setFitHeight(114.0);
                 maleAvatarImage.setFitWidth(102.0);
-                selected=true;
-            }  
+                selected = true;
+            }
         });
 
         avatarSelectionbackButton.setFitHeight(44.0);
@@ -453,9 +428,9 @@ public class HomeScreen extends AnchorPane {
         avatarSelectionbackButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               hideAvatarSelectionPanel();
+                hideAvatarSelectionPanel();
             }
-            
+
         });
 
         singlePlayerEnterGameButton.setLayoutX(240.0);
@@ -469,33 +444,29 @@ public class HomeScreen extends AnchorPane {
         singlePlayerEnterGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(userNameTextField.getText().equals("")||selected==false){
-                    if(selected==false)enterYourNameLabel.setText("Please select Your avatar pic");
-                    else enterYourNameLabel.setText("Please Enter Your Name First");
+                if (userNameTextField.getText().equals("") || selected == false) {
+                    if (selected == false) {
+                        enterYourNameLabel.setText("Please select Your avatar pic");
+                    } else {
+                        enterYourNameLabel.setText("Please Enter Your Name First");
+                    }
                     showErrorMassage();
-                }
-                else{
-                    
-                    Parent root=null;
-                    selected=false;
-                    if(selectedLevel.equals("hard")){
-                        HardMode hardMode = new HardMode(userNameTextField.getText(),playerAvatar,"Hard bot",5);
-                        root = hardMode.board;
-                        }
-                    else if(selectedLevel.equals("easy")){
-                        EasyMode easyMode = new EasyMode(userNameTextField.getText(),playerAvatar,"Easy bot",3);
-                        root = easyMode.board;
-                        }
-                    
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) singlePlayerEnterGameButton.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
+                } else {
+                    selected = false;
+                    if (selectedLevel.equals("hard")) {
+                        HardMode hardMode = new HardMode(userNameTextField.getText(), playerAvatar, "Hard bot", 5);
+                        TicTacToeJava.stage.setScene(new Scene(hardMode.board));
+
+                    } else if (selectedLevel.equals("easy")) {
+                        EasyMode easyMode = new EasyMode(userNameTextField.getText(), playerAvatar, "Easy bot", 3);
+                        TicTacToeJava.stage.setScene(new Scene(easyMode.board));
+
+                    }
                 }
             }
-            
+
         });
-        
+
         errorMassagePane.setId("errorMassagePane");
         errorMassagePane.setLayoutX(161.0);
         errorMassagePane.setLayoutY(182.0);
@@ -522,7 +493,7 @@ public class HomeScreen extends AnchorPane {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                    hideErrorMassage();
+                hideErrorMassage();
             }
         });
 
@@ -556,8 +527,8 @@ public class HomeScreen extends AnchorPane {
         getChildren().add(okButton);
 
     }
-    
-    void showDifficultyChoices(){
+
+    void showDifficultyChoices() {
         levelSelectionPane.setVisible(true);
         easyButton.setVisible(true);
         easyImage.setVisible(true);
@@ -569,8 +540,8 @@ public class HomeScreen extends AnchorPane {
         backButton.setVisible(true);
     }
 
-    void hideDifficultyChoices(){
-        
+    void hideDifficultyChoices() {
+
         levelSelectionPane.setVisible(false);
         easyButton.setVisible(false);
         easyImage.setVisible(false);
@@ -581,8 +552,8 @@ public class HomeScreen extends AnchorPane {
         levelSelectionHeader.setVisible(false);
         backButton.setVisible(false);
     }
-    
-    void showAvatarSelectionPanel(){
+
+    void showAvatarSelectionPanel() {
         avatarSelectionPane.setVisible(true);
         AvatarSelectionHeader.setVisible(true);
         enterNameLabel.setVisible(true);
@@ -592,8 +563,8 @@ public class HomeScreen extends AnchorPane {
         avatarSelectionbackButton.setVisible(true);
         singlePlayerEnterGameButton.setVisible(true);
     }
-    
-    void hideAvatarSelectionPanel(){
+
+    void hideAvatarSelectionPanel() {
         avatarSelectionPane.setVisible(false);
         AvatarSelectionHeader.setVisible(false);
         enterNameLabel.setVisible(false);
@@ -603,15 +574,14 @@ public class HomeScreen extends AnchorPane {
         avatarSelectionbackButton.setVisible(false);
         singlePlayerEnterGameButton.setVisible(false);
     }
-    
-    void showErrorMassage(){
+
+    void showErrorMassage() {
         errorMassagePane.setVisible(true);
         enterYourNameLabel.setVisible(true);
         okButton.setVisible(true);
     }
-    
-    
-    void hideErrorMassage(){
+
+    void hideErrorMassage() {
         errorMassagePane.setVisible(false);
         enterYourNameLabel.setVisible(false);
         okButton.setVisible(false);

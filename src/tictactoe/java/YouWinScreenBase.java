@@ -70,19 +70,15 @@ public class YouWinScreenBase extends BorderPane {
     }
     
     private void navigateToResult(String state ,int source, String player, int playerAvatar) {
-        Parent root = null;
         ResultLogic win = new ResultLogic(state,source,player,playerAvatar); 
-        root = win.rs;
-        Scene scene = new Scene(root);
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    Stage stage = (Stage) YouWinMediaView.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
+                TicTacToeJava.stage.setScene(new Scene(win.result));
+
                     timer.cancel();
                 });
             }
@@ -90,19 +86,15 @@ public class YouWinScreenBase extends BorderPane {
     }
     
      private void navigateToResult() {
-        Parent root = null;
         ResultLogic win = new ResultLogic("w"); 
-        root = win.rs;
-        Scene scene = new Scene(root);
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    Stage stage = (Stage) YouWinMediaView.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
+                TicTacToeJava.stage.setScene(new Scene(win.result));
+
                     timer.cancel();
                 });
             }

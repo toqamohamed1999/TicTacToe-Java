@@ -3,6 +3,7 @@ package tictactoe.java;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -49,13 +51,13 @@ public class EasyMode {
     recordLogic rec;
     String fileName;
 
-    public EasyMode(String playerOneName, int playerOneAvatarNumber , String playerTwoName ,int playerTwoAvatarNumber ) {
+    public EasyMode(String playerOneName, int playerOneAvatarNumber, String playerTwoName, int playerTwoAvatarNumber) {
         board = new GameBoard(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
         record();
         back();
         addButtonstoArray();
         play();
-        sourceMode=1;
+        sourceMode = 1;
     }
 
     public void record() {
@@ -64,7 +66,7 @@ public class EasyMode {
             public void handle(ActionEvent event) {
                 board.recordIndicatorImageView.setVisible(true);
                 board.recordIndicatorButton.setVisible(true);
-                rec=new recordLogic();
+                rec = new recordLogic();
                 fileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Calendar.getInstance().getTime());
                 rec.createFile(fileName);
             }
@@ -75,12 +77,7 @@ public class EasyMode {
         board.backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Parent root = null;
-                root = new HomeScreen();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) board.backImageView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                showAlart();
             }
         });
     }
@@ -129,30 +126,30 @@ public class EasyMode {
                             //proceed
                             if (activePlayer == 1) {
 
-                    //            currentBtn.setGraphic(new ImageView(new Image("/res/X.png", 40, 40, true, true)));
+                                //            currentBtn.setGraphic(new ImageView(new Image("/res/X.png", 40, 40, true, true)));
                                 images[btnId].setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
                                 gameState[btnId] = activePlayer;
                                 checkForWinner();
                                 activePlayer = 0;
-                                if(fileName!=null){
+                                if (fileName != null) {
                                     btnId++;
-                                    rec.writeFile("X,"+btnId, fileName);
-                                   }
+                                    rec.writeFile("X," + btnId, fileName);
+                                }
 
                                 for (int i = 0; i < gameState.length; i++) {
 
                                     if (gameState[i] == 3 && !gameOver) {
-                      //                  currentBtn = btns[i];
-                     //                   currentBtn.setGraphic(new ImageView(new Image("/res/O.png", 40, 40, true, true)));
+                                        //                  currentBtn = btns[i];
+                                        //                   currentBtn.setGraphic(new ImageView(new Image("/res/O.png", 40, 40, true, true)));
                                         images[i].setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
                                         gameState[i] = activePlayer;
                                         checkForWinner();
                                         activePlayer = 1;
-                                        
-                                        if(fileName!=null){
+
+                                        if (fileName != null) {
                                             btnId++;
-                                            rec.writeFile("O,"+btnId, fileName);
-                                           }
+                                            rec.writeFile("O," + btnId, fileName);
+                                        }
                                         break;
 
                                     }
@@ -189,13 +186,16 @@ public class EasyMode {
                 for (int wp[] : winingPosition) {
                     if (gameState[wp[0]] == gameState[wp[1]] && gameState[wp[1]] == gameState[wp[2]] && gameState[wp[1]] != 3) {
                         // activePlayer has winner
-                        if(activePlayer==1)navigateToWinner("w");
-                        else navigateToWinner("l");
-                   //     btns[wp[0]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                   //     btns[wp[1]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                   //     btns[wp[2]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
+                        if (activePlayer == 1) {
+                            navigateToWinner("w");
+                        } else {
+                            navigateToWinner("l");
+                        }
+                        //     btns[wp[0]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
+                        //     btns[wp[1]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
+                        //     btns[wp[2]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
                         //   btns[wp[2]].setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-                      //  alert.show();
+                        //  alert.show();
                         gameOver = true;
                         break;
                     }
@@ -207,26 +207,42 @@ public class EasyMode {
 
     private void navigateToWinner(String s) {
         Parent root = null;
-        if(s.equals("w"))root = new YouWinScreenBase(s,1,board.user1NameText.getText(),board.player1Avatar);
-        else{
-        ResultLogic win = new ResultLogic(s,1,board.user1NameText.getText(),board.player1Avatar); 
-        root = win.rs;
+        if (s.equals("w")) {
+            root = new YouWinScreenBase(s, 1, board.user1NameText.getText(), board.player1Avatar);
+        } else {
+            ResultLogic win = new ResultLogic(s, 1, board.user1NameText.getText(), board.player1Avatar);
+            root = win.result;
         }
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) board.backImageView.getScene().getWindow();
-
+        final Parent root1 = root;
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    stage.setScene(scene);
-                    stage.show();
+                    TicTacToeJava.stage.setScene(new Scene(root1));
                     timer.cancel();
                 });
             }
         }, 1000, 1000);
-       
+
+    }
+
+    public void showAlart() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit!");
+        alert.setHeaderText("If you exit the game you will lose.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+
+        if (button == ButtonType.OK) {
+            TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
+
+        } else {
+            alert.close();
+
+        }
 
     }
 

@@ -48,22 +48,7 @@ public class OnlineListScreen extends AnchorPane {
         onlineListView.setLayoutY(123.0);
         onlineListView.setPrefHeight(266.0);
         onlineListView.setPrefWidth(204.0);
-        /*  for (int i = 1; i <= 20; i++) {
-            onlineListView.getItems().add("User " + i);
-        }
 
-        onlineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Parent root;
-                root = new GameBoard("A", 1, "A", 2);
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) onlineListView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
-         */
         back.setFitHeight(53.0);
         back.setFitWidth(50.0);
         back.setLayoutX(30.0);
@@ -72,12 +57,7 @@ public class OnlineListScreen extends AnchorPane {
         back.setPreserveRatio(true);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {
-            Parent root;
-            root = new HomeScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) back.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
         });
         refresh.setLayoutX(420.0);
         refresh.setLayoutY(360.0);

@@ -133,14 +133,8 @@ public class SignUpScreenBase extends AnchorPane {
         signInHyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
-                Parent root = null;
                 SignIn signIn = new SignIn();
-                root = signIn.signInScreenBase;
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) signInHyperLink.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                TicTacToeJava.stage.setScene(new Scene(signIn.signInScreenBase));
             }
         });
 
@@ -223,12 +217,8 @@ public class SignUpScreenBase extends AnchorPane {
         backButton.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         backButton.setCursor(Cursor.HAND);
         backButton.setOnMouseClicked((MouseEvent e) -> {
-            Parent root;
-            root = new multiPlayerScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            TicTacToeJava.stage.setScene(new Scene(new multiPlayerScreen()));
+
         });
         getStylesheets().add("/tictactoe/java/Styles.css");
 
@@ -263,11 +253,12 @@ public class SignUpScreenBase extends AnchorPane {
     }
 
     public boolean validEmail(String input) {
-        
+
         String emailRegex = "^.+@.+\\..+$";
         Pattern emailPattern = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPattern.matcher(input);
         return matcher.find();
+
 
     }
 
@@ -285,6 +276,7 @@ public class SignUpScreenBase extends AnchorPane {
         Matcher m = passwordPattern.matcher(password);
 
         return m.matches();
+
     }
 
 }

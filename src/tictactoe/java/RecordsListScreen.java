@@ -26,7 +26,7 @@ public class RecordsListScreen extends AnchorPane {
         recordListLabel = new Label();
         recordListView = new ListView();
         back = new ImageView();
-        rec=new recordLogic();
+        rec = new recordLogic();
 
         setId("AnchorPane");
         setPrefHeight(430.0);
@@ -46,25 +46,19 @@ public class RecordsListScreen extends AnchorPane {
         recordListView.setPrefHeight(266.0);
         recordListView.setPrefWidth(250.0);
         String path = "C:" + File.separator + "TicTacToe";
-        String records[]=rec.getAllFiles(path);
-        if(records!=null){
-            for(int i =0;i<records.length;i++ ) {
+        String records[] = rec.getAllFiles(path);
+        if (records != null) {
+            for (int i = 0; i < records.length; i++) {
                 recordListView.getItems().add(records[i]);
             }
         }
-        
+
         recordListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("clicked on " + recordListView.getSelectionModel().getSelectedItem());
-                
-                Parent root=null;
-                String path = "C:" + File.separator + "TicTacToe" +File.separator+recordListView.getSelectionModel().getSelectedItem();
-                root = new DisplayRecordScreen(path);
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) recordListView.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                String path = "C:" + File.separator + "TicTacToe" + File.separator + recordListView.getSelectionModel().getSelectedItem();
+                TicTacToeJava.stage.setScene(new Scene(new DisplayRecordScreen(path)));
+
             }
         });
 
@@ -75,13 +69,8 @@ public class RecordsListScreen extends AnchorPane {
         back.setPickOnBounds(true);
         back.setPreserveRatio(true);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
-        back.setOnMouseClicked((MouseEvent e) -> {     
-            Parent root;
-            root = new HomeScreen();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) back.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+        back.setOnMouseClicked((MouseEvent e) -> {
+            TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
         });
 
         getChildren().add(recordListLabel);
