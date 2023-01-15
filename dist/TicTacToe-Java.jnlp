@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="TicTacToe-Java.jar" size="21571845" download="eager" />
+=======
+    <jar href="TicTacToe-Java.jar" size="21584475" download="eager" />
+>>>>>>> 36ad4a5cb46480b55280373421b2fa45ad8158aa
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="TicTacToe-Java" >
     <param name="requiredFXVersion" value="8.0+"/>

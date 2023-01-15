@@ -120,7 +120,7 @@ public class multiPlayerScreen extends AnchorPane {
         profilePic.setLayoutY(21.0);
         profilePic.setPickOnBounds(true);
         profilePic.setPreserveRatio(true);
-        profilePic.setImage(new Image(getClass().getResource("/res/record.png").toExternalForm()));
+        profilePic.setImage(new Image(getClass().getResource("/res/recordimage.jpg").toExternalForm()));
         profilePic.setCursor(Cursor.HAND);
         profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

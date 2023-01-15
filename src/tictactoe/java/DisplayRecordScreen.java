@@ -1,6 +1,9 @@
 package tictactoe.java;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -275,59 +278,62 @@ public class DisplayRecordScreen extends AnchorPane {
         button_9.setCursor(Cursor.HAND);
         button_9.setId(8 + "");
 
-//        gridPane.setStyle("-fx-padding: 0;"
-//                + "-fx-border-style: solid inside;"
-//                + "-fx-border-width: 10;"
-//                + "-fx-border-insets: 0;"
-//                + "-fx-border-radius: 5;"
-//                + "-fx-border-color: blue;");
-//        gridPane.getStyleClass().add("mygridStyle");
-//
-//        Image image = new Image(getClass().getResourceAsStream("/res/X.png"), 35, 35, true, true);
-//        ImageView imageView9 = new ImageView(image);
-//        gridPane.add(imageView9, 0, 0, 1, 1);
-//        GridPane.setHalignment(imageView9, HPos.CENTER);
         List<String> gameSteps = rec.readFile(path);
         System.out.println(gameSteps.size());
-        for (int i = 0; i < gameSteps.size() - 1; i++) {
-            String[] arr = gameSteps.get(i).split(",");
-            String src = null;
-            if (arr[0].equals("X")) {
-                src = "/res/X.png";
-            } else if (arr[0].equals("O")) {
-                src = "/res/O.png";
-            }
-            switch (arr[1]) {
-                case "1":
-                    button_1Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "2":
-                    button_2Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "3":
-                    button_3Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "4":
-                    button_4Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "5":
-                    button_5Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "6":
-                    button_6Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "7":
-                    button_7Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "8":
-                    button_8Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
-                case "9":
-                    button_9Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
-                    break;
+        new Thread() {
+            @Override
+            public void run() {
+                for (int i = 0; i < gameSteps.size() - 1; i++) {
+                    String[] arr = gameSteps.get(i).split(",");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            String src = null;
+                            if (arr[0].equals("X")) {
+                                src = "/res/X.png";
+                            } else if (arr[0].equals("O")) {
+                                src = "/res/O.png";
+                            }
+                            switch (arr[1]) {
+                                case "1":
+                                    button_1Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "2":
+                                    button_2Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "3":
+                                    button_3Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "4":
+                                    button_4Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "5":
+                                    button_5Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "6":
+                                    button_6Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "7":
+                                    button_7Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "8":
+                                    button_8Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                                case "9":
+                                    button_9Image.setImage(new Image(getClass().getResource(src).toExternalForm()));
+                                    break;
+                            }
+                        }
+                    });
 
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(DisplayRecordScreen.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
-        }
+        }.start();
 
         //getChildren().add(gridPane);
         getChildren().add(backImageView);
