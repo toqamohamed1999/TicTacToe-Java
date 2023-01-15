@@ -14,6 +14,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import static logic.SignIn.profileDataArr;
@@ -26,18 +27,17 @@ public class ClientSide implements Runnable {
     DataInputStream dis;
     static PrintStream ps;
     String textmessage = "";
-   // Thread thread;
+    // Thread thread;
 
     private ClientSide() {
-   //     thread = new Thread(this);
-   //     thread.start();
+        //     thread = new Thread(this);
+        //     thread.start();
 
         try {
             clientSocket = new Socket(InetAddress.getLocalHost(), 5005);
             dis = new DataInputStream(clientSocket.getInputStream());
             ps = new PrintStream(clientSocket.getOutputStream());
-        }
-        catch (SocketException ex) {
+        } catch (SocketException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -56,9 +56,9 @@ public class ClientSide implements Runnable {
                 if (dis != null) {
                     String textmessage = dis.readLine();
                     System.out.println("@@@@@@@@@@@" + textmessage);
-
-                    handleAction(textmessage);
-
+                    Platform.runLater(() -> {
+                        handleAction(textmessage);
+                    });
                     if (textmessage.contains("profileData")) {
                         profileDataArr = textmessage;
                     }
@@ -73,19 +73,14 @@ public class ClientSide implements Runnable {
     void handleAction(String msg) {
         if (msg.endsWith("signInVerified") || msg.equals("signInNotVerified")) {
             SignIn.signIn.doAction(msg);
-        }
-        else if (msg.endsWith("signUpVerified") || msg.equals("signUpNotVerified")) {
+        } else if (msg.endsWith("signUpVerified") || msg.equals("signUpNotVerified")) {
             SignUp.signUp.doAction(msg);
-        }
-         else if (msg.contains("sendAllUsers") || msg.contains("recieveRequest")
-                 || msg.contains("confirmRequest")) {
+        } else if (msg.contains("sendAllUsers") || msg.contains("recieveRequest")
+                || msg.contains("confirmRequest")) {
             OnlineList.onlineList.receiveOnlineList(msg);
-        }
-        else if (msg.contains("game") ) {
+        } else if (msg.contains("game")) {
             OnlineGame.onlineGame.doAction(msg);
         }
-        
-         
 
     }
 

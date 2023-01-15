@@ -133,7 +133,7 @@ public class OnlineList {
         user.setUserName(operationArr[2]);
         user.setEmail(operationArr[3]);
         user.setGender(operationArr[4]);
-        //user.setScore(Integer.valueOf(operationArr[5]));
+        user.setScore(Integer.valueOf(operationArr[5]));
         usersList.add(user);
     }
 
@@ -149,7 +149,7 @@ public class OnlineList {
 //        second.setGender("female");
 //        second.setScore(20);
 //        second.setUserName("aml");
-        //   System.out.println("second user = " + secondUser.toString());
+//        //   System.out.println("second user = " + secondUser.toString());
 
         Platform.runLater(new Runnable() {
             public void run() {
