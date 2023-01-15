@@ -1,11 +1,14 @@
 package tictactoe.java;
 
+import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -122,7 +125,6 @@ public class ProfileScreen extends AnchorPane {
         recordsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                TicTacToeJava.stage.setScene(new Scene(new RecordsListScreen()));
             }
         });
 
@@ -147,7 +149,7 @@ public class ProfileScreen extends AnchorPane {
         logout.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                TicTacToeJava.stage.setScene(new Scene(new SignInScreenBase()));
+                showAlart();
             }
         });
 
@@ -169,4 +171,22 @@ public class ProfileScreen extends AnchorPane {
     public void divideMessage(String operation) {
         profileArr = operation.split(",");
     }
-}
+
+    public void showAlart() {
+       
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout!");
+            alert.setHeaderText("Do you want to logout.");        
+
+            Optional<ButtonType> result = alert.showAndWait();
+            ButtonType button = result.orElse(ButtonType.CANCEL);
+            
+             if (button == ButtonType.OK) {
+                TicTacToeJava.stage.setScene(new Scene(new SignInScreenBase()));
+            } else {
+                alert.close();
+            }           
+          
+        }
+
+    }

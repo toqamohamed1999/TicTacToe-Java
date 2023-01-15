@@ -3,6 +3,7 @@ package tictactoe.java;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -75,7 +77,7 @@ public class EasyMode {
         board.backImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
+                showAlart();
             }
         });
     }
@@ -222,6 +224,25 @@ public class EasyMode {
                 });
             }
         }, 1000, 1000);
+
+    }
+
+    public void showAlart() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit!");
+        alert.setHeaderText("If you exit the game you will lose.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+
+        if (button == ButtonType.OK) {
+            TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
+
+        } else {
+            alert.close();
+
+        }
 
     }
 

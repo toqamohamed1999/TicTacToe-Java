@@ -50,10 +50,20 @@ public class SignUp {
                 confirmPassword = signUpScreenBase.confirmTextField.getText();
                 email = signUpScreenBase.emailTextField.getText();
                 gender = signUpScreenBase.getGender(actionEvent);
-                boolean isValiad = signUpScreenBase.validEmail(email);
+                boolean isValiadEmail = signUpScreenBase.validEmail(email);
+                boolean isVaildPassword = signUpScreenBase.validPassword(password);
 
-                if (isValiad || confirmPassword.equals(password) || userName != null || gender == "Not Selected") {
-
+                if (userName.isEmpty()) {
+                    showDialog("Enter userName ");
+                } else if (isVaildPassword == false) {
+                    showDialog("Password should contains special charachters,numbers and capital charachters ");
+                } else if (!confirmPassword.equals(password)) {
+                    showDialog("your password not matches");
+                } else if (isValiadEmail == false) {
+                    showDialog("Enter a vaild Email");
+                } else if (gender.equals("Not Selected")) {
+                    showDialog("Select your gender");
+                } else {
                     String data = "SignUp" + "," + ip + "," + userName + "," + email + "," + password + "," + gender;
                     ClientSide.ps.println(data);
                 }
@@ -67,7 +77,7 @@ public class SignUp {
         if (textmessage.equalsIgnoreCase("signUpVerified")) {
             moveToOnlineListScreen();
         } else if (textmessage.equalsIgnoreCase("signUpNotVerified")) {
-            showDialog();
+            showDialog("You already have an account");
         }
 
     }
@@ -79,13 +89,13 @@ public class SignUp {
         });
     }
 
-    void showDialog() {
+    void showDialog(String msg) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("SignUp incorrect");
-            alert.setContentText("You already have an account!");
+            alert.setContentText(msg);
             alert.show();
-
         });
     }
+
 }

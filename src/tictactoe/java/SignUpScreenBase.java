@@ -253,11 +253,29 @@ public class SignUpScreenBase extends AnchorPane {
     }
 
     public boolean validEmail(String input) {
-        // ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$
+
         String emailRegex = "^.+@.+\\..+$";
         Pattern emailPattern = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailPattern.matcher(input);
         return matcher.find();
+
+
+    }
+
+    public static boolean validPassword(String password) {
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8,20}$";
+        
+        Pattern passwordPattern = Pattern.compile(regex);
+
+        if (password == null) {
+            return false;
+        }
+        Matcher m = passwordPattern.matcher(password);
+
+        return m.matches();
 
     }
 
