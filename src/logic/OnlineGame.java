@@ -275,27 +275,15 @@ public class OnlineGame {
     public void setXorO(Button btn, ImageView iv) {
         if (turn % 2 == 0) {
             turn++;
-    //        Platform.setImplicitExit(false);
-
-      //      Platform.runLater(() -> {
-
                 btn.setText("X");
                 iv.setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
-    //        });
         } else {
             turn++;
-    //        Platform.setImplicitExit(false);
-
-//            Platform.runLater(() -> {
-
                 btn.setText("O");
-
                 iv.setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
-    //        });
         }
 
     }
-
     private int XisWinner() {
         counter++;
         if (gameBoard.button_1.getText().equals("X") && gameBoard.button_2.getText().equals("X") && gameBoard.button_3.getText().equals("X")) {
@@ -360,7 +348,6 @@ public class OnlineGame {
 
         int xResult = XisWinner();
         int oResult = OisWinner();
-        System.out.println(xResult+" "+oResult);
         if (xResult == 1 || oResult == 1) {
             if (a == 1) {
 //                Platform.setImplicitExit(false);
