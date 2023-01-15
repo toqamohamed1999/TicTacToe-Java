@@ -65,7 +65,7 @@ public class EasyMode {
                 board.recordIndicatorImageView.setVisible(true);
                 board.recordIndicatorButton.setVisible(true);
                 rec = new recordLogic();
-                fileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Calendar.getInstance().getTime());
+                fileName = new SimpleDateFormat("dd_MM_yyyy_HH_mm").format(Calendar.getInstance().getTime());
                 rec.createFile(fileName);
             }
         });
