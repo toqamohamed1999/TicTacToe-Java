@@ -34,7 +34,7 @@ public class ClientSide implements Runnable {
         //     thread.start();
 
         try {
-            clientSocket = new Socket(InetAddress.getLocalHost(), 5005);
+            clientSocket = new Socket("10.145.23.204", 5005);
             dis = new DataInputStream(clientSocket.getInputStream());
             ps = new PrintStream(clientSocket.getOutputStream());
         } catch (SocketException ex) {
@@ -56,6 +56,7 @@ public class ClientSide implements Runnable {
                 if (dis != null) {
                     String textmessage = dis.readLine();
                     System.out.println("@@@@@@@@@@@" + textmessage);
+                    Platform.setImplicitExit(false);
                     Platform.runLater(() -> {
                         handleAction(textmessage);
                     });
@@ -79,7 +80,9 @@ public class ClientSide implements Runnable {
                 || msg.contains("confirmRequest")) {
             OnlineList.onlineList.receiveOnlineList(msg);
         } else if (msg.contains("game")) {
+
             OnlineGame.onlineGame.doAction(msg);
+
         }
 
     }

@@ -87,6 +87,7 @@ public class OnlineList {
         if (button == ButtonType.OK) {
             ClientSide.ps.println("confirmRequestfromSecondPlayer," + myIp + "," + secondIp);
             System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+            moveToGameBoardScreen();
         } else {
             alert.close();
         }
@@ -139,17 +140,17 @@ public class OnlineList {
 
     void moveToGameBoardScreen() {
 //        User firstUser = getFirstPlayer();
-////        User secondUsed = usersList.get(secondPlayerIndex);
-//
+//        User secondUser = usersList.get(secondPlayerIndex);
+////
 //        System.out.println("first user = " + firstUser.toString());
-//    
-//        User second = new User();
-//        second.setIP("");
-//        second.setEmail("aml.gmail.com");
-//        second.setGender("female");
-//        second.setScore(20);
-//        second.setUserName("aml");
-//        //   System.out.println("second user = " + secondUser.toString());
+////    
+////        User second = new User();
+////        second.setIP("");
+////        second.setEmail("aml.gmail.com");
+////        second.setGender("female");
+////        second.setScore(20);
+////        second.setUserName("aml");
+//           System.out.println("second user = " + secondUser.toString());
 
         Platform.runLater(new Runnable() {
             public void run() {
