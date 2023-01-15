@@ -183,6 +183,7 @@ public class OnlineList {
             @Override
             public void handle(ActionEvent event) {
                 listView.getItems().clear();
+                usersList.clear();
                 getAllOnlineUsers();
             }
         });
