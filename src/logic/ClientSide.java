@@ -25,7 +25,7 @@ public class ClientSide implements Runnable {
     private static ClientSide clientSide = new ClientSide();
     Socket clientSocket;
     DataInputStream dis;
-    static PrintStream ps;
+    public static PrintStream ps;
     String textmessage = "";
     // Thread thread;
 
@@ -77,7 +77,7 @@ public class ClientSide implements Runnable {
         } else if (msg.endsWith("signUpVerified") || msg.equals("signUpNotVerified")) {
             SignUp.signUp.doAction(msg);
         } else if (msg.contains("sendAllUsers") || msg.contains("recieveRequest")
-                || msg.contains("confirmRequest")) {
+                || msg.contains("confirmRequest")||msg.contains("getPlayersData")) {
             OnlineList.onlineList.receiveOnlineList(msg);
         } else if (msg.contains("game")) {
 

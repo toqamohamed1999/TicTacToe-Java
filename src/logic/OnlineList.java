@@ -3,6 +3,7 @@ package logic;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -124,6 +125,9 @@ public class OnlineList {
             recieveRequest();
         } else if (operationArr[0].equals("confirmRequest")) {
             moveToGameBoardScreen();
+        } else if (operationArr[0].equals("getPlayersData")) {
+            System.out.println("fffffffffffffffff " + Arrays.toString(operationArr));
+            getPlayersData();
         }
     }
 // ps.println("sendAllUsers," + loopIp + "," + user.getUserName() + "," + user.getEmail() + "," + user.getGender());
@@ -139,22 +143,11 @@ public class OnlineList {
     }
 
     void moveToGameBoardScreen() {
-//        User firstUser = getFirstPlayer();
-//        User secondUser = usersList.get(secondPlayerIndex);
-////
-//        System.out.println("first user = " + firstUser.toString());
-////    
-////        User second = new User();
-////        second.setIP("");
-////        second.setEmail("aml.gmail.com");
-////        second.setGender("female");
-////        second.setScore(20);
-////        second.setUserName("aml");
-//           System.out.println("second user = " + secondUser.toString());
 
         Platform.runLater(new Runnable() {
             public void run() {
-                OnlineGame onlineGame = new OnlineGame("a",1,"b",2);
+                //OnlineGame onlineGame = new OnlineGame(firstPlayer,secondPlayer);
+                OnlineGame onlineGame = new OnlineGame("a", 1, "b", 2);
                 TicTacToeJava.stage.setScene(new Scene(onlineGame.gameBoard));
             }
         });
@@ -189,14 +182,25 @@ public class OnlineList {
         });
     }
 
-    User getFirstPlayer() {
-        User user = null;
-        for (int i = 0; i < usersList.size(); i++) {
+    User firstPlayer = new User();
+    User secondPlayer = new User();
 
-            if (ip.equals(usersList.get(i).getIP())) {
-                user = usersList.get(i);
-            }
-        }
-        return user;
+    //[getPlayersData, 192.168.1.9, amr, amr@gmail.com, 0, Male, 192.168.1.9, amr, amr@gmail.com, 0, Male]
+    void getPlayersData() {
+
+        firstPlayer.setIP(operationArr[1]);
+        firstPlayer.setUserName(operationArr[2]);
+        firstPlayer.setEmail(operationArr[3]);
+        firstPlayer.setScore(Integer.valueOf(operationArr[4]));
+        firstPlayer.setGender(operationArr[5]);
+
+        secondPlayer.setIP(operationArr[6]);
+        secondPlayer.setUserName(operationArr[7]);
+        secondPlayer.setEmail(operationArr[8]);
+        secondPlayer.setScore(Integer.valueOf(operationArr[9]));
+        secondPlayer.setGender(operationArr[10]);
+
+        System.out.println("player1 = " + firstPlayer.toString());
+        System.out.println("player2 = " + secondPlayer.toString());
     }
 }

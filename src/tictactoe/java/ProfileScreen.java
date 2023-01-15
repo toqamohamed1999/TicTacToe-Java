@@ -1,9 +1,12 @@
 package tictactoe.java;
 
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -17,7 +20,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.ClientSide;
 import logic.OnlineList;
+import logic.SignIn;
 
 public class ProfileScreen extends AnchorPane {
 
@@ -31,6 +36,7 @@ public class ProfileScreen extends AnchorPane {
     public final Text userNameText;
     protected final ImageView back;
     protected final ImageView logout;
+    String ip = null;
 
     public ProfileScreen(String profilData) {
 
@@ -119,6 +125,7 @@ public class ProfileScreen extends AnchorPane {
         recordsButton.setMnemonicParsing(false);
         recordsButton.setPrefHeight(38.0);
         recordsButton.setPrefWidth(148.0);
+        recordsButton.setCursor(Cursor.OPEN_HAND);
         recordsButton.setText("My Records");
         recordsButton.setTextFill(javafx.scene.paint.Color.valueOf("#f9002d"));
         recordsButton.setFont(new Font("Impact", 20.0));
@@ -134,9 +141,11 @@ public class ProfileScreen extends AnchorPane {
         back.setLayoutY(21.0);
         back.setPickOnBounds(true);
         back.setPreserveRatio(true);
+        back.setCursor(Cursor.OPEN_HAND);
         back.setImage(new Image(getClass().getResource("/res/back.png").toExternalForm()));
         back.setOnMouseClicked((MouseEvent e) -> {
-            TicTacToeJava.stage.setScene(new Scene(OnlineList.onlineList.onlineListScreen));
+            OnlineList onlineList = new OnlineList("");
+            TicTacToeJava.stage.setScene(new Scene(onlineList.onlineListScreen));
         });
 
         logout.setFitHeight(53.0);
@@ -145,6 +154,7 @@ public class ProfileScreen extends AnchorPane {
         logout.setLayoutY(21.0);
         logout.setPickOnBounds(true);
         logout.setPreserveRatio(true);
+        logout.setCursor(Cursor.OPEN_HAND);
         logout.setImage(new Image(getClass().getResource("/res/logout.png").toExternalForm()));
         logout.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -164,6 +174,12 @@ public class ProfileScreen extends AnchorPane {
         getChildren().add(back);
         getChildren().add(logout);
 
+        try {
+            ip = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     String[] profileArr;
@@ -173,20 +189,22 @@ public class ProfileScreen extends AnchorPane {
     }
 
     public void showAlart() {
-       
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout!");
-            alert.setHeaderText("Do you want to logout.");        
 
-            Optional<ButtonType> result = alert.showAndWait();
-            ButtonType button = result.orElse(ButtonType.CANCEL);
-            
-             if (button == ButtonType.OK) {
-                TicTacToeJava.stage.setScene(new Scene(new SignInScreenBase()));
-            } else {
-                alert.close();
-            }           
-          
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout!");
+        alert.setHeaderText("Do you want to logout?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+
+        if (button == ButtonType.OK) {
+            ClientSide.ps.println("logOut," + ip);
+            SignIn signIn = new SignIn();
+            TicTacToeJava.stage.setScene(new Scene(signIn.signInScreenBase));
+        } else {
+            alert.close();
         }
 
     }
+
+}
