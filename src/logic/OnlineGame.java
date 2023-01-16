@@ -6,6 +6,11 @@
 package logic;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import java.util.Locale;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,6 +38,12 @@ public class OnlineGame {
     int turn, counter;
     boolean yourTurn;
     static OnlineGame onlineGame;
+    public int player1Avatar , player2Avatar;
+    String player1;
+    String player2;
+    User myUser1,myUser2;
+    String recieverIp= null;
+    String myIp;
 
     public OnlineGame(String playerOneName, int playerOneAvatarNumber, String playerTwoName, int playerTwoAvatarNumber) {
         onlineGame = this;
@@ -48,15 +59,39 @@ public class OnlineGame {
     }
 
     public OnlineGame(User user1, User user2) {
+        
+        myUser1=user1;
+        myUser2=user2;
+        try {
+            myIp = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException ex) {
+            ex.printStackTrace();
+        }
+        if(!myIp.equals(user1.getIP()))recieverIp=user1.getIP();
+        else recieverIp = user2.getIP();
+        
         onlineGame = this;
         yourTurn = true;
         turn = 2;
         counter = 0;
-        //  gameBoard = new GameBoard(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
+        player1=user1.getUserName();
+        player2=user2.getUserName();
+        if(user1.gender.toLowerCase().equals("female")) {
+            player1Avatar=2;
+        } else {
+            player1Avatar=1;
+        }
+        if(user2.gender.toLowerCase().equals("female")) {
+            player2Avatar=2;
+        } else {
+            player2Avatar=1;
+        }
+        gameBoard = new GameBoard(user1.userName, player1Avatar, user2.userName , player2Avatar);
         sourceMode = 2;
         record();
         back();
         buttonshandel();
+        
 
     }
 
@@ -162,8 +197,15 @@ public class OnlineGame {
             @Override
             public void handle(ActionEvent event) {
                 if (gameBoard.button_1.getText().equals("") && yourTurn == true) {
+//                    if(counter==0){
+//                        gameBoard.user1NameText.setText(player1);
+//                        if(player1Avatar==1)
+//                            gameBoard.user1ImageView.setImage(new Image(getClass().getResource("/res/man.png").toExternalForm()));
+//                        if(player1Avatar==2)
+//                            gameBoard.user1ImageView.setImage(new Image(getClass().getResource("/res/woman.png").toExternalForm()));
+//                    }
                     setXorO(gameBoard.button_1, gameBoard.button_1Image);
-                    ClientSide.ps.println("game,1");
+                    ClientSide.ps.println("game,1,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }
@@ -176,7 +218,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_2.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_2, gameBoard.button_2Image);
-                    ClientSide.ps.println("game,2");
+                    ClientSide.ps.println("game,2,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }
@@ -189,7 +231,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_3.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_3, gameBoard.button_3Image);
-                    ClientSide.ps.println("game,3");
+                    ClientSide.ps.println("game,3,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }
@@ -201,7 +243,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_4.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_4, gameBoard.button_4Image);
-                    ClientSide.ps.println("game,4");
+                    ClientSide.ps.println("game,4,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }
@@ -213,7 +255,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_5.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_5, gameBoard.button_5Image);
-                    ClientSide.ps.println("game,5");
+                    ClientSide.ps.println("game,5,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }
@@ -225,7 +267,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_6.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_6, gameBoard.button_6Image);
-                    ClientSide.ps.println("game,6");
+                    ClientSide.ps.println("game,6,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }
@@ -237,7 +279,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_7.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_7, gameBoard.button_7Image);
-                    ClientSide.ps.println("game,7");
+                    ClientSide.ps.println("game,7,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
 
@@ -250,7 +292,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_8.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_8, gameBoard.button_8Image);
-                    ClientSide.ps.println("game,8");
+                    ClientSide.ps.println("game,8,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }
@@ -262,7 +304,7 @@ public class OnlineGame {
             public void handle(ActionEvent event) {
                 if (gameBoard.button_9.getText().equals("") && yourTurn == true) {
                     setXorO(gameBoard.button_9, gameBoard.button_9Image);
-                    ClientSide.ps.println("game,9");
+                    ClientSide.ps.println("game,9,"+recieverIp);
                     TheWinner(1);
                     yourTurn = false;
                 }

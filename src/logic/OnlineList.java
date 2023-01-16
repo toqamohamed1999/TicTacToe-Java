@@ -143,11 +143,12 @@ public class OnlineList {
     }
 
     void moveToGameBoardScreen() {
-
+        System.out.println(firstPlayer);
+        System.out.println(secondPlayer);
         Platform.runLater(new Runnable() {
             public void run() {
-                //OnlineGame onlineGame = new OnlineGame(firstPlayer,secondPlayer);
-                OnlineGame onlineGame = new OnlineGame("a", 1, "b", 2);
+                OnlineGame onlineGame = new OnlineGame(firstPlayer,secondPlayer);
+   //             OnlineGame onlineGame = new OnlineGame("a", 1, "b", 2);
                 TicTacToeJava.stage.setScene(new Scene(onlineGame.gameBoard));
             }
         });

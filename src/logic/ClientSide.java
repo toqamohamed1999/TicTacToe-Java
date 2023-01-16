@@ -34,7 +34,7 @@ public class ClientSide implements Runnable {
         //     thread.start();
 
         try {
-            clientSocket = new Socket(InetAddress.getLocalHost(), 5005);
+            clientSocket = new Socket("10.145.19.172", 5005);
             dis = new DataInputStream(clientSocket.getInputStream());
             ps = new PrintStream(clientSocket.getOutputStream());
         } catch (SocketException ex) {
