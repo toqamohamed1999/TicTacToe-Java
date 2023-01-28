@@ -3,11 +3,11 @@ package tictactoe.java;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.Optional;
-import javafx.application.Platform;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -20,7 +20,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import logic.ClientSide;
+import logic.OnlineGame;
 import logic.OnlineList;
 import logic.SignIn;
 
@@ -160,6 +162,16 @@ public class ProfileScreen extends AnchorPane {
             @Override
             public void handle(MouseEvent event) {
                 showAlart();
+            }
+        });
+        TicTacToeJava.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                try {
+                    ClientSide.ps.println("logOut,"+Inet4Address.getLocalHost().getHostAddress());
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 

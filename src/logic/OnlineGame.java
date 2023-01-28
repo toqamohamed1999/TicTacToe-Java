@@ -1,36 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logic;
 
-import java.io.IOException;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
-import java.util.Locale;
-import javafx.application.Platform;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import tictactoe.java.GameBoard;
 import tictactoe.java.ResultLogic;
 import tictactoe.java.TicTacToeJava;
 import tictactoe.java.YouWinScreenBase;
 import tictactoe.java.multiPlayerScreen;
 
-/**
- *
- * @author Ahmed Abdo
- */
 public class OnlineGame {
 
     public GameBoard gameBoard;
@@ -55,6 +44,17 @@ public class OnlineGame {
         record();
         back();
         buttonshandel();
+        
+        TicTacToeJava.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                try {
+                    ClientSide.ps.println("logOut,"+Inet4Address.getLocalHost().getHostAddress());
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
     }
 
@@ -469,27 +469,18 @@ public class OnlineGame {
         int oResult = OisWinner();
         if (xResult == 1 || oResult == 1) {
             if (a == 1) {
-//                Platform.setImplicitExit(false);
-//                Platform.runLater(() -> {
                 if(myIp.equals(myUser1.getIP()))ClientSide.ps.println("updateScore,"+myUser1.getEmail()+","+(myUser1.getScore()+10));
                 else ClientSide.ps.println("updateScore,"+myUser2.getEmail()+","+(myUser2.getScore()+10));
                 TicTacToeJava.stage.setScene(new Scene(new YouWinScreenBase()));
-//                });
             } else {
-//                Platform.setImplicitExit(false);
-//                Platform.runLater(() -> {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
                 ResultLogic lose = new ResultLogic("l");
                 TicTacToeJava.stage.setScene(new Scene(lose.result));
-//                });
             }
         }
         if (counter == 9 && xResult != 1 && oResult != 1) {
-//            Platform.setImplicitExit(false);
-//            Platform.runLater(() -> {
             ResultLogic draw = new ResultLogic("d");
             TicTacToeJava.stage.setScene(new Scene(draw.result));
-//            });
         }
     }
 

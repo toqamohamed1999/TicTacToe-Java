@@ -6,13 +6,10 @@ import java.util.Calendar;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.IntStream;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -21,11 +18,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import logic.recordLogic;
 
 public class EasyMode {
@@ -126,7 +118,6 @@ public class EasyMode {
                             //proceed
                             if (activePlayer == 1) {
 
-                                //            currentBtn.setGraphic(new ImageView(new Image("/res/X.png", 40, 40, true, true)));
                                 images[btnId].setImage(new Image(getClass().getResource("/res/X.png").toExternalForm()));
                                 gameState[btnId] = activePlayer;
                                 checkForWinner();
@@ -135,12 +126,8 @@ public class EasyMode {
                                     btnId++;
                                     rec.writeFile("X," + btnId, fileName);
                                 }
-
                                 for (int i = 0; i < gameState.length; i++) {
-
                                     if (gameState[i] == 3 && !gameOver) {
-                                        //                  currentBtn = btns[i];
-                                        //                   currentBtn.setGraphic(new ImageView(new Image("/res/O.png", 40, 40, true, true)));
                                         images[i].setImage(new Image(getClass().getResource("/res/O.png").toExternalForm()));
                                         gameState[i] = activePlayer;
                                         checkForWinner();
@@ -160,12 +147,10 @@ public class EasyMode {
                                 alert.setTitle("message");
                                 alert.setContentText("Placed is already occupied");
                                 alert.show();
-
                             }
                         }
 
                     }
-
                 }
 
             });
@@ -177,9 +162,7 @@ public class EasyMode {
 
         if (!gameOver) {
             boolean contains = IntStream.of(gameState).anyMatch(x -> x == 3);
-            System.out.println(Arrays.toString(gameState));
             if (!contains) {
-                System.out.println(Arrays.toString(gameState));
                 navigateToWinner("d");
                 gameOver = true;
             } else {
@@ -191,11 +174,6 @@ public class EasyMode {
                         } else {
                             navigateToWinner("l");
                         }
-                        //     btns[wp[0]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                        //     btns[wp[1]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                        //     btns[wp[2]].setStyle("-fx-background-color: #33F000; -fx-border-color: grey; -fx-border-radius: 5;");
-                        //   btns[wp[2]].setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-                        //  alert.show();
                         gameOver = true;
                         break;
                     }
@@ -238,10 +216,8 @@ public class EasyMode {
 
         if (button == ButtonType.OK) {
             TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
-
         } else {
             alert.close();
-
         }
 
     }

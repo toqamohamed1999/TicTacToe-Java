@@ -7,12 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-/**
- *
- * @author Ahmed Abdo
- */
 public class ResultLogic {
 
     public ResultScreen result;
@@ -108,7 +103,6 @@ public class ResultLogic {
             @Override
             public void handle(ActionEvent event) {
                 Parent root = null;
-                System.out.println(sourceMode);
                 if (sourceMode == 1) {
                     EasyMode easyMode = new EasyMode(player1, player1Avatar, player2, player2Avatar);
                     root = easyMode.board;

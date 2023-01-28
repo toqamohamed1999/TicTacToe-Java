@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logic;
 
 import java.io.DataInputStream;
@@ -10,52 +6,55 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import static logic.SignIn.profileDataArr;
-import tictactoe.java.SignUpScreenBase;
+import tictactoe.java.HomeScreen;
+import tictactoe.java.TicTacToeJava;
 
 public class ClientSide implements Runnable {
 
-    private static ClientSide clientSide = new ClientSide();
+    private static ClientSide clientSide;
     Socket clientSocket;
     DataInputStream dis;
     public static PrintStream ps;
     String textmessage = "";
-    // Thread thread;
 
     private ClientSide() {
-        //     thread = new Thread(this);
-        //     thread.start();
 
         try {
-            clientSocket = new Socket("10.145.19.172", 5005);
+            clientSocket = new Socket(InetAddress.getLocalHost(), 5005);
             dis = new DataInputStream(clientSocket.getInputStream());
             ps = new PrintStream(clientSocket.getOutputStream());
-        } catch (SocketException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (Exception ex) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Server is down!");
+                alert.setContentText("The Server is down, Please try again later.");
+                alert.show();
+                clientSide = null;
+                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
+            });
         }
 
     }
 
     public static ClientSide getInstanse() {
+        if (clientSide == null) {
+            clientSide = new ClientSide();
+        }
         return clientSide;
     }
 
     @Override
     public void run() {
-        while (true) {
-            try {
+        try {
+            while (true) {
+
                 if (dis != null) {
                     String textmessage = dis.readLine();
-                    System.out.println("@@@@@@@@@@@" + textmessage);
+                    System.out.println("message from server: "+textmessage);
                     Platform.setImplicitExit(false);
                     Platform.runLater(() -> {
                         handleAction(textmessage);
@@ -65,10 +64,18 @@ public class ClientSide implements Runnable {
                     }
                     ps.flush();
                 }
-            } catch (IOException ex) {
-                ex.printStackTrace();
+
             }
-        }
+        } catch (IOException ex) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Server is down!");
+                alert.setContentText("The Server is down, Please try again later.");
+                alert.show();
+                clientSide = null;
+                TicTacToeJava.stage.setScene(new Scene(new HomeScreen()));
+            });
+        } 
     }
 
     void handleAction(String msg) {
@@ -77,14 +84,11 @@ public class ClientSide implements Runnable {
         } else if (msg.endsWith("signUpVerified") || msg.equals("signUpNotVerified")) {
             SignUp.signUp.doAction(msg);
         } else if (msg.contains("sendAllUsers") || msg.contains("recieveRequest")
-                || msg.contains("confirmRequest")||msg.contains("getPlayersData")) {
+                || msg.contains("confirmRequest") || msg.contains("getPlayersData")) {
             OnlineList.onlineList.receiveOnlineList(msg);
         } else if (msg.contains("game")) {
-
             OnlineGame.onlineGame.doAction(msg);
-
         }
-
     }
 
 }

@@ -5,10 +5,8 @@ import java.net.UnknownHostException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 import tictactoe.java.SignInScreenBase;
 import tictactoe.java.TicTacToeJava;
 
@@ -49,7 +47,6 @@ public class SignIn {
         password = signInScreenBase.passwordTextField.getText() + "";
         if (!email.isEmpty() && !password.isEmpty()) {
 
-            System.out.println("ip = " + ip);
             data = "signIn," + ip + "," + email + "," + password;
         }
         return data;
@@ -80,19 +77,14 @@ public class SignIn {
     }
 
     void moveToOnlineListScreen() {
-        Platform.runLater(() -> {
-            OnlineList onlineList = new OnlineList(email);
-            TicTacToeJava.stage.setScene(new Scene(onlineList.onlineListScreen));
-        });
+        OnlineList onlineList = new OnlineList(email);
+        TicTacToeJava.stage.setScene(new Scene(onlineList.onlineListScreen));
     }
 
     void showDialog() {
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("SignIn incorrect");
-            alert.setContentText("Make sure that, your email and password are empty or correct!");
-            alert.show();
-
-        });
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("SignIn incorrect");
+        alert.setContentText("Make sure that, your email and password are empty or correct!");
+        alert.show();
     }
 }

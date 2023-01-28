@@ -14,10 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Monica
- */
+
 public class recordLogic {
       public void createFile(String fileName) {
         try {
@@ -32,7 +29,6 @@ public class recordLogic {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -43,7 +39,6 @@ public class recordLogic {
             reader = new BufferedReader(new FileReader(path));
             String line = reader.readLine();
             while (line != null) {
-                System.out.println(line);
                 line = reader.readLine();
                 gameSteps.add(line);
             }
@@ -73,7 +68,6 @@ public class recordLogic {
         File directoryPath = new File(dirPath);
         //List of all files and directories
          files = directoryPath.list();
-        System.out.println("List of files and directories in the specified directory:\n");
         return files;
     }
 }

@@ -1,9 +1,11 @@
 package tictactoe.java;
 
-import javafx.event.ActionEvent;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import logic.ClientSide;
+import logic.OnlineGame;
 
 public class OnlineListScreen extends AnchorPane {
 
@@ -80,7 +84,16 @@ public class OnlineListScreen extends AnchorPane {
 
         profilePic.setImage(new Image(getClass().getResource("/res/profile.png").toExternalForm()));
 
-        
+        TicTacToeJava.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                try {
+                    ClientSide.ps.println("logOut,"+Inet4Address.getLocalHost().getHostAddress());
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         getChildren().add(onlineListLabel);
         getChildren().add(onlineListView);
         getChildren().add(back);

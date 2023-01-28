@@ -1,23 +1,14 @@
 package tictactoe.java;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
 public class ResultScreen extends AnchorPane {
 
@@ -144,9 +135,7 @@ public class ResultScreen extends AnchorPane {
         player2Name.setLayoutX(497.0);
         player2Name.setLayoutY(159.0);
         player2Name.setText("");
-      //  player2Name.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         player2Name.setTextFill(javafx.scene.paint.Color.WHITE);
-      //  player2Name.setTextOverrun(javafx.scene.control.OverrunStyle.CENTER_ELLIPSIS);
         player2Name.setFont(new Font("Impact", 21.0));
         player2Name.setTextAlignment(TextAlignment.JUSTIFY);
         player2Name.setWrapText(true);

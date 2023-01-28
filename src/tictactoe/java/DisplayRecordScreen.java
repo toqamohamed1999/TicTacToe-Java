@@ -4,23 +4,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
+
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import logic.recordLogic;
 
 public class DisplayRecordScreen extends AnchorPane {
@@ -279,7 +276,6 @@ public class DisplayRecordScreen extends AnchorPane {
         button_9.setId(8 + "");
 
         List<String> gameSteps = rec.readFile(path);
-        System.out.println(gameSteps.size());
         new Thread() {
             @Override
             public void run() {

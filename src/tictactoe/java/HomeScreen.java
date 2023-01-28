@@ -3,7 +3,6 @@ package tictactoe.java;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,8 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class HomeScreen extends AnchorPane {
 
@@ -91,12 +88,6 @@ public class HomeScreen extends AnchorPane {
         setPrefWidth(600.0);
         getStylesheets().add("/tictactoe/java/Styles.css");
 
-//        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-//            @Override
-//            public void handle(WindowEvent event) {
-//                System.exit(0);
-//            }
-//        });
         profilePic.setFitHeight(57.0);
         profilePic.setFitWidth(66.0);
         profilePic.setLayoutX(520.0);

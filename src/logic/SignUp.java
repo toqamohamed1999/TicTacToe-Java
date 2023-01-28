@@ -1,18 +1,12 @@
 package logic;
 
-import java.io.IOException;
-
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
-import javafx.application.Platform;
-
 import tictactoe.java.SignUpScreenBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 import tictactoe.java.TicTacToeJava;
 
 public class SignUp {
@@ -73,29 +67,22 @@ public class SignUp {
     }
 
     void doAction(String textmessage) {
-
         if (textmessage.equalsIgnoreCase("signUpVerified")) {
             moveToOnlineListScreen();
         } else if (textmessage.equalsIgnoreCase("signUpNotVerified")) {
             showDialog("You already have an account");
         }
-
     }
 
     void moveToOnlineListScreen() {
-        Platform.runLater(() -> {
-            OnlineList onlineList = new OnlineList(email);
-            TicTacToeJava.stage.setScene(new Scene(onlineList.onlineListScreen));
-        });
+        OnlineList onlineList = new OnlineList(email);
+        TicTacToeJava.stage.setScene(new Scene(onlineList.onlineListScreen));
     }
 
     void showDialog(String msg) {
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("SignUp incorrect");
-            alert.setContentText(msg);
-            alert.show();
-        });
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("SignUp incorrect");
+        alert.setContentText(msg);
+        alert.show();
     }
-
 }

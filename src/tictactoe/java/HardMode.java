@@ -1,18 +1,12 @@
 package tictactoe.java;
 
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
+
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.IntStream;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -21,12 +15,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import logic.recordLogic;
+
 
 public class HardMode {
 
@@ -49,8 +38,7 @@ public class HardMode {
         {2, 4, 6}
     };
     int sourceMode;
-//    recordLogic rec;
-//    String fileName;
+
 
     public HardMode(String playerOneName, int playerOneAvatarNumber, String playerTwoName, int playerTwoAvatarNumber) {
         board = new GameBoard(playerOneName, playerOneAvatarNumber, playerTwoName, playerTwoAvatarNumber);
@@ -67,9 +55,6 @@ public class HardMode {
             public void handle(ActionEvent event) {
                 board.recordIndicatorImageView.setVisible(true);
                 board.recordIndicatorButton.setVisible(true);
-//                rec=new recordLogic();
-//                fileName = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Calendar.getInstance().getTime());
-//                rec.createFile(fileName);
             }
         });
     }
@@ -125,10 +110,8 @@ public class HardMode {
                         }
                         int result = checkWinner(btns);
                         if (result == 0) {
-                            //        System.out.println("Tie");
                             navigateToWinner("d", 3, board.user1NameText.getText(), board.player1Avatar);
                         } else {
-                            //          System.out.println((result==2)?"X":"O"+"Player wins");
                             if (result == 2) {
                                 navigateToWinner("w", 3, board.user1NameText.getText(), board.player1Avatar);
                             } else if (result == -2) {
@@ -268,15 +251,6 @@ public class HardMode {
             result = 0;
         }
 
-//    if(result==-2){
-//        System.out.println("if cond");
-//        navigateToWinner(board.user1NameText.getText(), board.player1Avatar, board.user2NameText.getText(), board.player2Avatar , 'o');
-//    }
-//    else if(result==2){
-//        System.out.println("else cond");
-//        navigateToWinner(board.user1NameText.getText(), board.player1Avatar, board.user2NameText.getText(), board.player2Avatar , 'x');
-//    }
-        // Else
         return result;
     }
 
